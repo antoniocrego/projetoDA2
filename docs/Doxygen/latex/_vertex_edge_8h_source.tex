@@ -1,0 +1,104 @@
+\hypertarget{_vertex_edge_8h_source}{}\doxysection{Vertex\+Edge.\+h}
+\label{_vertex_edge_8h_source}\index{data\_structures/VertexEdge.h@{data\_structures/VertexEdge.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// By: Gonçalo Leão}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#ifndef DA\_TP\_CLASSES\_VERTEX\_EDGE}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#define DA\_TP\_CLASSES\_VERTEX\_EDGE}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <queue>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <limits>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}../data\_structures/MutablePriorityQueue.h"{}}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{class }\mbox{\hyperlink{class_edge}{Edge}};}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#define INF std::numeric\_limits<double>::max()}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{comment}{/************************* Vertex  **************************/}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{class }\mbox{\hyperlink{class_vertex}{Vertex}} \{}
+\DoxyCodeLine{20 \textcolor{keyword}{public}:}
+\DoxyCodeLine{21     \mbox{\hyperlink{class_vertex}{Vertex}}(\textcolor{keywordtype}{int} \textcolor{keywordtype}{id});}
+\DoxyCodeLine{22     \textcolor{keywordtype}{bool} operator<(\mbox{\hyperlink{class_vertex}{Vertex}} \& vertex) \textcolor{keyword}{const}; \textcolor{comment}{// // required by MutablePriorityQueue}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24     \textcolor{keywordtype}{int} getId() \textcolor{keyword}{const};}
+\DoxyCodeLine{25     std::vector<Edge *> getAdj() \textcolor{keyword}{const};}
+\DoxyCodeLine{26     \textcolor{keywordtype}{bool} isVisited() \textcolor{keyword}{const};}
+\DoxyCodeLine{27     \textcolor{keywordtype}{bool} isProcessing() \textcolor{keyword}{const};}
+\DoxyCodeLine{28     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} getIndegree() \textcolor{keyword}{const};}
+\DoxyCodeLine{29     \textcolor{keywordtype}{double} getDist() \textcolor{keyword}{const};}
+\DoxyCodeLine{30     \mbox{\hyperlink{class_edge}{Edge}} *getPath() \textcolor{keyword}{const};}
+\DoxyCodeLine{31     std::vector<Edge *> getIncoming() \textcolor{keyword}{const};}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33     \textcolor{keywordtype}{void} setId(\textcolor{keywordtype}{int} info);}
+\DoxyCodeLine{34     \textcolor{keywordtype}{void} setVisited(\textcolor{keywordtype}{bool} visited);}
+\DoxyCodeLine{35     \textcolor{keywordtype}{void} setProcesssing(\textcolor{keywordtype}{bool} processing);}
+\DoxyCodeLine{36     \textcolor{keywordtype}{void} setIndegree(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} indegree);}
+\DoxyCodeLine{37     \textcolor{keywordtype}{void} setDist(\textcolor{keywordtype}{double} dist);}
+\DoxyCodeLine{38     \textcolor{keywordtype}{void} setPath(\mbox{\hyperlink{class_edge}{Edge}} *path);}
+\DoxyCodeLine{39     \mbox{\hyperlink{class_edge}{Edge}} * addEdge(\mbox{\hyperlink{class_vertex}{Vertex}} *dest, \textcolor{keywordtype}{double} w, std::string service);}
+\DoxyCodeLine{40     \textcolor{keywordtype}{bool} removeEdge(\textcolor{keywordtype}{int} destID);}
+\DoxyCodeLine{41     \textcolor{keywordtype}{void} removeOutgoingEdges();}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43     \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_mutable_priority_queue}{MutablePriorityQueue}}<\mbox{\hyperlink{class_vertex}{Vertex}}>;}
+\DoxyCodeLine{44 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{45     \textcolor{keywordtype}{int} id;                \textcolor{comment}{// identifier}}
+\DoxyCodeLine{46     std::vector<Edge *> adj;  \textcolor{comment}{// outgoing edges}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48     \textcolor{comment}{// auxiliary fields}}
+\DoxyCodeLine{49     \textcolor{keywordtype}{bool} visited = \textcolor{keyword}{false}; \textcolor{comment}{// used by DFS, BFS, Prim ...}}
+\DoxyCodeLine{50     \textcolor{keywordtype}{bool} processing = \textcolor{keyword}{false}; \textcolor{comment}{// used by isDAG (in addition to the visited attribute)}}
+\DoxyCodeLine{51     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} indegree; \textcolor{comment}{// used by topsort}}
+\DoxyCodeLine{52     \textcolor{keywordtype}{double} dist = 0;}
+\DoxyCodeLine{53     \mbox{\hyperlink{class_edge}{Edge}} *path = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55     std::vector<Edge *> incoming; \textcolor{comment}{// incoming edges}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57     \textcolor{keywordtype}{int} queueIndex = 0;         \textcolor{comment}{// required by MutablePriorityQueue and UFDS}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59     \textcolor{keywordtype}{void} deleteEdge(\mbox{\hyperlink{class_edge}{Edge}} *edge);}
+\DoxyCodeLine{60 \};}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 \textcolor{comment}{/********************** Edge  ****************************/}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \textcolor{keyword}{class }\mbox{\hyperlink{class_edge}{Edge}} \{}
+\DoxyCodeLine{65 \textcolor{keyword}{public}:}
+\DoxyCodeLine{66     \mbox{\hyperlink{class_edge}{Edge}}(\mbox{\hyperlink{class_vertex}{Vertex}} *orig, \mbox{\hyperlink{class_vertex}{Vertex}} *dest, \textcolor{keywordtype}{double} w, std::string service,\textcolor{keywordtype}{int} cost);}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68     \mbox{\hyperlink{class_vertex}{Vertex}} * getDest() \textcolor{keyword}{const};}
+\DoxyCodeLine{69     \textcolor{keywordtype}{double} getWeight() \textcolor{keyword}{const};}
+\DoxyCodeLine{70     \textcolor{keywordtype}{bool} isSelected() \textcolor{keyword}{const};}
+\DoxyCodeLine{71     \mbox{\hyperlink{class_vertex}{Vertex}} * getOrig() \textcolor{keyword}{const};}
+\DoxyCodeLine{72     \mbox{\hyperlink{class_edge}{Edge}} *getReverse() \textcolor{keyword}{const};}
+\DoxyCodeLine{73     \textcolor{keywordtype}{double} getFlow() \textcolor{keyword}{const};}
+\DoxyCodeLine{74     std::string getService() \textcolor{keyword}{const};}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76     \textcolor{keywordtype}{void} setSelected(\textcolor{keywordtype}{bool} selected);}
+\DoxyCodeLine{77     \textcolor{keywordtype}{void} setReverse(\mbox{\hyperlink{class_edge}{Edge}} *reverse);}
+\DoxyCodeLine{78     \textcolor{keywordtype}{void} setFlow(\textcolor{keywordtype}{double} flow);}
+\DoxyCodeLine{79     \textcolor{keywordtype}{bool} operator==(\mbox{\hyperlink{class_edge}{Edge}}* e);}
+\DoxyCodeLine{80     \textcolor{keywordtype}{int} getCost() \textcolor{keyword}{const};}
+\DoxyCodeLine{81 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{82     \mbox{\hyperlink{class_vertex}{Vertex}} * dest; \textcolor{comment}{// destination vertex}}
+\DoxyCodeLine{83     \textcolor{keywordtype}{double} weight; \textcolor{comment}{// edge weight, can also be used for capacity}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85     \textcolor{comment}{// auxiliary fields}}
+\DoxyCodeLine{86     \textcolor{keywordtype}{bool} selected = \textcolor{keyword}{false};}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88     \textcolor{comment}{// used for bidirectional edges}}
+\DoxyCodeLine{89     \mbox{\hyperlink{class_vertex}{Vertex}} *orig;}
+\DoxyCodeLine{90     \mbox{\hyperlink{class_edge}{Edge}} *reverse = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92     \textcolor{keywordtype}{double} flow; \textcolor{comment}{// for flow-\/related problems}}
+\DoxyCodeLine{93     \textcolor{keywordtype}{int} cost;}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95     std::string service;}
+\DoxyCodeLine{96 \};}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* DA\_TP\_CLASSES\_VERTEX\_EDGE */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

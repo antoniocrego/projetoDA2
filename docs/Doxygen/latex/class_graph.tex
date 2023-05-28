@@ -1,0 +1,242 @@
+\hypertarget{class_graph}{}\doxysection{Graph Class Reference}
+\label{class_graph}\index{Graph@{Graph}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_graph_a089f7fc73ea9976295d387846ad36c69}\label{class_graph_a089f7fc73ea9976295d387846ad36c69}} 
+\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ {\bfseries find\+Vertex} (const int \&id) const
+\item 
+\mbox{\Hypertarget{class_graph_ad354c018724ef3f137a0b8554089105e}\label{class_graph_ad354c018724ef3f137a0b8554089105e}} 
+bool {\bfseries add\+Vertex} (const int \&id)
+\item 
+bool \mbox{\hyperlink{class_graph_a697561b2a2c1b25147b1750b250c1fdf}{remove\+Vertex}} (const int \&id)
+\begin{DoxyCompactList}\small\item\em This function removes as vertex from the graph. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_graph_af77b545fb337ff848e3d32c9dd448807}\label{class_graph_af77b545fb337ff848e3d32c9dd448807}} 
+bool {\bfseries add\+Edge} (const int \&sourc, const int \&dest, double w, std\+::string service)
+\item 
+\mbox{\Hypertarget{class_graph_a1120df12dc58bbda563945dfe631a20d}\label{class_graph_a1120df12dc58bbda563945dfe631a20d}} 
+bool {\bfseries add\+Bidirectional\+Edge} (const int \&sourc, const int \&dest, double w, std\+::string service)
+\item 
+\mbox{\Hypertarget{class_graph_abb5e0517e2979c54eebdafc2a9875e8f}\label{class_graph_abb5e0517e2979c54eebdafc2a9875e8f}} 
+int {\bfseries get\+Num\+Vertex} () const
+\item 
+\mbox{\Hypertarget{class_graph_a619ac583094079134074658e29463c0e}\label{class_graph_a619ac583094079134074658e29463c0e}} 
+std\+::vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ {\bfseries get\+Vertex\+Set} () const
+\item 
+int \mbox{\hyperlink{class_graph_a526730be7528df23faf90b9e3d868c94}{mega\+Sink}} (const std\+::vector$<$ int $>$ \&sinks)
+\begin{DoxyCompactList}\small\item\em This function creates a vertex that links all the vertexes to be considered as sinks. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_graph_a51fc82293a2dfe56b3b79fbfa34c1147}{mega\+Source}} (const std\+::vector$<$ int $>$ \&sources)
+\begin{DoxyCompactList}\small\item\em This function creates a vertex that links all the vertexes to be considered as sources. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_graph_af90483b6ad02aaea613c4fd0ca7a4341}{test\+And\+Visit}} (std\+::queue$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ \&q, \mbox{\hyperlink{class_edge}{Edge}} $\ast$e, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$w, double residual)
+\begin{DoxyCompactList}\small\item\em This function sets a vertex to visited and adds it to the queue, setting the vertex\textquotesingle{}s path to a given edge. Time Complexity\+: O(1). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_graph_a3b5af5d9fba5bac37ed469fa3d8e5f1b}{find\+Augmenting\+Path}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$s, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$t)
+\begin{DoxyCompactList}\small\item\em This function finds an augmenting path between two vertexes. Time Complexity\+: O(\+V$\ast$\+E), V being the number of vertexes and E being the number of edges. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_graph_aa83c8bcf6feb001881f09c5b52f6576f}{find\+Min\+Residual\+Along\+Path}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$s, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$t)
+\begin{DoxyCompactList}\small\item\em This function returns the minimum residual capacity of the augmenting path. Time Complexity\+: O(\+V), V being the number of vertexes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_graph_a1e4cb3533098748b7e67bb8c941a59b3}{augment\+Flow\+Along\+Path}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$s, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$t, double f)
+\begin{DoxyCompactList}\small\item\em This function augments a given flow along an augmentation path between two vertexes Time Complexity\+: O(\+V), V being the number of vertexes. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_graph_a53e5cac937890d07f16020051b07fac2}{edmonds\+Karp}} (int source, int target)
+\begin{DoxyCompactList}\small\item\em This function implements the Edmonds-\/\+Karp algorithm. \end{DoxyCompactList}\item 
+std\+::pair$<$ int, double $>$ \mbox{\hyperlink{class_graph_a363ce014378248d945071eac77021d7f}{Dijsktra}} (int source, int dest)
+\begin{DoxyCompactList}\small\item\em This function implements the Dijkstra algorithm Time Complexity\+: O(E + V$\ast$log(V)), V being the number of vertexes and E being the number of edges. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_graph_a7dfcef08a9286cf144902cd7e56940ee}\label{class_graph_a7dfcef08a9286cf144902cd7e56940ee}} 
+int {\bfseries find\+Vertex\+Idx} (const int \&id) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_graph_aa9b0a6d8ad43c5eabaca5a7140bcc8b6}\label{class_graph_aa9b0a6d8ad43c5eabaca5a7140bcc8b6}} 
+std\+::vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ {\bfseries vertex\+Set}
+\item 
+\mbox{\Hypertarget{class_graph_a9e61864da69191c1896a25a708d1a02d}\label{class_graph_a9e61864da69191c1896a25a708d1a02d}} 
+double $\ast$$\ast$ {\bfseries dist\+Matrix} = nullptr
+\item 
+\mbox{\Hypertarget{class_graph_a3ae09699c3616af3ebfcb1eb045f2b62}\label{class_graph_a3ae09699c3616af3ebfcb1eb045f2b62}} 
+int $\ast$$\ast$ {\bfseries path\+Matrix} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_graph_a1e4cb3533098748b7e67bb8c941a59b3}\label{class_graph_a1e4cb3533098748b7e67bb8c941a59b3}} 
+\index{Graph@{Graph}!augmentFlowAlongPath@{augmentFlowAlongPath}}
+\index{augmentFlowAlongPath@{augmentFlowAlongPath}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{augmentFlowAlongPath()}{augmentFlowAlongPath()}}
+{\footnotesize\ttfamily void Graph\+::augment\+Flow\+Along\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{t,  }\item[{double}]{f }\end{DoxyParamCaption})}
+
+
+
+This function augments a given flow along an augmentation path between two vertexes Time Complexity\+: O(\+V), V being the number of vertexes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The source vertex. \\
+\hline
+{\em t} & The target vertex. \\
+\hline
+{\em f} & The flow to augment \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_a363ce014378248d945071eac77021d7f}\label{class_graph_a363ce014378248d945071eac77021d7f}} 
+\index{Graph@{Graph}!Dijsktra@{Dijsktra}}
+\index{Dijsktra@{Dijsktra}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{Dijsktra()}{Dijsktra()}}
+{\footnotesize\ttfamily std\+::pair$<$ int, double $>$ Graph\+::\+Dijsktra (\begin{DoxyParamCaption}\item[{int}]{source,  }\item[{int}]{dest }\end{DoxyParamCaption})}
+
+
+
+This function implements the Dijkstra algorithm Time Complexity\+: O(E + V$\ast$log(V)), V being the number of vertexes and E being the number of edges. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & Id of the vertex to be considered as source \\
+\hline
+{\em dest} & Id of the vertex to be considered as target \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pair of the minimum cost calculated and the max flow between the two vertexes 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a53e5cac937890d07f16020051b07fac2}\label{class_graph_a53e5cac937890d07f16020051b07fac2}} 
+\index{Graph@{Graph}!edmondsKarp@{edmondsKarp}}
+\index{edmondsKarp@{edmondsKarp}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{edmondsKarp()}{edmondsKarp()}}
+{\footnotesize\ttfamily double Graph\+::edmonds\+Karp (\begin{DoxyParamCaption}\item[{int}]{source,  }\item[{int}]{target }\end{DoxyParamCaption})}
+
+
+
+This function implements the Edmonds-\/\+Karp algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & Id of the vertex to be considered as source \\
+\hline
+{\em target} & Id of the vertex to be considered as target Time Complexity\+: O(\+V$\ast$\+E$^\wedge$2) V being the number of vertexes and E being the number of edges \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The max flow between the source and target vertexes 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a3b5af5d9fba5bac37ed469fa3d8e5f1b}\label{class_graph_a3b5af5d9fba5bac37ed469fa3d8e5f1b}} 
+\index{Graph@{Graph}!findAugmentingPath@{findAugmentingPath}}
+\index{findAugmentingPath@{findAugmentingPath}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{findAugmentingPath()}{findAugmentingPath()}}
+{\footnotesize\ttfamily bool Graph\+::find\+Augmenting\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{t }\end{DoxyParamCaption})}
+
+
+
+This function finds an augmenting path between two vertexes. Time Complexity\+: O(\+V$\ast$\+E), V being the number of vertexes and E being the number of edges. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The source vertex. \\
+\hline
+{\em t} & The target vertex. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if it finds an augmenting path between the two vertexes, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_aa83c8bcf6feb001881f09c5b52f6576f}\label{class_graph_aa83c8bcf6feb001881f09c5b52f6576f}} 
+\index{Graph@{Graph}!findMinResidualAlongPath@{findMinResidualAlongPath}}
+\index{findMinResidualAlongPath@{findMinResidualAlongPath}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{findMinResidualAlongPath()}{findMinResidualAlongPath()}}
+{\footnotesize\ttfamily double Graph\+::find\+Min\+Residual\+Along\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{t }\end{DoxyParamCaption})}
+
+
+
+This function returns the minimum residual capacity of the augmenting path. Time Complexity\+: O(\+V), V being the number of vertexes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The source vertex. \\
+\hline
+{\em t} & The target vertex. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The minimum residual capacity. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a526730be7528df23faf90b9e3d868c94}\label{class_graph_a526730be7528df23faf90b9e3d868c94}} 
+\index{Graph@{Graph}!megaSink@{megaSink}}
+\index{megaSink@{megaSink}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{megaSink()}{megaSink()}}
+{\footnotesize\ttfamily int Graph\+::mega\+Sink (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ int $>$ \&}]{sinks }\end{DoxyParamCaption})}
+
+
+
+This function creates a vertex that links all the vertexes to be considered as sinks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sinks} & Vector of the ids of the vertexes to be linked Time Complexity\+: O(n), n being the size of the vector sinks \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The id of the vertex created 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a51fc82293a2dfe56b3b79fbfa34c1147}\label{class_graph_a51fc82293a2dfe56b3b79fbfa34c1147}} 
+\index{Graph@{Graph}!megaSource@{megaSource}}
+\index{megaSource@{megaSource}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{megaSource()}{megaSource()}}
+{\footnotesize\ttfamily int Graph\+::mega\+Source (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ int $>$ \&}]{sources }\end{DoxyParamCaption})}
+
+
+
+This function creates a vertex that links all the vertexes to be considered as sources. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sources} & Vector of the ids of the vertexes to be linked Time Complexity\+: O(n), n being the size of the vector sources \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The id of the vertex created 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a697561b2a2c1b25147b1750b250c1fdf}\label{class_graph_a697561b2a2c1b25147b1750b250c1fdf}} 
+\index{Graph@{Graph}!removeVertex@{removeVertex}}
+\index{removeVertex@{removeVertex}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{removeVertex()}{removeVertex()}}
+{\footnotesize\ttfamily bool Graph\+::remove\+Vertex (\begin{DoxyParamCaption}\item[{const int \&}]{id }\end{DoxyParamCaption})}
+
+
+
+This function removes as vertex from the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Id of the vertex to be removed Time Complexity\+: O(\+V $\ast$ E), V being the amount of vertexes and E being the amount of Edges \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the vertex is successfully removed, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_af90483b6ad02aaea613c4fd0ca7a4341}\label{class_graph_af90483b6ad02aaea613c4fd0ca7a4341}} 
+\index{Graph@{Graph}!testAndVisit@{testAndVisit}}
+\index{testAndVisit@{testAndVisit}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{testAndVisit()}{testAndVisit()}}
+{\footnotesize\ttfamily void Graph\+::test\+And\+Visit (\begin{DoxyParamCaption}\item[{std\+::queue$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ \&}]{q,  }\item[{\mbox{\hyperlink{class_edge}{Edge}} $\ast$}]{e,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{w,  }\item[{double}]{residual }\end{DoxyParamCaption})}
+
+
+
+This function sets a vertex to visited and adds it to the queue, setting the vertex\textquotesingle{}s path to a given edge. Time Complexity\+: O(1). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & Queue of vertexes. \\
+\hline
+{\em e} & \mbox{\hyperlink{class_edge}{Edge}} to be set as vertex\textquotesingle{}s path. \\
+\hline
+{\em w} & \mbox{\hyperlink{class_vertex}{Vertex}} to be tested. \\
+\hline
+{\em residual} & Residual capacity of the edge. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+data\+\_\+structures/Graph.\+h\item 
+data\+\_\+structures/Graph.\+cpp\end{DoxyCompactItemize}

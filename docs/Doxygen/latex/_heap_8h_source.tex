@@ -1,0 +1,28 @@
+\hypertarget{_heap_8h_source}{}\doxysection{Heap.\+h}
+\label{_heap_8h_source}\index{data\_structures/Heap.h@{data\_structures/Heap.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// By: Gonçalo Leão}}
+\DoxyCodeLine{2 \textcolor{comment}{// Based on MutablePriorityQueue.h}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#ifndef DA\_TP\_CLASSES\_HEAP}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#define DA\_TP\_CLASSES\_HEAP}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{keyword}{class }\mbox{\hyperlink{class_heap}{Heap}} \{}
+\DoxyCodeLine{10 \textcolor{keyword}{public}:}
+\DoxyCodeLine{11     \mbox{\hyperlink{class_heap}{Heap}}();}
+\DoxyCodeLine{12     \mbox{\hyperlink{class_heap}{Heap}}(std::vector<int> v);}
+\DoxyCodeLine{13     \textcolor{keywordtype}{void} insert(\textcolor{keywordtype}{int} x);}
+\DoxyCodeLine{14     \textcolor{keywordtype}{int} extractMin();}
+\DoxyCodeLine{15     \textcolor{keywordtype}{bool} empty();}
+\DoxyCodeLine{16 \textcolor{keyword}{private}:}
+\DoxyCodeLine{17     std::vector<int> elems;}
+\DoxyCodeLine{18     \textcolor{keywordtype}{void} heapifyUp(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i);}
+\DoxyCodeLine{19     \textcolor{keywordtype}{void} heapifyDown(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i);}
+\DoxyCodeLine{20 \};}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* DA\_TP\_CLASSES\_HEAP */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

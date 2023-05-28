@@ -1,0 +1,48 @@
+\hypertarget{_menu_8h_source}{}\doxysection{Menu.\+h}
+\label{_menu_8h_source}\index{menu/Menu.h@{menu/Menu.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef PROJETO\_SCHEDULE\_MENU\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define PROJETO\_SCHEDULE\_MENU\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <unordered\_set>}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{class }\mbox{\hyperlink{class_menu}{Menu}} \{}
+\DoxyCodeLine{12 \textcolor{keyword}{public}:}
+\DoxyCodeLine{18     \mbox{\hyperlink{class_menu}{Menu}}(\textcolor{keywordtype}{string} file\_, \textcolor{keywordtype}{string} title);}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{26     \mbox{\hyperlink{class_menu}{Menu}}(vector<string> options, \textcolor{keywordtype}{string} title, \textcolor{keywordtype}{string} inputLabel = \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{34     \mbox{\hyperlink{class_menu}{Menu}}(unordered\_set<string> options, \textcolor{keywordtype}{string} title, \textcolor{keywordtype}{string} inputLabel = \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{40     vector<string> \mbox{\hyperlink{class_menu_a0a351b97de640005e980030f635c0e98}{getButtons}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{46     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_menu_adc2530b5fb7f83d065f55796f75df932}{getOption}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{52     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_menu_aa4890e17edbc65649954576fc7efa03f}{addButton}}(\textcolor{keywordtype}{string} button);}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{58     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_menu_ae39f1ab6969f03513a94088681c129f0}{setButtons}}(vector<string> buttons\_);}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{63     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_menu_a2cd7ab9901a8f42a3ae977d0774398a6}{draw}}();}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{68     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_menu_a9ecdf9897ca78a3bf38646b03c6da33c}{clear}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{69 \textcolor{keyword}{private}:}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{72     vector<string> buttons;}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{75     \textcolor{keywordtype}{int} option;}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{78     \textcolor{keywordtype}{string} title;}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{81     \textcolor{keywordtype}{string} inputLabel;}
+\DoxyCodeLine{82 \};}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//PROJETO\_SCHEDULE\_MENU\_H}}
+
+\end{DoxyCode}

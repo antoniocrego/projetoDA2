@@ -1,0 +1,166 @@
+\hypertarget{class_menu}{}\doxysection{Menu Class Reference}
+\label{class_menu}\index{Menu@{Menu}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_menu_ac4bceff35166b6ef1844227df50b26f4}{Menu}} (string file\+\_\+, string title)
+\begin{DoxyCompactList}\small\item\em Constructor of the \mbox{\hyperlink{class_menu}{Menu}} given a file path and a title. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_menu_ab466153909ac378b81235c16f6ea14b1}{Menu}} (vector$<$ string $>$ options, string title, string input\+Label=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Constructor of the \mbox{\hyperlink{class_menu}{Menu}} given a vector and a title. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_menu_afae7915ef0b4765b8c09ba8d5f5fb5fc}{Menu}} (unordered\+\_\+set$<$ string $>$ options, string title, string input\+Label=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Constructor of the \mbox{\hyperlink{class_menu}{Menu}} given an unordered\+\_\+set and a title. \end{DoxyCompactList}\item 
+vector$<$ string $>$ \mbox{\hyperlink{class_menu_a0a351b97de640005e980030f635c0e98}{get\+Buttons}} () const
+\begin{DoxyCompactList}\small\item\em This function returns the buttons of the menu. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_menu_adc2530b5fb7f83d065f55796f75df932}{get\+Option}} () const
+\begin{DoxyCompactList}\small\item\em This function return the option chosen in the \mbox{\hyperlink{class_menu}{Menu}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_menu_aa4890e17edbc65649954576fc7efa03f}{add\+Button}} (string button)
+\begin{DoxyCompactList}\small\item\em This function adds a button to the \mbox{\hyperlink{class_menu}{Menu}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_menu_ae39f1ab6969f03513a94088681c129f0}{set\+Buttons}} (vector$<$ string $>$ buttons\+\_\+)
+\begin{DoxyCompactList}\small\item\em This function sets buttons to the \mbox{\hyperlink{class_menu}{Menu}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_menu_a2cd7ab9901a8f42a3ae977d0774398a6}{draw}} ()
+\begin{DoxyCompactList}\small\item\em This funtion draws the \mbox{\hyperlink{class_menu}{Menu}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_menu_a9ecdf9897ca78a3bf38646b03c6da33c}\label{class_menu_a9ecdf9897ca78a3bf38646b03c6da33c}} 
+void {\bfseries clear} () const
+\begin{DoxyCompactList}\small\item\em This function \char`\"{}clears\char`\"{} the screen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_menu_ac4bceff35166b6ef1844227df50b26f4}\label{class_menu_ac4bceff35166b6ef1844227df50b26f4}} 
+\index{Menu@{Menu}!Menu@{Menu}}
+\index{Menu@{Menu}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{Menu()}{Menu()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Menu\+::\+Menu (\begin{DoxyParamCaption}\item[{string}]{file\+\_\+,  }\item[{string}]{title }\end{DoxyParamCaption})}
+
+
+
+Constructor of the \mbox{\hyperlink{class_menu}{Menu}} given a file path and a title. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+} & File path with the buttons. \\
+\hline
+{\em title} & \mbox{\hyperlink{class_menu}{Menu}} Title. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_menu_ab466153909ac378b81235c16f6ea14b1}\label{class_menu_ab466153909ac378b81235c16f6ea14b1}} 
+\index{Menu@{Menu}!Menu@{Menu}}
+\index{Menu@{Menu}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{Menu()}{Menu()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Menu\+::\+Menu (\begin{DoxyParamCaption}\item[{vector$<$ string $>$}]{options,  }\item[{string}]{title,  }\item[{string}]{input\+Label = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+Constructor of the \mbox{\hyperlink{class_menu}{Menu}} given a vector and a title. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em options} & Vector with the buttons. \\
+\hline
+{\em title} & \mbox{\hyperlink{class_menu}{Menu}} Title. \\
+\hline
+{\em input\+Label} & \mbox{\hyperlink{class_menu}{Menu}} label. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_menu_afae7915ef0b4765b8c09ba8d5f5fb5fc}\label{class_menu_afae7915ef0b4765b8c09ba8d5f5fb5fc}} 
+\index{Menu@{Menu}!Menu@{Menu}}
+\index{Menu@{Menu}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{Menu()}{Menu()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Menu\+::\+Menu (\begin{DoxyParamCaption}\item[{unordered\+\_\+set$<$ string $>$}]{options,  }\item[{string}]{title,  }\item[{string}]{input\+Label = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+Constructor of the \mbox{\hyperlink{class_menu}{Menu}} given an unordered\+\_\+set and a title. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em options} & Unordered\+\_\+set with the buttons. \\
+\hline
+{\em title} & \mbox{\hyperlink{class_menu}{Menu}} title. \\
+\hline
+{\em input\+Label} & \mbox{\hyperlink{class_menu}{Menu}} label. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_menu_aa4890e17edbc65649954576fc7efa03f}\label{class_menu_aa4890e17edbc65649954576fc7efa03f}} 
+\index{Menu@{Menu}!addButton@{addButton}}
+\index{addButton@{addButton}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{addButton()}{addButton()}}
+{\footnotesize\ttfamily void Menu\+::add\+Button (\begin{DoxyParamCaption}\item[{string}]{button }\end{DoxyParamCaption})}
+
+
+
+This function adds a button to the \mbox{\hyperlink{class_menu}{Menu}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em button} & Button to be added. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_menu_a2cd7ab9901a8f42a3ae977d0774398a6}\label{class_menu_a2cd7ab9901a8f42a3ae977d0774398a6}} 
+\index{Menu@{Menu}!draw@{draw}}
+\index{draw@{draw}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void Menu\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This funtion draws the \mbox{\hyperlink{class_menu}{Menu}}. 
+
+Functionality\+:Draw a menu
+
+Description\+:This function will get the attribute of the \mbox{\hyperlink{class_menu}{Menu}} buttons and will go through all of them printing them in a pleasant way it will also ask the user for a input however it will not handle the user input. \mbox{\Hypertarget{class_menu_a0a351b97de640005e980030f635c0e98}\label{class_menu_a0a351b97de640005e980030f635c0e98}} 
+\index{Menu@{Menu}!getButtons@{getButtons}}
+\index{getButtons@{getButtons}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{getButtons()}{getButtons()}}
+{\footnotesize\ttfamily vector$<$ string $>$ Menu\+::get\+Buttons (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+This function returns the buttons of the menu. 
+
+\begin{DoxyReturn}{Returns}
+Vector. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_menu_adc2530b5fb7f83d065f55796f75df932}\label{class_menu_adc2530b5fb7f83d065f55796f75df932}} 
+\index{Menu@{Menu}!getOption@{getOption}}
+\index{getOption@{getOption}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{getOption()}{getOption()}}
+{\footnotesize\ttfamily int Menu\+::get\+Option (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+This function return the option chosen in the \mbox{\hyperlink{class_menu}{Menu}}. 
+
+\begin{DoxyReturn}{Returns}
+Int. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_menu_ae39f1ab6969f03513a94088681c129f0}\label{class_menu_ae39f1ab6969f03513a94088681c129f0}} 
+\index{Menu@{Menu}!setButtons@{setButtons}}
+\index{setButtons@{setButtons}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{setButtons()}{setButtons()}}
+{\footnotesize\ttfamily void Menu\+::set\+Buttons (\begin{DoxyParamCaption}\item[{vector$<$ string $>$}]{buttons\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+This function sets buttons to the \mbox{\hyperlink{class_menu}{Menu}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buttons\+\_\+} & Buttons to be set.\\
+\hline
+\end{DoxyParams}
+Functionality\+: Setter for the buttons Description\+: Receives a vector of string as a parameter and replaces the current buttons of the new ones
+
+
+\begin{DoxyParams}{Parameters}
+{\em buttons\+\_\+} & a vector of strings \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+menu/Menu.\+h\item 
+menu/Menu.\+cpp\end{DoxyCompactItemize}

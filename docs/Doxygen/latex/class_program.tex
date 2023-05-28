@@ -1,0 +1,86 @@
+\hypertarget{class_program}{}\doxysection{Program Class Reference}
+\label{class_program}\index{Program@{Program}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_program_aaefaa0df08f3484476fc4d61e97acbdc}\label{class_program_aaefaa0df08f3484476fc4d61e97acbdc}} 
+{\bfseries Program} ()
+\begin{DoxyCompactList}\small\item\em Empty Constructor. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_program_a9cf82076eb1dd022d0010ebd370bd75d}{get\+Current\+Page}} () const
+\begin{DoxyCompactList}\small\item\em This function returns the Current Page. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_program_affe03f53cc5e900a1a7aecc557887403}{set\+Current\+Page}} (int new\+Currentpage)
+\begin{DoxyCompactList}\small\item\em This function sets the current page to a given one. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_program_a11f634b561b2325b50000f642ba1c506}{draw}} ()
+\begin{DoxyCompactList}\small\item\em This function draws the current \mbox{\hyperlink{class_menu}{Menu}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_program_a6adbc9a50861c35f3229cfb277b4afdb}\label{class_program_a6adbc9a50861c35f3229cfb277b4afdb}} 
+void {\bfseries run} ()
+\begin{DoxyCompactList}\small\item\em This function runs the program. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_program_ab6f4ecad0ccb2703f254e47c050b34a4}\label{class_program_ab6f4ecad0ccb2703f254e47c050b34a4}} 
+void {\bfseries create\+Menu} ()
+\begin{DoxyCompactList}\small\item\em This function inicializes the menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_program_a919233418f01931d025ed7b9ea47ba8c}{wait}} () const
+\begin{DoxyCompactList}\small\item\em This function makes the program wait until the user wants it to continue. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_program_a37d6f6ff17ef989931dd4a1e811ce8e4}\label{class_program_a37d6f6ff17ef989931dd4a1e811ce8e4}} 
+void {\bfseries clear} () const
+\begin{DoxyCompactList}\small\item\em This function \char`\"{}clears\char`\"{} the Terminal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_program_a11f634b561b2325b50000f642ba1c506}\label{class_program_a11f634b561b2325b50000f642ba1c506}} 
+\index{Program@{Program}!draw@{draw}}
+\index{draw@{draw}!Program@{Program}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void Program\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This function draws the current \mbox{\hyperlink{class_menu}{Menu}}. 
+
+Functionality\+: draw the current page of the menu we are in Description\+: Take the attribute menus get the current menu and use the method draw of the menu to draw it \mbox{\Hypertarget{class_program_a9cf82076eb1dd022d0010ebd370bd75d}\label{class_program_a9cf82076eb1dd022d0010ebd370bd75d}} 
+\index{Program@{Program}!getCurrentPage@{getCurrentPage}}
+\index{getCurrentPage@{getCurrentPage}!Program@{Program}}
+\doxysubsubsection{\texorpdfstring{getCurrentPage()}{getCurrentPage()}}
+{\footnotesize\ttfamily int Program\+::get\+Current\+Page (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+This function returns the Current Page. 
+
+\begin{DoxyReturn}{Returns}
+Int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_program_affe03f53cc5e900a1a7aecc557887403}\label{class_program_affe03f53cc5e900a1a7aecc557887403}} 
+\index{Program@{Program}!setCurrentPage@{setCurrentPage}}
+\index{setCurrentPage@{setCurrentPage}!Program@{Program}}
+\doxysubsubsection{\texorpdfstring{setCurrentPage()}{setCurrentPage()}}
+{\footnotesize\ttfamily void Program\+::set\+Current\+Page (\begin{DoxyParamCaption}\item[{int}]{new\+Current\+Page }\end{DoxyParamCaption})}
+
+
+
+This function sets the current page to a given one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Currentpage} & New current page\\
+\hline
+{\em new\+Current\+Page} & This function receive the index of the new menu page we are in and set it as the current menu page \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_program_a919233418f01931d025ed7b9ea47ba8c}\label{class_program_a919233418f01931d025ed7b9ea47ba8c}} 
+\index{Program@{Program}!wait@{wait}}
+\index{wait@{wait}!Program@{Program}}
+\doxysubsubsection{\texorpdfstring{wait()}{wait()}}
+{\footnotesize\ttfamily void Program\+::wait (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+This function makes the program wait until the user wants it to continue. 
+
+Functionality\+:
+
+Description\+: This is an auxiliary function, it will create a string and ask the user to insert anything when he wants to continue the program. That way the program will be on hold until the user tells it to continue. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Program.\+h\item 
+Program.\+cpp\end{DoxyCompactItemize}

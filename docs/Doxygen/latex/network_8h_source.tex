@@ -1,0 +1,67 @@
+\hypertarget{network_8h_source}{}\doxysection{network.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef PROJETODA\_NETWORK\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define PROJETODA\_NETWORK\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}data\_structures/Graph.h"{}}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}Station.h"{}}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <unordered\_map>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <unordered\_set>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <cmath>}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{keyword}{class }\mbox{\hyperlink{class_network}{Network}} \{}
+\DoxyCodeLine{18 \textcolor{keyword}{public}:}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{21     \mbox{\hyperlink{class_network_a3cc2fb4f8fa4d507077e8da85ce5a1c8}{Network}}();}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{27     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_network_afcdbcdd8e2ac90982c238f2b07c29738}{readStations}}();}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{33     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_network_a5aab74edad1fd02248c21ebcf7bcf677}{readNetwork}}();}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{39     \mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_network_af3ac531e284d02b671bcd0b471c87933}{getTrainNetwork}}();}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{47     \textcolor{keywordtype}{string} \mbox{\hyperlink{class_network_a72c2fc4a4e71e3bd31aaacfd5cbd9b47}{IDtoStation}}(\textcolor{keywordtype}{int} \textcolor{keywordtype}{id});}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{55     \mbox{\hyperlink{class_station}{Station}} \mbox{\hyperlink{class_network_a3a63a956f368af7b5cd759608292cc0c}{getStationInfo}}(\textcolor{keywordtype}{string} name);}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{61     unordered\_map<string,Station> \mbox{\hyperlink{class_network_ac2205a8ec2d15a8b5ae870c1252e8847}{getStations}}();}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{67     vector<string> \mbox{\hyperlink{class_network_aaef0177135e12876900350f3472e6ba9}{getDistricts}}();}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{73     vector<pair<string,string>> \mbox{\hyperlink{class_network_a24606eba5a190a24e80aed64a8dbe3d4}{getMunicipalities}}();}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{81     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_network_a5a74b2744788b2143d2584aaefd42651}{getStationID}}(\textcolor{keyword}{const} \textcolor{keywordtype}{string}\& name);}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{90     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_network_ace60744b4caa6d9abdf171062483447f}{maxFlow}}(\textcolor{keyword}{const} std::string\& source, \textcolor{keyword}{const} std::string\& dest);}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{98     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_network_a0c6a36f2b8f00f5238ffbc76808858c5}{maxFlowPairs}}(vector<pair<std::string, std::string>>\& stationPairs);}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{105     vector<pair<double,string>> \mbox{\hyperlink{class_network_ad767db2d75e1a169f0113c2ed9ba65bb}{multiMaxFlowDistricts}}();}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{113     vector<pair<double,string>> \mbox{\hyperlink{class_network_a92aec9afb4764a3f374a136f679bb7cf}{multiMaxFlowMunicipalities}}(\textcolor{keyword}{const} std::string\& district);}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{123     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_network_ab9192c044422092ed5b45bd533fe68cd}{reducedEdgesMaxFlow}}(\textcolor{keyword}{const} std::string\& source, \textcolor{keyword}{const} std::string\& dest, unordered\_set<Edge *> segments);}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{131     vector<pair<int,pair<double,double>>> \mbox{\hyperlink{class_network_a582192e2d4fd321a68ff785652a58441}{segmentFailureEvaluation}}(\textcolor{keyword}{const} vector<Edge *>\& segments);}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{139     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_network_afa2cae270cd03a9529a9efdf2d1bda79}{maxArrival}}(\textcolor{keyword}{const} std::string\& station);}
+\DoxyCodeLine{140 \textcolor{keyword}{private}:}
+\DoxyCodeLine{142     \mbox{\hyperlink{class_graph}{Graph}} trainNetwork;}
+\DoxyCodeLine{144     vector<string> districts;}
+\DoxyCodeLine{146     vector<pair<string, string>> municipalities;}
+\DoxyCodeLine{148     unordered\_map<string,Station> stationInfo;}
+\DoxyCodeLine{150     unordered\_map<string,int> stationToID;}
+\DoxyCodeLine{151 \};}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//PROJETODA\_NETWORK\_H}}
+
+\end{DoxyCode}
