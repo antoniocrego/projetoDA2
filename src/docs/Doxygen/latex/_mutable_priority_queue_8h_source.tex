@@ -1,0 +1,106 @@
+\hypertarget{_mutable_priority_queue_8h_source}{}\doxysection{Mutable\+Priority\+Queue.\+h}
+\label{_mutable_priority_queue_8h_source}\index{data\_structures/MutablePriorityQueue.h@{data\_structures/MutablePriorityQueue.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * MutablePriorityQueue.h}}
+\DoxyCodeLine{3 \textcolor{comment}{ * A simple implementation of mutable priority queues, required by Dijkstra algorithm.}}
+\DoxyCodeLine{4 \textcolor{comment}{ *}}
+\DoxyCodeLine{5 \textcolor{comment}{ * Created on: 17/03/2018}}
+\DoxyCodeLine{6 \textcolor{comment}{ *      Author: João Pascoal Faria}}
+\DoxyCodeLine{7 \textcolor{comment}{ */}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#ifndef DA\_TP\_CLASSES\_MUTABLEPRIORITYQUEUE}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#define DA\_TP\_CLASSES\_MUTABLEPRIORITYQUEUE}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 }
+\DoxyCodeLine{20 \textcolor{keyword}{template} <\textcolor{keyword}{class} T>}
+\DoxyCodeLine{21 \textcolor{keyword}{class }\mbox{\hyperlink{class_mutable_priority_queue}{MutablePriorityQueue}} \{}
+\DoxyCodeLine{22     std::vector<T *> H;}
+\DoxyCodeLine{23     \textcolor{keywordtype}{void} heapifyUp(\textcolor{keywordtype}{unsigned} i);}
+\DoxyCodeLine{24     \textcolor{keywordtype}{void} heapifyDown(\textcolor{keywordtype}{unsigned} i);}
+\DoxyCodeLine{25     \textcolor{keyword}{inline} \textcolor{keywordtype}{void} set(\textcolor{keywordtype}{unsigned} i, T * x);}
+\DoxyCodeLine{26 \textcolor{keyword}{public}:}
+\DoxyCodeLine{27     \mbox{\hyperlink{class_mutable_priority_queue}{MutablePriorityQueue}}();}
+\DoxyCodeLine{28     \textcolor{keywordtype}{void} insert(T * x);}
+\DoxyCodeLine{29     T * extractMin();}
+\DoxyCodeLine{30     \textcolor{keywordtype}{void} decreaseKey(T * x);}
+\DoxyCodeLine{31     \textcolor{keywordtype}{bool} empty();}
+\DoxyCodeLine{32 \};}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{comment}{// Index calculations}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#define parent(i) ((i) / 2)}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#define leftChild(i) ((i) * 2)}}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \textcolor{keyword}{template} <\textcolor{keyword}{class} T>}
+\DoxyCodeLine{39 \mbox{\hyperlink{class_mutable_priority_queue}{MutablePriorityQueue<T>::MutablePriorityQueue}}() \{}
+\DoxyCodeLine{40     H.push\_back(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{41     \textcolor{comment}{// indices will be used starting in 1}}
+\DoxyCodeLine{42     \textcolor{comment}{// to facilitate parent/child calculations}}
+\DoxyCodeLine{43 \}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{keyword}{template} <\textcolor{keyword}{class} T>}
+\DoxyCodeLine{46 \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_mutable_priority_queue}{MutablePriorityQueue<T>::empty}}() \{}
+\DoxyCodeLine{47     \textcolor{keywordflow}{return} H.size() == 1;}
+\DoxyCodeLine{48 \}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 \textcolor{keyword}{template} <\textcolor{keyword}{class} T>}
+\DoxyCodeLine{51 T* \mbox{\hyperlink{class_mutable_priority_queue}{MutablePriorityQueue<T>::extractMin}}() \{}
+\DoxyCodeLine{52     \textcolor{keyword}{auto} x = H[1];}
+\DoxyCodeLine{53     H[1] = H.back();}
+\DoxyCodeLine{54     H.pop\_back();}
+\DoxyCodeLine{55     \textcolor{keywordflow}{if}(H.size() > 1) heapifyDown(1);}
+\DoxyCodeLine{56     x-\/>queueIndex = 0;}
+\DoxyCodeLine{57     \textcolor{keywordflow}{return} x;}
+\DoxyCodeLine{58 \}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 \textcolor{keyword}{template} <\textcolor{keyword}{class} T>}
+\DoxyCodeLine{61 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_mutable_priority_queue}{MutablePriorityQueue<T>::insert}}(T *x) \{}
+\DoxyCodeLine{62     H.push\_back(x);}
+\DoxyCodeLine{63     heapifyUp(H.size()-\/1);}
+\DoxyCodeLine{64 \}}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66 \textcolor{keyword}{template} <\textcolor{keyword}{class} T>}
+\DoxyCodeLine{67 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_mutable_priority_queue}{MutablePriorityQueue<T>::decreaseKey}}(T *x) \{}
+\DoxyCodeLine{68     heapifyUp(x-\/>queueIndex);}
+\DoxyCodeLine{69 \}}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 \textcolor{keyword}{template} <\textcolor{keyword}{class} T>}
+\DoxyCodeLine{72 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_mutable_priority_queue}{MutablePriorityQueue<T>::heapifyUp}}(\textcolor{keywordtype}{unsigned} i) \{}
+\DoxyCodeLine{73     \textcolor{keyword}{auto} x = H[i];}
+\DoxyCodeLine{74     \textcolor{keywordflow}{while} (i > 1 \&\& *x < *H[parent(i)]) \{}
+\DoxyCodeLine{75         set(i, H[parent(i)]);}
+\DoxyCodeLine{76         i = parent(i);}
+\DoxyCodeLine{77     \}}
+\DoxyCodeLine{78     set(i, x);}
+\DoxyCodeLine{79 \}}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81 \textcolor{keyword}{template} <\textcolor{keyword}{class} T>}
+\DoxyCodeLine{82 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_mutable_priority_queue}{MutablePriorityQueue<T>::heapifyDown}}(\textcolor{keywordtype}{unsigned} i) \{}
+\DoxyCodeLine{83     \textcolor{keyword}{auto} x = H[i];}
+\DoxyCodeLine{84     \textcolor{keywordflow}{while} (\textcolor{keyword}{true}) \{}
+\DoxyCodeLine{85         \textcolor{keywordtype}{unsigned} k = leftChild(i);}
+\DoxyCodeLine{86         \textcolor{keywordflow}{if} (k >= H.size())}
+\DoxyCodeLine{87             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{88         \textcolor{keywordflow}{if} (k+1 < H.size() \&\& *H[k+1] < *H[k])}
+\DoxyCodeLine{89             ++k; \textcolor{comment}{// right child of i}}
+\DoxyCodeLine{90         \textcolor{keywordflow}{if} ( ! (*H[k] < *x) )}
+\DoxyCodeLine{91             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{92         set(i, H[k]);}
+\DoxyCodeLine{93         i = k;}
+\DoxyCodeLine{94     \}}
+\DoxyCodeLine{95     set(i, x);}
+\DoxyCodeLine{96 \}}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98 \textcolor{keyword}{template} <\textcolor{keyword}{class} T>}
+\DoxyCodeLine{99 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_mutable_priority_queue}{MutablePriorityQueue<T>::set}}(\textcolor{keywordtype}{unsigned} i, T * x) \{}
+\DoxyCodeLine{100     H[i] = x;}
+\DoxyCodeLine{101     x-\/>queueIndex = i;}
+\DoxyCodeLine{102 \}}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* DA\_TP\_CLASSES\_MUTABLEPRIORITYQUEUE */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

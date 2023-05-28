@@ -1,0 +1,77 @@
+\hypertarget{_graph_8h_source}{}\doxysection{Graph.\+h}
+\label{_graph_8h_source}\index{data\_structures/Graph.h@{data\_structures/Graph.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// By: Gonçalo Leão}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#ifndef DA\_TP\_CLASSES\_GRAPH}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#define DA\_TP\_CLASSES\_GRAPH}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <queue>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <limits>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}../data\_structures/MutablePriorityQueue.h"{}}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include "{}VertexEdge.h"{}}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{keyword}{class }\mbox{\hyperlink{class_graph}{Graph}} \{}
+\DoxyCodeLine{16 \textcolor{keyword}{public}:}
+\DoxyCodeLine{17     \mbox{\hyperlink{class_graph}{\string~Graph}}();}
+\DoxyCodeLine{18     \textcolor{comment}{/*}}
+\DoxyCodeLine{19 \textcolor{comment}{    * Auxiliary function to find a vertex with a given ID.}}
+\DoxyCodeLine{20 \textcolor{comment}{    */}}
+\DoxyCodeLine{21     \mbox{\hyperlink{class_vertex}{Vertex}} *findVertex(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&\textcolor{keywordtype}{id}) \textcolor{keyword}{const};}
+\DoxyCodeLine{22     \textcolor{comment}{/*}}
+\DoxyCodeLine{23 \textcolor{comment}{     *  Adds a vertex with a given content or info (in) to a graph (this).}}
+\DoxyCodeLine{24 \textcolor{comment}{     *  Returns true if successful, and false if a vertex with that content already exists.}}
+\DoxyCodeLine{25 \textcolor{comment}{     */}}
+\DoxyCodeLine{26     \textcolor{keywordtype}{bool} addVertex(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&\textcolor{keywordtype}{id});}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{34     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_a697561b2a2c1b25147b1750b250c1fdf}{removeVertex}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}\& \textcolor{keywordtype}{id});}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36     \textcolor{comment}{/*}}
+\DoxyCodeLine{37 \textcolor{comment}{     * Adds an edge to a graph (this), given the contents of the source and}}
+\DoxyCodeLine{38 \textcolor{comment}{     * destination vertices and the edge weight (w).}}
+\DoxyCodeLine{39 \textcolor{comment}{     * Returns true if successful, and false if the source or destination vertex does not exist.}}
+\DoxyCodeLine{40 \textcolor{comment}{     */}}
+\DoxyCodeLine{41     \textcolor{keywordtype}{bool} addEdge(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&sourc, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&dest, \textcolor{keywordtype}{double} w, std::string service);}
+\DoxyCodeLine{42     \textcolor{keywordtype}{bool} addBidirectionalEdge(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&sourc, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&dest, \textcolor{keywordtype}{double} w, std::string service);}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44     \textcolor{keywordtype}{int} getNumVertex() \textcolor{keyword}{const};}
+\DoxyCodeLine{45     std::vector<Vertex *> getVertexSet() \textcolor{keyword}{const};}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{53     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_a526730be7528df23faf90b9e3d868c94}{megaSink}}(\textcolor{keyword}{const} std::vector<int>\& sinks);}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{61     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_a51fc82293a2dfe56b3b79fbfa34c1147}{megaSource}}(\textcolor{keyword}{const} std::vector<int>\& sources);}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{71     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_af90483b6ad02aaea613c4fd0ca7a4341}{testAndVisit}}(std::queue< Vertex*> \&q, \mbox{\hyperlink{class_edge}{Edge}} *e, \mbox{\hyperlink{class_vertex}{Vertex}} *w, \textcolor{keywordtype}{double} residual);}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{80     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_a3b5af5d9fba5bac37ed469fa3d8e5f1b}{findAugmentingPath}}(\mbox{\hyperlink{class_vertex}{Vertex}} *s, \mbox{\hyperlink{class_vertex}{Vertex}} *t);}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{89     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_graph_aa83c8bcf6feb001881f09c5b52f6576f}{findMinResidualAlongPath}}(\mbox{\hyperlink{class_vertex}{Vertex}} *s, \mbox{\hyperlink{class_vertex}{Vertex}} *t);}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{98     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a1e4cb3533098748b7e67bb8c941a59b3}{augmentFlowAlongPath}}(\mbox{\hyperlink{class_vertex}{Vertex}} *s, \mbox{\hyperlink{class_vertex}{Vertex}} *t, \textcolor{keywordtype}{double} f);}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{107     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_graph_a53e5cac937890d07f16020051b07fac2}{edmondsKarp}}(\textcolor{keywordtype}{int} source, \textcolor{keywordtype}{int} target);}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{116     std::pair<int,double> \mbox{\hyperlink{class_graph_a363ce014378248d945071eac77021d7f}{Dijsktra}}(\textcolor{keywordtype}{int} source,\textcolor{keywordtype}{int} dest);}
+\DoxyCodeLine{117 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{118     std::vector<Vertex *> vertexSet;    \textcolor{comment}{// vertex set}}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120     \textcolor{keywordtype}{double} ** distMatrix = \textcolor{keyword}{nullptr};   \textcolor{comment}{// dist matrix for Floyd-\/Warshall}}
+\DoxyCodeLine{121     \textcolor{keywordtype}{int} **pathMatrix = \textcolor{keyword}{nullptr};   \textcolor{comment}{// path matrix for Floyd-\/Warshall}}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123     \textcolor{comment}{/*}}
+\DoxyCodeLine{124 \textcolor{comment}{     * Finds the index of the vertex with a given content.}}
+\DoxyCodeLine{125 \textcolor{comment}{     */}}
+\DoxyCodeLine{126     \textcolor{keywordtype}{int} findVertexIdx(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&\textcolor{keywordtype}{id}) \textcolor{keyword}{const};}
+\DoxyCodeLine{127 \};}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129 \textcolor{keywordtype}{void} deleteMatrix(\textcolor{keywordtype}{int} **m, \textcolor{keywordtype}{int} n);}
+\DoxyCodeLine{130 \textcolor{keywordtype}{void} deleteMatrix(\textcolor{keywordtype}{double} **m, \textcolor{keywordtype}{int} n);}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* DA\_TP\_CLASSES\_GRAPH */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

@@ -1,0 +1,77 @@
+\hypertarget{class_edge}{}\doxysection{Edge Class Reference}
+\label{class_edge}\index{Edge@{Edge}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_edge_a3ca7c053381cbfecb4bbb249097f108c}\label{class_edge_a3ca7c053381cbfecb4bbb249097f108c}} 
+{\bfseries Edge} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$orig, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$dest, double w, std\+::string service, int cost)
+\item 
+\mbox{\Hypertarget{class_edge_a5cda44e9ba257b03963a1ac301371a59}\label{class_edge_a5cda44e9ba257b03963a1ac301371a59}} 
+\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ {\bfseries get\+Dest} () const
+\item 
+\mbox{\Hypertarget{class_edge_a1caaffca117bab3ff5b7387623a356f8}\label{class_edge_a1caaffca117bab3ff5b7387623a356f8}} 
+double {\bfseries get\+Weight} () const
+\item 
+\mbox{\Hypertarget{class_edge_a52967cf488bb7185a512cd111420215d}\label{class_edge_a52967cf488bb7185a512cd111420215d}} 
+bool {\bfseries is\+Selected} () const
+\item 
+\mbox{\Hypertarget{class_edge_a6e8b08e91c0694b40edff0432fb612eb}\label{class_edge_a6e8b08e91c0694b40edff0432fb612eb}} 
+\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ {\bfseries get\+Orig} () const
+\item 
+\mbox{\Hypertarget{class_edge_a756d2d246aa5445d0f396626c7d4fd56}\label{class_edge_a756d2d246aa5445d0f396626c7d4fd56}} 
+\mbox{\hyperlink{class_edge}{Edge}} $\ast$ {\bfseries get\+Reverse} () const
+\item 
+\mbox{\Hypertarget{class_edge_a30ff9f3127097db8dce20f5e8b15e6dc}\label{class_edge_a30ff9f3127097db8dce20f5e8b15e6dc}} 
+double {\bfseries get\+Flow} () const
+\item 
+\mbox{\Hypertarget{class_edge_a3d7bb7de5df17d60102ade05d59e06fc}\label{class_edge_a3d7bb7de5df17d60102ade05d59e06fc}} 
+std\+::string {\bfseries get\+Service} () const
+\item 
+\mbox{\Hypertarget{class_edge_a8ab1cf2fe7fd16152d1dba3822853894}\label{class_edge_a8ab1cf2fe7fd16152d1dba3822853894}} 
+void {\bfseries set\+Selected} (bool selected)
+\item 
+\mbox{\Hypertarget{class_edge_a64881280015bd83702fe3b2c6234b7e5}\label{class_edge_a64881280015bd83702fe3b2c6234b7e5}} 
+void {\bfseries set\+Reverse} (\mbox{\hyperlink{class_edge}{Edge}} $\ast$reverse)
+\item 
+\mbox{\Hypertarget{class_edge_a788cfe1f98772af4e7bbfe6310d0ccaa}\label{class_edge_a788cfe1f98772af4e7bbfe6310d0ccaa}} 
+void {\bfseries set\+Flow} (double flow)
+\item 
+\mbox{\Hypertarget{class_edge_a30f73b7d7f97d6fa1235e5fcbe2f6e94}\label{class_edge_a30f73b7d7f97d6fa1235e5fcbe2f6e94}} 
+bool {\bfseries operator==} (\mbox{\hyperlink{class_edge}{Edge}} $\ast$e)
+\item 
+\mbox{\Hypertarget{class_edge_a01e0830a75a8b8767a72751f3b283aee}\label{class_edge_a01e0830a75a8b8767a72751f3b283aee}} 
+int {\bfseries get\+Cost} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_edge_a50339c1a85710ca827d4e3865727ffd7}\label{class_edge_a50339c1a85710ca827d4e3865727ffd7}} 
+\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ {\bfseries dest}
+\item 
+\mbox{\Hypertarget{class_edge_a6d0148402e635354c03a151c77fcbdd8}\label{class_edge_a6d0148402e635354c03a151c77fcbdd8}} 
+double {\bfseries weight}
+\item 
+\mbox{\Hypertarget{class_edge_a3af6d278c4ddcb2589e1aa66e52f4efb}\label{class_edge_a3af6d278c4ddcb2589e1aa66e52f4efb}} 
+bool {\bfseries selected} = false
+\item 
+\mbox{\Hypertarget{class_edge_a48f1521d20ead8492fd1d184656862f5}\label{class_edge_a48f1521d20ead8492fd1d184656862f5}} 
+\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ {\bfseries orig}
+\item 
+\mbox{\Hypertarget{class_edge_abcadfaa8985d0d593a124d0fea39130a}\label{class_edge_abcadfaa8985d0d593a124d0fea39130a}} 
+\mbox{\hyperlink{class_edge}{Edge}} $\ast$ {\bfseries reverse} = nullptr
+\item 
+\mbox{\Hypertarget{class_edge_adbe59333b5a49cbb85b39ce1272e6098}\label{class_edge_adbe59333b5a49cbb85b39ce1272e6098}} 
+double {\bfseries flow}
+\item 
+\mbox{\Hypertarget{class_edge_ad7099a9059c497bb6d6191b6257837cf}\label{class_edge_ad7099a9059c497bb6d6191b6257837cf}} 
+int {\bfseries cost}
+\item 
+\mbox{\Hypertarget{class_edge_ac69547757f15cdacca2f576b8a9acbb5}\label{class_edge_ac69547757f15cdacca2f576b8a9acbb5}} 
+std\+::string {\bfseries service}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+data\+\_\+structures/Vertex\+Edge.\+h\item 
+data\+\_\+structures/Vertex\+Edge.\+cpp\end{DoxyCompactItemize}

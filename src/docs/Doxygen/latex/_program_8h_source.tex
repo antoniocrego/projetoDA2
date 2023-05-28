@@ -1,0 +1,54 @@
+\hypertarget{_program_8h_source}{}\doxysection{Program.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AERIALTRANSPORTATION\_PROGRAM\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AERIALTRANSPORTATION\_PROGRAM\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}menu/Menu.h"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}network.h"{}}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{class }\mbox{\hyperlink{class_program}{Program}} \{}
+\DoxyCodeLine{13 \textcolor{keyword}{public}:}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{16     \mbox{\hyperlink{class_program_aaefaa0df08f3484476fc4d61e97acbdc}{Program}}();}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{22     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_program_a9cf82076eb1dd022d0010ebd370bd75d}{getCurrentPage}}()\textcolor{keyword}{const};}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{28     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_program_affe03f53cc5e900a1a7aecc557887403}{setCurrentPage}}(\textcolor{keywordtype}{int} newCurrentpage);}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{33     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_program_a11f634b561b2325b50000f642ba1c506}{draw}}();}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{38     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_program_a6adbc9a50861c35f3229cfb277b4afdb}{run}}();}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{43     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_program_ab6f4ecad0ccb2703f254e47c050b34a4}{createMenu}}();}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{48     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_program_a919233418f01931d025ed7b9ea47ba8c}{wait}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{53     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_program_a37d6f6ff17ef989931dd4a1e811ce8e4}{clear}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 \textcolor{keyword}{private}:}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{58     \textcolor{keywordtype}{int} currentMenuPage;}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{61     vector<Menu> menus;}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{64     \mbox{\hyperlink{class_network}{Network}} network;}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{72     \textcolor{keywordtype}{string} chooseStation(\textcolor{keywordtype}{bool} addStopButton, \textcolor{keywordtype}{string} label = \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{80     \textcolor{keywordtype}{string} chooseDistrict(\textcolor{keywordtype}{bool} addStopButton, \textcolor{keywordtype}{string} label = \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{88     \textcolor{keywordtype}{string} chooseMunicipality(\textcolor{keywordtype}{bool} addStopButton, \textcolor{keywordtype}{string} label = \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{96     \mbox{\hyperlink{class_edge}{Edge}} *chooseEdge(\textcolor{keywordtype}{bool} addStopButton, \textcolor{keywordtype}{string} label = \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{97 \};}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

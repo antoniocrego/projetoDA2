@@ -1,0 +1,284 @@
+\hypertarget{class_network}{}\doxysection{Network Class Reference}
+\label{class_network}\index{Network@{Network}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_network_a3cc2fb4f8fa4d507077e8da85ce5a1c8}\label{class_network_a3cc2fb4f8fa4d507077e8da85ce5a1c8}} 
+{\bfseries Network} ()
+\begin{DoxyCompactList}\small\item\em Empty Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_network_afcdbcdd8e2ac90982c238f2b07c29738}\label{class_network_afcdbcdd8e2ac90982c238f2b07c29738}} 
+void {\bfseries read\+Stations} ()
+\begin{DoxyCompactList}\small\item\em Store the information about the Stations from a Data File into a graph. Time Complexity\+: O(\+N), N being the number of stations on the file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_network_a5aab74edad1fd02248c21ebcf7bcf677}\label{class_network_a5aab74edad1fd02248c21ebcf7bcf677}} 
+void {\bfseries read\+Network} ()
+\begin{DoxyCompactList}\small\item\em Store the information about the connections between Stations from a Data File into a graph. Time Complexity\+: O(\+N), N being the number of connections between stations on the file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_network_af3ac531e284d02b671bcd0b471c87933}{get\+Train\+Network}} ()
+\begin{DoxyCompactList}\small\item\em Function that returns the graph related to the connections between Stations. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_network_a72c2fc4a4e71e3bd31aaacfd5cbd9b47}{IDto\+Station}} (int id)
+\begin{DoxyCompactList}\small\item\em Function that returns the \mbox{\hyperlink{class_station}{Station}} related to the given id passed in the parameter. Time Complexity\+: O(\+N), N being the number of stations. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_station}{Station}} \mbox{\hyperlink{class_network_a3a63a956f368af7b5cd759608292cc0c}{get\+Station\+Info}} (string name)
+\begin{DoxyCompactList}\small\item\em Function that returns information about the \mbox{\hyperlink{class_station}{Station}} given the name. Time Complexity\+: O(log(\+N)), N being the number of stations. \end{DoxyCompactList}\item 
+unordered\+\_\+map$<$ string, \mbox{\hyperlink{class_station}{Station}} $>$ \mbox{\hyperlink{class_network_ac2205a8ec2d15a8b5ae870c1252e8847}{get\+Stations}} ()
+\begin{DoxyCompactList}\small\item\em Function that returns the unordered\+\_\+map related to the Stations. \end{DoxyCompactList}\item 
+vector$<$ string $>$ \mbox{\hyperlink{class_network_aaef0177135e12876900350f3472e6ba9}{get\+Districts}} ()
+\begin{DoxyCompactList}\small\item\em Function that returns the vector related to the districts. \end{DoxyCompactList}\item 
+vector$<$ pair$<$ string, string $>$ $>$ \mbox{\hyperlink{class_network_a24606eba5a190a24e80aed64a8dbe3d4}{get\+Municipalities}} ()
+\begin{DoxyCompactList}\small\item\em Function that return the vector related to the municipalities. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_network_a5a74b2744788b2143d2584aaefd42651}{get\+Station\+ID}} (const string \&name)
+\begin{DoxyCompactList}\small\item\em Function that returns the id of the \mbox{\hyperlink{class_station}{Station}} given the name. Time Complexity\+: O(\+N), N being the number of stations. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_network_ace60744b4caa6d9abdf171062483447f}{max\+Flow}} (const std\+::string \&source, const std\+::string \&dest)
+\begin{DoxyCompactList}\small\item\em Function that takes two strings as parameters and convert them into id before calling the Edmonds Karp Algorithm. Time Complexity\+: O(\+V$\ast$\+E$^\wedge$2) V being the number of vertexes and E being the number of edges. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_network_a0c6a36f2b8f00f5238ffbc76808858c5}{max\+Flow\+Pairs}} (vector$<$ pair$<$ std\+::string, std\+::string $>$ $>$ \&station\+Pairs)
+\begin{DoxyCompactList}\small\item\em Function that calculates the maximum maxflow in the entire railway. Time Complexity\+: O(\+V$^\wedge$3 $\ast$ E$^\wedge$2), V being the number of vertexes in the graph and E being the number of edges. \end{DoxyCompactList}\item 
+vector$<$ pair$<$ double, string $>$ $>$ \mbox{\hyperlink{class_network_ad767db2d75e1a169f0113c2ed9ba65bb}{multi\+Max\+Flow\+Districts}} ()
+\begin{DoxyCompactList}\small\item\em Function that calculates the max\+Flow passing through a district. Time Complexity\+: O(D$\ast$(V+\+V$\ast$\+E$^\wedge$2)), D being the number of districts, V being the number of vertexes and E being the number of edges. \end{DoxyCompactList}\item 
+vector$<$ pair$<$ double, string $>$ $>$ \mbox{\hyperlink{class_network_a92aec9afb4764a3f374a136f679bb7cf}{multi\+Max\+Flow\+Municipalities}} (const std\+::string \&district)
+\begin{DoxyCompactList}\small\item\em Function that calculates the max\+Flow for each municipality of a given district. Time Complexity\+: O(M$\ast$(V+\+V$\ast$\+E$^\wedge$2)), M being the number of municipalities, V being the number of vertexes and E being the number of edges. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_network_ab9192c044422092ed5b45bd533fe68cd}{reduced\+Edges\+Max\+Flow}} (const std\+::string \&source, const std\+::string \&dest, unordered\+\_\+set$<$ \mbox{\hyperlink{class_edge}{Edge}} $\ast$ $>$ segments)
+\begin{DoxyCompactList}\small\item\em Function that calculates the max\+Flow between two stations, assuming that certain edges have been \char`\"{}disabled\char`\"{}. Time Complexity\+: O(N+\+V$\ast$\+E$^\wedge$2) N being the number of segments to be removed, V being the number of vertexes and E being the number of edges. \end{DoxyCompactList}\item 
+vector$<$ pair$<$ int, pair$<$ double, double $>$ $>$ $>$ \mbox{\hyperlink{class_network_a582192e2d4fd321a68ff785652a58441}{segment\+Failure\+Evaluation}} (const vector$<$ \mbox{\hyperlink{class_edge}{Edge}} $\ast$ $>$ \&segments)
+\begin{DoxyCompactList}\small\item\em Function that calculates the max\+Flow for each station once for each edge that indicated to be disabled. Time Complexity\+: O(\+N$\ast$ V$^\wedge$3 $\ast$ E$^\wedge$2), N being the number of segments to be removed, V being the number of vertexes and E being the number of edges. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_network_afa2cae270cd03a9529a9efdf2d1bda79}{max\+Arrival}} (const std\+::string \&station)
+\begin{DoxyCompactList}\small\item\em Calculates how many trains can arrive to one specific station from the entire graph. Time Complexity\+: O(\+V$\ast$\+E$^\wedge$2), V being the number of vertexes and E being the number of edges. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_network_aaef0177135e12876900350f3472e6ba9}\label{class_network_aaef0177135e12876900350f3472e6ba9}} 
+\index{Network@{Network}!getDistricts@{getDistricts}}
+\index{getDistricts@{getDistricts}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{getDistricts()}{getDistricts()}}
+{\footnotesize\ttfamily vector$<$ string $>$ Network\+::get\+Districts (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function that returns the vector related to the districts. 
+
+\begin{DoxyReturn}{Returns}
+vector. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_network_a24606eba5a190a24e80aed64a8dbe3d4}\label{class_network_a24606eba5a190a24e80aed64a8dbe3d4}} 
+\index{Network@{Network}!getMunicipalities@{getMunicipalities}}
+\index{getMunicipalities@{getMunicipalities}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{getMunicipalities()}{getMunicipalities()}}
+{\footnotesize\ttfamily vector$<$ pair$<$ string, string $>$ $>$ Network\+::get\+Municipalities (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function that return the vector related to the municipalities. 
+
+\begin{DoxyReturn}{Returns}
+vector. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_network_a5a74b2744788b2143d2584aaefd42651}\label{class_network_a5a74b2744788b2143d2584aaefd42651}} 
+\index{Network@{Network}!getStationID@{getStationID}}
+\index{getStationID@{getStationID}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{getStationID()}{getStationID()}}
+{\footnotesize\ttfamily int Network\+::get\+Station\+ID (\begin{DoxyParamCaption}\item[{const string \&}]{name }\end{DoxyParamCaption})}
+
+
+
+Function that returns the id of the \mbox{\hyperlink{class_station}{Station}} given the name. Time Complexity\+: O(\+N), N being the number of stations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the \mbox{\hyperlink{class_station}{Station}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \mbox{\hyperlink{class_station}{Station}} ID. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_network_a3a63a956f368af7b5cd759608292cc0c}\label{class_network_a3a63a956f368af7b5cd759608292cc0c}} 
+\index{Network@{Network}!getStationInfo@{getStationInfo}}
+\index{getStationInfo@{getStationInfo}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{getStationInfo()}{getStationInfo()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_station}{Station}} Network\+::get\+Station\+Info (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})}
+
+
+
+Function that returns information about the \mbox{\hyperlink{class_station}{Station}} given the name. Time Complexity\+: O(log(\+N)), N being the number of stations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the \mbox{\hyperlink{class_station}{Station}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \mbox{\hyperlink{class_station}{Station}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_network_ac2205a8ec2d15a8b5ae870c1252e8847}\label{class_network_ac2205a8ec2d15a8b5ae870c1252e8847}} 
+\index{Network@{Network}!getStations@{getStations}}
+\index{getStations@{getStations}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{getStations()}{getStations()}}
+{\footnotesize\ttfamily unordered\+\_\+map$<$ string, \mbox{\hyperlink{class_station}{Station}} $>$ Network\+::get\+Stations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function that returns the unordered\+\_\+map related to the Stations. 
+
+\begin{DoxyReturn}{Returns}
+unordered\+\_\+map. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_network_af3ac531e284d02b671bcd0b471c87933}\label{class_network_af3ac531e284d02b671bcd0b471c87933}} 
+\index{Network@{Network}!getTrainNetwork@{getTrainNetwork}}
+\index{getTrainNetwork@{getTrainNetwork}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{getTrainNetwork()}{getTrainNetwork()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_graph}{Graph}} Network\+::get\+Train\+Network (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function that returns the graph related to the connections between Stations. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_graph}{Graph}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_network_a72c2fc4a4e71e3bd31aaacfd5cbd9b47}\label{class_network_a72c2fc4a4e71e3bd31aaacfd5cbd9b47}} 
+\index{Network@{Network}!IDtoStation@{IDtoStation}}
+\index{IDtoStation@{IDtoStation}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{IDtoStation()}{IDtoStation()}}
+{\footnotesize\ttfamily string Network\+::\+IDto\+Station (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Function that returns the \mbox{\hyperlink{class_station}{Station}} related to the given id passed in the parameter. Time Complexity\+: O(\+N), N being the number of stations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The id of the \mbox{\hyperlink{class_station}{Station}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \mbox{\hyperlink{class_station}{Station}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_network_afa2cae270cd03a9529a9efdf2d1bda79}\label{class_network_afa2cae270cd03a9529a9efdf2d1bda79}} 
+\index{Network@{Network}!maxArrival@{maxArrival}}
+\index{maxArrival@{maxArrival}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{maxArrival()}{maxArrival()}}
+{\footnotesize\ttfamily double Network\+::max\+Arrival (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{station }\end{DoxyParamCaption})}
+
+
+
+Calculates how many trains can arrive to one specific station from the entire graph. Time Complexity\+: O(\+V$\ast$\+E$^\wedge$2), V being the number of vertexes and E being the number of edges. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em station} & The station whose maximum arrival will be calculated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The maximum flow of trains that can arrive to the station in question. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_network_ace60744b4caa6d9abdf171062483447f}\label{class_network_ace60744b4caa6d9abdf171062483447f}} 
+\index{Network@{Network}!maxFlow@{maxFlow}}
+\index{maxFlow@{maxFlow}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{maxFlow()}{maxFlow()}}
+{\footnotesize\ttfamily double Network\+::max\+Flow (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{source,  }\item[{const std\+::string \&}]{dest }\end{DoxyParamCaption})}
+
+
+
+Function that takes two strings as parameters and convert them into id before calling the Edmonds Karp Algorithm. Time Complexity\+: O(\+V$\ast$\+E$^\wedge$2) V being the number of vertexes and E being the number of edges. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & The source \mbox{\hyperlink{class_station}{Station}}. \\
+\hline
+{\em dest} & The destination \mbox{\hyperlink{class_station}{Station}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Edmonds Karp function with these two parameters. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_network_a0c6a36f2b8f00f5238ffbc76808858c5}\label{class_network_a0c6a36f2b8f00f5238ffbc76808858c5}} 
+\index{Network@{Network}!maxFlowPairs@{maxFlowPairs}}
+\index{maxFlowPairs@{maxFlowPairs}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{maxFlowPairs()}{maxFlowPairs()}}
+{\footnotesize\ttfamily double Network\+::max\+Flow\+Pairs (\begin{DoxyParamCaption}\item[{vector$<$ pair$<$ std\+::string, std\+::string $>$ $>$ \&}]{station\+Pairs }\end{DoxyParamCaption})}
+
+
+
+Function that calculates the maximum maxflow in the entire railway. Time Complexity\+: O(\+V$^\wedge$3 $\ast$ E$^\wedge$2), V being the number of vertexes in the graph and E being the number of edges. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em station\+Pairs} & The vector that is going to store our return. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The vector station\+Pairs with the names of the Stations where flow is max and the value of said maximum flow. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_network_ad767db2d75e1a169f0113c2ed9ba65bb}\label{class_network_ad767db2d75e1a169f0113c2ed9ba65bb}} 
+\index{Network@{Network}!multiMaxFlowDistricts@{multiMaxFlowDistricts}}
+\index{multiMaxFlowDistricts@{multiMaxFlowDistricts}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{multiMaxFlowDistricts()}{multiMaxFlowDistricts()}}
+{\footnotesize\ttfamily vector$<$ pair$<$ double, string $>$ $>$ Network\+::multi\+Max\+Flow\+Districts (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function that calculates the max\+Flow passing through a district. Time Complexity\+: O(D$\ast$(V+\+V$\ast$\+E$^\wedge$2)), D being the number of districts, V being the number of vertexes and E being the number of edges. 
+
+\begin{DoxyReturn}{Returns}
+A vector with pairs that associate the flow that passes through the district with the district\textquotesingle{}s name. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_network_a92aec9afb4764a3f374a136f679bb7cf}\label{class_network_a92aec9afb4764a3f374a136f679bb7cf}} 
+\index{Network@{Network}!multiMaxFlowMunicipalities@{multiMaxFlowMunicipalities}}
+\index{multiMaxFlowMunicipalities@{multiMaxFlowMunicipalities}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{multiMaxFlowMunicipalities()}{multiMaxFlowMunicipalities()}}
+{\footnotesize\ttfamily vector$<$ pair$<$ double, string $>$ $>$ Network\+::multi\+Max\+Flow\+Municipalities (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{district }\end{DoxyParamCaption})}
+
+
+
+Function that calculates the max\+Flow for each municipality of a given district. Time Complexity\+: O(M$\ast$(V+\+V$\ast$\+E$^\wedge$2)), M being the number of municipalities, V being the number of vertexes and E being the number of edges. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em district} & Name of the district whose municipalities will be used. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector with pairs that associate the flow that passes through the municipality with the municipality\textquotesingle{}s name. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_network_ab9192c044422092ed5b45bd533fe68cd}\label{class_network_ab9192c044422092ed5b45bd533fe68cd}} 
+\index{Network@{Network}!reducedEdgesMaxFlow@{reducedEdgesMaxFlow}}
+\index{reducedEdgesMaxFlow@{reducedEdgesMaxFlow}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{reducedEdgesMaxFlow()}{reducedEdgesMaxFlow()}}
+{\footnotesize\ttfamily double Network\+::reduced\+Edges\+Max\+Flow (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{source,  }\item[{const std\+::string \&}]{dest,  }\item[{unordered\+\_\+set$<$ \mbox{\hyperlink{class_edge}{Edge}} $\ast$ $>$}]{segments }\end{DoxyParamCaption})}
+
+
+
+Function that calculates the max\+Flow between two stations, assuming that certain edges have been \char`\"{}disabled\char`\"{}. Time Complexity\+: O(N+\+V$\ast$\+E$^\wedge$2) N being the number of segments to be removed, V being the number of vertexes and E being the number of edges. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & The source station. \\
+\hline
+{\em dest} & The destination station. \\
+\hline
+{\em segments} & The edges which are to be removed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The maximum flow value between the two stations in the altered graph. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_network_a582192e2d4fd321a68ff785652a58441}\label{class_network_a582192e2d4fd321a68ff785652a58441}} 
+\index{Network@{Network}!segmentFailureEvaluation@{segmentFailureEvaluation}}
+\index{segmentFailureEvaluation@{segmentFailureEvaluation}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{segmentFailureEvaluation()}{segmentFailureEvaluation()}}
+{\footnotesize\ttfamily vector$<$ pair$<$ int, pair$<$ double, double $>$ $>$ $>$ Network\+::segment\+Failure\+Evaluation (\begin{DoxyParamCaption}\item[{const vector$<$ \mbox{\hyperlink{class_edge}{Edge}} $\ast$ $>$ \&}]{segments }\end{DoxyParamCaption})}
+
+
+
+Function that calculates the max\+Flow for each station once for each edge that indicated to be disabled. Time Complexity\+: O(\+N$\ast$ V$^\wedge$3 $\ast$ E$^\wedge$2), N being the number of segments to be removed, V being the number of vertexes and E being the number of edges. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em segments} & The edges which are to be removed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector that stores pairs that associate a station\textquotesingle{}s ID to its max\+Flow before and after removing a specific edge. An entry exists for every edge in the segments unordered set. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+network.\+h\item 
+network.\+cpp\end{DoxyCompactItemize}
