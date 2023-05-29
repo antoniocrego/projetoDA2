@@ -118,29 +118,35 @@ void Network::readNodes(const string& graph) {
 Graph Network::getCurrentGraph() {
     return currentGraph;
 }
-void Network::backtracking(Graph test, double &min_cost, double actual_cost,int currPos, int count) {
+void Network::backtracking(const Graph& test, double &min_cost, double actual_cost,int currPos, vector<int>& path, const vector<int>& currentPath) {
     // Check if a Hamiltonian cycle is found
-    if (count == test.getNumVertex()) {
+    if (currentPath.size() == test.getNumVertex()) {
         // Check if the last and first vertices are adjacent
         for (auto edge: test.findVertex(currPos)->getAdj()) {
             if (edge->getDest()->getId() == 0) {
                 double cost = actual_cost + edge->getWeight();
                 if (min_cost > cost) {
                     min_cost = cost;
-                    return;
+                    path=currentPath;
+                    path.push_back(0);
                 }
+                return;
             }
         }
     }
 
     for (auto edge: test.findVertex(currPos)->getAdj()) {
+        if (edge->getDest()->getId()==0) continue;
         if (!edge->getDest()->isVisited()) {
             edge->getDest()->setVisited(true);
-            backtracking(test, min_cost, edge->getWeight()+actual_cost, edge->getDest()->getId(), count + 1);
+            vector<int> other = currentPath;
+            other.push_back(edge->getDest()->getId());
+            backtracking(test, min_cost, edge->getWeight()+actual_cost, edge->getDest()->getId(), path, other);
             edge->getDest()->setVisited(false);
         }
     }
 }
+
 
 
 

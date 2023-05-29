@@ -37,7 +37,7 @@ public:
      */
     Graph getCurrentGraph();
 
-    void backtracking(Graph test, double &min_cost, double actual_cost,int currPos, int count);
+    void backtracking(const Graph& test, double &min_cost, double actual_cost, int currPos, vector<int>& path, const vector<int>& currentPath);
 
 
 private:
