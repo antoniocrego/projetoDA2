@@ -37,6 +37,9 @@ public:
      */
     Graph getCurrentGraph();
 
+    double backtracking(Graph teste, double min_cost, double cost_atual,std::vector<int> &path);
+
+
 private:
     ///@brief Bidirectional Graph that represents the connections between Stations.
     Graph currentGraph;

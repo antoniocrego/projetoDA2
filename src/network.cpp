@@ -97,6 +97,8 @@ void Network::readDataset(int num) {
         if (num<=14 && currentGraph.findVertex(stoi(origin))==nullptr) currentGraph.addVertex(stoi(origin));
         if (num<=14 && currentGraph.findVertex(stoi(dest))==nullptr) currentGraph.addVertex((stoi(dest)));
         currentGraph.addBidirectionalEdge(stoi(origin),stoi(dest),stoi(distance));
+
+
     }
 }
 
@@ -109,9 +111,45 @@ void Network::readNodes(const string& graph) {
         istringstream inn(aLine);
         getline(inn,node,',');
         currentGraph.addVertex(stoi(node));
+
     }
 }
 
 Graph Network::getCurrentGraph() {
     return currentGraph;
+}
+
+double Network::backtracking(Graph test, double min_cost, double actual_cost,std::vector<int> &path){
+    //check the Hamiltonian cycle
+    int first_vertex;
+    int last_vertex;
+    double cost;
+    if(path.size() == test.getNumVertex()){
+        first_vertex = path.front();
+        last_vertex = path.back();
+        for(auto edge: test.findVertex(last_vertex)->getAdj()){
+            if(edge->getOrig()->getId() == first_vertex) {
+                cost = actual_cost + edge->getWeight();
+                if(cost < min_cost) {
+                    min_cost = cost;
+                }
+            }
+        }
+    }
+    last_vertex = path.back() ;
+    for(auto edge: test.findVertex(last_vertex)->getAdj()){
+        if(!edge->getDest()->isVisited())
+        {
+            path.push_back(edge->getDest()->getId());
+            edge->getDest()->setVisited(true);
+            backtracking(test   ,min_cost,cost,path);
+            edge->getDest()->setVisited(false);
+        }
+    }
+
+
+
+
+
+
 }

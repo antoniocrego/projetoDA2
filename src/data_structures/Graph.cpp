@@ -1,3 +1,4 @@
+#include <climits>
 #include "Graph.h"
 
 int Graph::getNumVertex() const {
