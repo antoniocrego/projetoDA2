@@ -7,7 +7,7 @@ Network::Network(){
 
 void Network::readDataset(int num) {
     currentGraph=Graph(); // clear current graph;
-    string url = "../data/";
+    string url = "../src/data/";
     if (num>=0 && num<=2){
         url+="Toy-Graphs/";
         switch (num) {
@@ -118,38 +118,30 @@ void Network::readNodes(const string& graph) {
 Graph Network::getCurrentGraph() {
     return currentGraph;
 }
-
-double Network::backtracking(Graph test, double min_cost, double actual_cost,std::vector<int> &path){
-    //check the Hamiltonian cycle
-    int first_vertex;
-    int last_vertex;
-    double cost;
-    if(path.size() == test.getNumVertex()){
-        first_vertex = path.front();
-        last_vertex = path.back();
-        for(auto edge: test.findVertex(last_vertex)->getAdj()){
-            if(edge->getOrig()->getId() == first_vertex) {
-                cost = actual_cost + edge->getWeight();
-                if(cost < min_cost) {
+void Network::backtracking(Graph test, double &min_cost, double actual_cost,int currPos, int count) {
+    // Check if a Hamiltonian cycle is found
+    if (count == test.getNumVertex()) {
+        // Check if the last and first vertices are adjacent
+        for (auto edge: test.findVertex(currPos)->getAdj()) {
+            if (edge->getDest()->getId() == 0) {
+                double cost = actual_cost + edge->getWeight();
+                if (min_cost > cost) {
                     min_cost = cost;
+                    cout<< min_cost << endl;
+                    return;
                 }
             }
         }
     }
-    last_vertex = path.back() ;
-    for(auto edge: test.findVertex(last_vertex)->getAdj()){
-        if(!edge->getDest()->isVisited())
-        {
-            path.push_back(edge->getDest()->getId());
+
+    for (auto edge: test.findVertex(currPos)->getAdj()) {
+        if (!edge->getDest()->isVisited()) {
             edge->getDest()->setVisited(true);
-            backtracking(test   ,min_cost,cost,path);
+            backtracking(test, min_cost, edge->getWeight()+actual_cost, edge->getDest()->getId(), count + 1);
             edge->getDest()->setVisited(false);
         }
     }
-
-
-
-
-
-
 }
+
+
+
