@@ -96,7 +96,7 @@ void Network::readDataset(int num) {
         getline(inn, distance, ',');
         if (num<=14 && currentGraph.findVertex(stoi(origin))==nullptr) currentGraph.addVertex(stoi(origin));
         if (num<=14 && currentGraph.findVertex(stoi(dest))==nullptr) currentGraph.addVertex((stoi(dest)));
-        currentGraph.addBidirectionalEdge(stoi(origin),stoi(dest),stoi(distance));
+        currentGraph.addBidirectionalEdge(stoi(origin),stoi(dest),stod(distance));
 
 
     }
@@ -127,7 +127,6 @@ void Network::backtracking(Graph test, double &min_cost, double actual_cost,int 
                 double cost = actual_cost + edge->getWeight();
                 if (min_cost > cost) {
                     min_cost = cost;
-                    cout<< min_cost << endl;
                     return;
                 }
             }
