@@ -23,15 +23,12 @@ void Network::readDataset(string path, bool isReal) {
         getline(inn, origin, ',');
         getline(inn, dest, ',');
         getline(inn, distance, ',');
-        if (!isReal && currentGraph.findVertex(stoi(origin))==nullptr) currentGraph.addVertex(stoi(origin));
-        if (!isReal && currentGraph.findVertex(stoi(dest))==nullptr) currentGraph.addVertex((stoi(dest)));
-        currentGraph.addBidirectionalEdge(stoi(origin),stoi(dest),stoi(distance));
+
+        if (!isReal && currentGraph.findVertex(stoi(origin))==nullptr) currentGraph.addVertex(stod(origin));
+        if (!isReal && currentGraph.findVertex(stoi(dest))==nullptr) currentGraph.addVertex((stod(dest)));
+        currentGraph.addBidirectionalEdge(stoi(origin),stoi(dest),stod(distance));
+
     }
-    for(auto node : currentGraph.getVertexSet()){
-        cout << node->getId() << endl;
-    }
-    string temp;
-    cin >> temp;
 }
 
 void Network::readNodes(const string& graph) {
@@ -43,9 +40,42 @@ void Network::readNodes(const string& graph) {
         istringstream inn(aLine);
         getline(inn,node,',');
         currentGraph.addVertex(stoi(node));
+
     }
 }
 
 Graph Network::getCurrentGraph() {
     return currentGraph;
 }
+void Network::backtracking(const Graph& test, double &min_cost, double actual_cost,int currPos, vector<int>& path, const vector<int>& currentPath) {
+    // Check if a Hamiltonian cycle is found
+    if (currentPath.size() == test.getNumVertex()) {
+        // Check if the last and first vertices are adjacent
+        for (auto edge: test.findVertex(currPos)->getAdj()) {
+            if (edge->getDest()->getId() == 0) {
+                double cost = actual_cost + edge->getWeight();
+                if (min_cost > cost) {
+                    min_cost = cost;
+                    path=currentPath;
+                    path.push_back(0);
+                }
+                return;
+            }
+        }
+    }
+
+    for (auto edge: test.findVertex(currPos)->getAdj()) {
+        if (edge->getDest()->getId()==0) continue;
+        if (!edge->getDest()->isVisited()) {
+            edge->getDest()->setVisited(true);
+            vector<int> other = currentPath;
+            other.push_back(edge->getDest()->getId());
+            backtracking(test, min_cost, edge->getWeight()+actual_cost, edge->getDest()->getId(), path, other);
+            edge->getDest()->setVisited(false);
+        }
+    }
+}
+
+
+
+

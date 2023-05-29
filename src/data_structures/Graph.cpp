@@ -1,3 +1,4 @@
+#include <climits>
 #include "Graph.h"
 
 int Graph::getNumVertex() const {
@@ -43,7 +44,7 @@ bool Graph::addVertex(const int &id) {
  * destination vertices and the edge weight (w).
  * Returns true if successful, and false if the source or destination vertex does not exist.
  */
-bool Graph::addEdge(const int &sourc, const int &dest, const int &weight) {
+bool Graph::addEdge(const int &sourc, const int &dest, const double &weight) {
     int cost;
     auto v1 = findVertex(sourc);
     auto v2 = findVertex(dest);
@@ -53,7 +54,7 @@ bool Graph::addEdge(const int &sourc, const int &dest, const int &weight) {
     return true;
 }
 
-bool Graph::addBidirectionalEdge(const int &sourc, const int &dest, const int &weight) {
+bool Graph::addBidirectionalEdge(const int &sourc, const int &dest, const double &weight) {
     auto v1 = findVertex(sourc);
     auto v2 = findVertex(dest);
     if (v1 == nullptr || v2 == nullptr)
