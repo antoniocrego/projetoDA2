@@ -43,23 +43,23 @@ bool Graph::addVertex(const int &id) {
  * destination vertices and the edge weight (w).
  * Returns true if successful, and false if the source or destination vertex does not exist.
  */
-bool Graph::addEdge(const int &sourc, const int &dest, double w, std::string service) {
+bool Graph::addEdge(const int &sourc, const int &dest, const int &weight) {
     int cost;
     auto v1 = findVertex(sourc);
     auto v2 = findVertex(dest);
     if (v1 == nullptr || v2 == nullptr)
         return false;
-    v1->addEdge(v2, w, service);
+    v1->addEdge(v2, weight);
     return true;
 }
 
-bool Graph::addBidirectionalEdge(const int &sourc, const int &dest, double w, std::string service) {
+bool Graph::addBidirectionalEdge(const int &sourc, const int &dest, const int &weight) {
     auto v1 = findVertex(sourc);
     auto v2 = findVertex(dest);
     if (v1 == nullptr || v2 == nullptr)
         return false;
-    auto e1 = v1->addEdge(v2, w, service);
-    auto e2 = v2->addEdge(v1, w, service);
+    auto e1 = v1->addEdge(v2,weight);
+    auto e2 = v2->addEdge(v1,weight);
     e1->setReverse(e2);
     e2->setReverse(e1);
     return true;
@@ -86,102 +86,6 @@ void deleteMatrix(double **m, int n) {
 Graph::~Graph() {
     deleteMatrix(distMatrix, vertexSet.size());
     deleteMatrix(pathMatrix, vertexSet.size());
-}
-
-void Graph::testAndVisit(std::queue< Vertex*> &q, Edge *e, Vertex *w, double residual) {
-    if (! w->isVisited() && residual > 0) {
-        w->setVisited(true);
-        w->setPath(e);
-        q.push(w);
-    }
-}
-
-bool Graph::findAugmentingPath(Vertex *s, Vertex *t) {
-    for(auto v : vertexSet) {
-        v->setVisited(false);
-    }
-    s->setVisited(true);
-    std::queue<Vertex *> q;
-    q.push(s);
-    while( !q.empty() && !t->isVisited()) {
-        auto v = q.front();
-        q.pop();
-        for(auto e: v->getAdj()) {
-            testAndVisit(q, e, e->getDest(), e->getWeight() - e->getFlow());
-        }
-        for(auto e: v->getIncoming()) {
-            testAndVisit(q, e, e->getOrig(), e->getFlow());
-        }
-    }
-    return t->isVisited();
-}
-
-double Graph::findMinResidualAlongPath(Vertex *s, Vertex *t) {
-    double f = INF;
-    for (auto v = t; v != s; ) {
-        auto e = v->getPath();
-        if (e->getDest() == v) {
-            f = std::min(f, e->getWeight() - e->getFlow());
-            v = e->getOrig();
-        }
-        else {
-            f = std::min(f, e->getFlow());
-            v = e->getDest();
-        }
-    }
-    return f;
-}
-
-void Graph::augmentFlowAlongPath(Vertex *s, Vertex *t, double f) {
-    for (auto v = t; v != s;) {
-        auto e = v->getPath();
-        double flow = e->getFlow();
-        if (e->getDest() == v) {
-            e->setFlow(flow + f);
-            v = e->getOrig();
-        } else {
-            e->setFlow(flow - f);
-            v = e->getDest();
-        }
-    }
-}
-
-double Graph::edmondsKarp(int source, int target) {
-    double maxFlow = 0;
-    Vertex *s = findVertex(source);// O(v)
-    Vertex *t = findVertex(target);
-    if (s == nullptr || t == nullptr || s == t)
-        return -1;
-
-    // Reset the flows
-    for (auto v: vertexSet) {
-        for (auto e: v->getAdj()) { //O(E)
-            e->setFlow(0);
-        }
-    }
-    // Loop to find augmentation paths
-    while (findAugmentingPath(s, t)) {
-        double f = findMinResidualAlongPath(s, t);
-        augmentFlowAlongPath(s, t, f);
-        maxFlow += f;
-    }
-    return maxFlow;
-}
-
-int Graph::megaSink(const std::vector<int>& sinks) {
-    this->addVertex(this->getNumVertex());
-    for(auto e: sinks) {
-        addEdge(e,this->getNumVertex()-1,INF,"");
-    }
-    return this->getNumVertex()-1;
-}
-
-int Graph::megaSource(const std::vector<int>& sources) {
-    this->addVertex(this->getNumVertex());
-    for(int i : sources){
-        this->addEdge(this->getNumVertex()-1, i, INF, "");
-    }
-    return this->getNumVertex()-1;
 }
 
 bool Graph::removeVertex(const int &id) {
@@ -216,7 +120,7 @@ std::pair<int,double> Graph::Dijsktra(int source,int dest) {
         int flag = (top_v->getAdj().size()-1);
         for(int i = 0; i <= flag; i++){
             int v = top_v->getAdj().at(i)->getDest()->getId();
-            int weight = top_v->getAdj().at(i)->getCost();
+            int weight = top_v->getAdj().at(i)->getWeight();
             if(dist[v]  > dist[top] + weight) {
                 parent[v] = top;
                 dist[v] = dist[top] + weight;

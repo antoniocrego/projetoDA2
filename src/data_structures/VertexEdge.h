@@ -36,7 +36,7 @@ public:
     void setIndegree(unsigned int indegree);
     void setDist(double dist);
     void setPath(Edge *path);
-    Edge * addEdge(Vertex *dest, double w, std::string service);
+    Edge * addEdge(Vertex *dest, double w);
     bool removeEdge(int destID);
     void removeOutgoingEdges();
 
@@ -63,21 +63,17 @@ protected:
 
 class Edge {
 public:
-    Edge(Vertex *orig, Vertex *dest, double w, std::string service,int cost);
+    Edge(Vertex *orig, Vertex *dest, double w);
 
     Vertex * getDest() const;
     double getWeight() const;
     bool isSelected() const;
     Vertex * getOrig() const;
     Edge *getReverse() const;
-    double getFlow() const;
-    std::string getService() const;
 
     void setSelected(bool selected);
     void setReverse(Edge *reverse);
-    void setFlow(double flow);
     bool operator==(Edge* e);
-    int getCost() const;
 protected:
     Vertex * dest; // destination vertex
     double weight; // edge weight, can also be used for capacity
@@ -88,11 +84,6 @@ protected:
     // used for bidirectional edges
     Vertex *orig;
     Edge *reverse = nullptr;
-
-    double flow; // for flow-related problems
-    int cost;
-
-    std::string service;
 };
 
 #endif /* DA_TP_CLASSES_VERTEX_EDGE */

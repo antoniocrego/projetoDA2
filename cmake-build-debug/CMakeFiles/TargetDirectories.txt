@@ -1,0 +1,3 @@
+C:/Users/Antonio Rego/Desktop/Projeto DA 2/projetoDA2/cmake-build-debug/CMakeFiles/projetoDA2.dir
+C:/Users/Antonio Rego/Desktop/Projeto DA 2/projetoDA2/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Antonio Rego/Desktop/Projeto DA 2/projetoDA2/cmake-build-debug/CMakeFiles/rebuild_cache.dir

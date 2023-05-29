@@ -10,15 +10,8 @@ Vertex::Vertex(int id): id(id) {}
  * Auxiliary function to add an outgoing edge to a vertex (this),
  * with a given destination vertex (d) and edge weight (w).
  */
-Edge * Vertex::addEdge(Vertex *d, double w, std::string service) {
-    int cost;
-    if(service == "STANDARD") {
-        cost = 2;
-    }
-    else{
-        cost = 4;
-    }
-    auto newEdge = new Edge(this, d, w, service,cost);
+Edge * Vertex::addEdge(Vertex *d, double w) {
+    auto newEdge = new Edge(this, d, w);
     adj.push_back(newEdge);
     d->incoming.push_back(newEdge);
     return newEdge;
@@ -136,7 +129,7 @@ void Vertex::deleteEdge(Edge *edge) {
 
 /********************** Edge  ****************************/
 
-Edge::Edge(Vertex *orig, Vertex *dest, double w, std::string service,int cost): orig(orig), dest(dest), weight(w), service(service), cost(cost) {}
+Edge::Edge(Vertex *orig, Vertex *dest, double w): orig(orig), dest(dest), weight(w) {}
 
 Vertex * Edge::getDest() const {
     return this->dest;
@@ -158,10 +151,6 @@ bool Edge::isSelected() const {
     return this->selected;
 }
 
-double Edge::getFlow() const {
-    return flow;
-}
-
 void Edge::setSelected(bool selected) {
     this->selected = selected;
 }
@@ -170,18 +159,6 @@ void Edge::setReverse(Edge *reverse) {
     this->reverse = reverse;
 }
 
-void Edge::setFlow(double flow) {
-    this->flow = flow;
-}
-
-std::string Edge::getService() const {
-    return service;
-}
-
 bool Edge::operator==(Edge *e) {
     return (orig==e->getOrig()) & (dest==e->getDest());
-}
-
-int Edge::getCost() const{
-    return this->cost;
 }
