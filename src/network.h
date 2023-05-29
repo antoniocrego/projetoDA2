@@ -23,7 +23,7 @@ public:
      * @brief Store the information about the Stations from a Data File into a graph.
      * Time Complexity: O(N), N being the number of stations on the file.
      */
-    void readDataset(int num);
+    void readDataset(string path, bool isReal);
 
     /**
      * @brief Store the information about the connections between Stations from a Data File into a graph.

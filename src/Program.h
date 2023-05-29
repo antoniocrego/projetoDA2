@@ -63,37 +63,7 @@ private:
     ///@brief Program's Network
     Network network;
 
-    /**
-     * @brief This function asks the user to choose a Station
-     * @param addStopButton
-     * @param label Label to add to the menu presented to the user
-     * @return The name of the chosen Station
-     */
-    string chooseStation(bool addStopButton, string label = "");
-
-    /**
-     * @brief This function asks the user to choose a District
-     * @param addStopButton
-     * @param label Label to add to the menu presented to the user
-     * @return The name of the chosen District
-     */
-    string chooseDistrict(bool addStopButton, string label = "");
-
-    /**
-     * @brief This function asks the user to choose a Municipality
-     * @param addStopButton
-     * @param label Label to add to the menu presented to the user
-     * @return The name of the chosen Station
-     */
-    string chooseMunicipality(bool addStopButton, string label = "");
-
-    /**
-     * @brief This function asks the user to choose a Edge
-     * @param addStopButton
-     * @param label Label to add to the menu presented to the user
-     * @return The name of the chosen Edge
-     */
-    Edge *chooseEdge(bool addStopButton, string label = "");
+    int chooseGraphType();
 };
 
 

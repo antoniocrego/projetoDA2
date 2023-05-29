@@ -24,10 +24,11 @@ void Program::clear() const {
 }
 
 void Program::createMenu() {
-    this->menus.push_back(Menu("../menu/files/mainMenu.txt", "Train Network"));//Initialize main menu
-    /*this->menus.push_back(Menu("../Menus/scheduleSubMenu.txt"));// Initialize schedule submenu
-    this->menus.push_back(Menu("../Menus/requestsMenu"));*/
-
+    this->menus.push_back(Menu("../src/menu/files/mainMenu.txt", "TSP Analyzer"));//Initialize main menu
+    this->menus.push_back(Menu("../src/menu/files/graphTypeMenu.txt", "Graph Type Selector")); // Initialize Graph type submenu
+    this->menus.push_back(Menu("../src/menu/files/toyMenu.txt", "Toy Graph Selector"));
+    this->menus.push_back(Menu("../src/menu/files/extraMenu.txt", "Extra Fully Connected Selector"));
+    this->menus.push_back(Menu("../src/menu/files/realMenu.txt", "Real World Graph Selector"));
 }
 
 int Program::getCurrentPage() const {
@@ -53,45 +54,117 @@ void Program::draw(){
 void Program:: run() {
     while (this->currentMenuPage != -1) {
         draw(); //draw the current menu
+        string path = "";
         int option = menus.at(currentMenuPage).getOption();
-        string station1 = "";
-        string station2 = "";
-        vector<pair<string, string>> pairs;
-        unordered_set<Edge *> segments;
-        vector<Edge *> segments2;
-        Edge * segment;
-        double returnValue;
-        vector<pair<int,pair<double,double>>> specialReturn;
-        vector<pair<int,double>> temp;
-        pair<int,double> dijkstra;
-        vector<pair<double,string>> flowByDistrict;
-        string o;
-        int maxDisplay;
         switch (this->currentMenuPage) {
             case 0: // Is on main menu
                 switch (option) {
                     case 1:
-
-                    case 2:
-
-                    case 3:
-
-                    case 4:
-
-                    case 5:
-
-                    case 6:
-
-                    case 7:
-
-                    case 8:
-
-                    case 9:
-                        this->network = Network();
                         break;
-                    case 10:
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        this->currentMenuPage = 1;
+                        break;
+                    case 5:
                         this->currentMenuPage = -1;
                         break;
+                }
+                break;
+            case 1:
+                switch (option) {
+                    case 1:
+                        this->currentMenuPage = 2;
+                        break;
+                    case 2:
+                        this->currentMenuPage = 3;
+                        break;
+                    case 3:
+                        this->currentMenuPage = 4;
+                        break;
+                }
+                break;
+            case 2:
+                path = "Toy-Graphs/";
+                switch (option) {
+                    case 1:
+                        path += "shipping.csv";
+                        break;
+                    case 2:
+                        path += "stadiums.csv";
+                        break;
+                    case 3:
+                        path += "tourism.csv";
+                        break;
+                }
+                if(path != "Toy-Graphs/"){
+                    network.readDataset(path, false);
+                    currentMenuPage = 0;
+                }
+                break;
+            case 3:
+                path = "Extra_Fully_Connected_Graphs/edges_";
+                switch (option) {
+                    case 1:
+                        path += "25.csv";
+                        break;
+                    case 2:
+                        path += "50.csv";
+                        break;
+                    case 3:
+                        path += "75.csv";
+                        break;
+                    case 4:
+                        path += "100.csv";
+                        break;
+                    case 5:
+                        path += "200.csv";
+                        break;
+                    case 6:
+                        path += "300.csv";
+                        break;
+                    case 7:
+                        path += "400.csv";
+                        break;
+                    case 8:
+                        path += "500.csv";
+                        break;
+                    case 9:
+                        path += "600.csv";
+                        break;
+                    case 10:
+                        path += "700.csv";
+                        break;
+                    case 11:
+                        path += "800.csv";
+                        break;
+                    case 12:
+                        path += "900.csv";
+                        break;
+                }
+                if(path != "Extra_Fully_Connected/edges_") {
+                    network.readDataset(path, false);
+                    currentMenuPage = 0;
+                }
+                break;
+            case 4:
+                path = "Real-world Graphs/";
+                switch (option) {
+                    case 1:
+                        path += "graph1/";
+                        break;
+                    case 2:
+                        path += "graph2/";
+                        break;
+                    case 3:
+                        path += "graph3/";
+                        break;
+                }
+                if(path != "Real-world Graphs/") {
+                    network.readDataset(path, true);
+                    currentMenuPage = 0;
                 }
                 break;
         }

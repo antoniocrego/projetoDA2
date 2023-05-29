@@ -5,86 +5,15 @@
 Network::Network(){
 }
 
-void Network::readDataset(int num) {
+void Network::readDataset(string path, bool isReal) {
     currentGraph=Graph(); // clear current graph;
-    string url = "../data/";
-    if (num>=0 && num<=2){
-        url+="Toy-Graphs/";
-        switch (num) {
-            case 0:
-                url += "shipping";
-                break;
-            case 1:
-                url += "stadiums";
-                break;
-            case 2:
-                url += "tourism";
-                break;
-        }
-        url+=".csv";
-    }
-    else if (num>=3 && num<=14){
-        url+="Extra_Fully_Connected_Graphs/edges_";
-        switch (num) {
-            case 3:
-                url+="25";
-                break;
-            case 4:
-                url+="50";
-                break;
-            case 5:
-                url+="75";
-                break;
-            case 6:
-                url+="100";
-                break;
-            case 7:
-                url+="200";
-                break;
-            case 8:
-                url+="300";
-                break;
-            case 9:
-                url+="400";
-                break;
-            case 10:
-                url+="500";
-                break;
-            case 11:
-                url+="600";
-                break;
-            case 12:
-                url+="700";
-                break;
-            case 13:
-                url+="800";
-                break;
-            case 14:
-                url+="900";
-                break;
-        }
-        url+=".csv";
-    }
-    else if (num>=15 && num<=17){
-        url+="Real-world Graphs/";
-        switch (num){
-            case 15:
-                url+="graph1";
-                break;
-            case 16:
-                url+="graph2";
-                break;
-            case 17:
-                url+="graph3";
-                break;
-        }
+    string url = "../src/data/"+path;
+
+    if (isReal){
         readNodes(url);
         url+="/edges.csv";
     }
-    else{
-        printf("Invalid ID for graph!");
-        return;
-    }
+
     ifstream in(url);
     string aLine, origin, dest, distance;
     getline(in, aLine);
@@ -94,10 +23,15 @@ void Network::readDataset(int num) {
         getline(inn, origin, ',');
         getline(inn, dest, ',');
         getline(inn, distance, ',');
-        if (num<=14 && currentGraph.findVertex(stoi(origin))==nullptr) currentGraph.addVertex(stoi(origin));
-        if (num<=14 && currentGraph.findVertex(stoi(dest))==nullptr) currentGraph.addVertex((stoi(dest)));
+        if (!isReal && currentGraph.findVertex(stoi(origin))==nullptr) currentGraph.addVertex(stoi(origin));
+        if (!isReal && currentGraph.findVertex(stoi(dest))==nullptr) currentGraph.addVertex((stoi(dest)));
         currentGraph.addBidirectionalEdge(stoi(origin),stoi(dest),stoi(distance));
     }
+    for(auto node : currentGraph.getVertexSet()){
+        cout << node->getId() << endl;
+    }
+    string temp;
+    cin >> temp;
 }
 
 void Network::readNodes(const string& graph) {
