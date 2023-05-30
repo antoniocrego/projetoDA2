@@ -6,7 +6,8 @@ Network::Network(){
 }
 
 void Network::readDataset(string path, bool isReal) {
-    currentGraph=Graph(); // clear current graph;
+    currentGraph=Graph(); // clear current graph
+    mapIDtoIndex.clear(); // clear map
     string url = "../src/data/"+path;
 
     if (isReal){
@@ -24,8 +25,14 @@ void Network::readDataset(string path, bool isReal) {
         getline(inn, dest, ',');
         getline(inn, distance, ',');
 
-        if (!isReal && currentGraph.findVertex(stoi(origin))==nullptr) currentGraph.addVertex(stod(origin));
-        if (!isReal && currentGraph.findVertex(stoi(dest))==nullptr) currentGraph.addVertex((stod(dest)));
+        if (!isReal && currentGraph.findVertex(stoi(origin))==nullptr){
+            currentGraph.addVertex(stoi(origin));
+            mapIDtoIndex.emplace(stoi(origin),currentGraph.getNumVertex()-1);
+        }
+        if (!isReal && currentGraph.findVertex(stoi(dest))==nullptr){
+            currentGraph.addVertex((stoi(dest)));
+            mapIDtoIndex.emplace(stoi(dest),currentGraph.getNumVertex()-1);
+        }
         currentGraph.addBidirectionalEdge(stoi(origin),stoi(dest),stod(distance));
 
     }
@@ -40,7 +47,7 @@ void Network::readNodes(const string& graph) {
         istringstream inn(aLine);
         getline(inn,node,',');
         currentGraph.addVertex(stoi(node));
-
+        mapIDtoIndex.emplace(stoi(node),currentGraph.getNumVertex()-1);
     }
 }
 
@@ -51,7 +58,7 @@ void Network::backtracking(const Graph& test, double &min_cost, double actual_co
     // Check if a Hamiltonian cycle is found
     if (currentPath.size() == test.getNumVertex()) {
         // Check if the last and first vertices are adjacent
-        for (auto edge: test.findVertex(currPos)->getAdj()) {
+        for (auto edge: test.indexVertex(mapIDtoIndex.at(currPos))->getAdj()) {
             if (edge->getDest()->getId() == 0) {
                 double cost = actual_cost + edge->getWeight();
                 if (min_cost > cost) {
@@ -64,7 +71,7 @@ void Network::backtracking(const Graph& test, double &min_cost, double actual_co
         }
     }
 
-    for (auto edge: test.findVertex(currPos)->getAdj()) {
+    for (auto edge: test.indexVertex(mapIDtoIndex.at(currPos))->getAdj()) {
         if (edge->getDest()->getId()==0) continue;
         if (!edge->getDest()->isVisited()) {
             edge->getDest()->setVisited(true);
@@ -72,6 +79,35 @@ void Network::backtracking(const Graph& test, double &min_cost, double actual_co
             other.push_back(edge->getDest()->getId());
             backtracking(test, min_cost, edge->getWeight()+actual_cost, edge->getDest()->getId(), path, other);
             edge->getDest()->setVisited(false);
+        }
+    }
+}
+
+void Network::nearestNeighbor(double &min_cost, vector<int>& path){
+    while(path.size()<=currentGraph.getNumVertex()){
+        int nearestNode = -1;
+        double minDistance = numeric_limits<double>::max();
+        Vertex* currentSearch = currentGraph.indexVertex(mapIDtoIndex.at(path.back()));
+        for (Edge* e: currentSearch->getAdj()){
+            if(!e->getDest()->isVisited() && e->getWeight()<minDistance){
+                nearestNode=e->getDest()->getId();
+                minDistance=e->getWeight();
+            }
+        }
+        if (nearestNode!=-1) {
+            min_cost += minDistance;
+            path.push_back(nearestNode);
+            currentGraph.indexVertex(mapIDtoIndex.at(path.back()))->setVisited(true);
+        }
+        else{
+            for (Edge* e: currentSearch->getAdj()){
+                if(e->getDest()->getId()==0){
+                    path.push_back(0);
+                    min_cost+=e->getWeight();
+                    break;
+                }
+            }
+            break;
         }
     }
 }

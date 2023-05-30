@@ -38,11 +38,12 @@ public:
     Graph getCurrentGraph();
 
     void backtracking(const Graph& test, double &min_cost, double actual_cost, int currPos, vector<int>& path, const vector<int>& currentPath);
-
+    void nearestNeighbor(double &min_cost, vector<int>& path);
 
 private:
     ///@brief Bidirectional Graph that represents the connections between Stations.
     Graph currentGraph;
+    unordered_map<int,int> mapIDtoIndex;
 };
 
 
