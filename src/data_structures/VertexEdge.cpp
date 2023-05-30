@@ -127,6 +127,8 @@ void Vertex::deleteEdge(Edge *edge) {
     delete edge;
 }
 
+Coordinate Vertex::getCoordinate() const {return coordinate;}
+
 /********************** Edge  ****************************/
 
 Edge::Edge(Vertex *orig, Vertex *dest, double w): orig(orig), dest(dest), weight(w) {}

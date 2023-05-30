@@ -1,5 +1,5 @@
 Backtracking
-Func2
+Triangular Approximation
 Func3
 Select Graph
 Quit

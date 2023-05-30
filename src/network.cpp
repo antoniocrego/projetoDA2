@@ -5,12 +5,14 @@
 Network::Network(){
 }
 
-void Network::readDataset(string path, bool isReal) {
+void Network::readDataset(string path, string type) {
     currentGraph=Graph(); // clear current graph
     mapIDtoIndex.clear(); // clear map
     string url = "../src/data/"+path;
 
-    if (isReal){
+    cout << "Loading graph..." << endl;
+
+    if (type == "real"){
         readNodes(url);
         url+="/edges.csv";
     }
@@ -25,17 +27,18 @@ void Network::readDataset(string path, bool isReal) {
         getline(inn, dest, ',');
         getline(inn, distance, ',');
 
-        if (!isReal && currentGraph.findVertex(stoi(origin))==nullptr){
+        if (type != "real" && currentGraph.findVertex(stoi(origin))==nullptr){
             currentGraph.addVertex(stoi(origin));
             mapIDtoIndex.emplace(stoi(origin),currentGraph.getNumVertex()-1);
         }
-        if (!isReal && currentGraph.findVertex(stoi(dest))==nullptr){
+        if (type != "real" && currentGraph.findVertex(stoi(dest))==nullptr){
             currentGraph.addVertex((stoi(dest)));
             mapIDtoIndex.emplace(stoi(dest),currentGraph.getNumVertex()-1);
         }
         currentGraph.addBidirectionalEdge(stoi(origin),stoi(dest),stod(distance));
 
     }
+    currentGraph.setType(type);
 }
 
 void Network::readNodes(const string& graph) {
@@ -83,52 +86,6 @@ void Network::backtracking(const Graph& test, double &min_cost, double actual_co
     }
 }
 
-std::vector<Edge *> Network::prim(vector<Vertex *> vertexSet) {
-
-    vector<Edge *> mst;
-    if (vertexSet.empty()) {
-        return mst;
-    }
-
-    // Reset auxiliary info
-    for (auto v: vertexSet) {
-        v->setDist(INF);
-        v->setPath(nullptr);
-        v->setVisited(false);
-    }
-
-    // start with an arbitrary vertex
-    Vertex *s = vertexSet.at(0);
-    s->setDist(0);
-
-    // initialize priority queue
-    MutablePriorityQueue<Vertex> q;
-    q.insert(s);
-    // process vertices in the priority queue
-    while (!q.empty()) {
-        auto v = q.extractMin();
-        if(v->getId() != 0) mst.push_back(v->getPath());
-        v->setVisited(true);
-        for (auto &e: v->getAdj()) {
-            Vertex *w = e->getDest();
-            if (!w->isVisited()) {
-                auto oldDist = w->getDist();
-                if (e->getWeight() < oldDist) {
-                    w->setDist(e->getWeight());
-                    w->setPath(e);
-                    if (oldDist == INF) {
-                        q.insert(w);
-                    } else {
-                        q.decreaseKey(w);
-                    }
-                }
-            }
-        }
-    }
-
-    return mst;
-}
-
 void Network::preorderTraversal(vector<Edge *> mst, Vertex * v, vector<bool>& visited, vector<Vertex *>& preorder){
     visited[v->getId()] = true;
     preorder.push_back(v);
@@ -167,6 +124,19 @@ void Network::nearestNeighbor(double &min_cost, vector<int>& path){
             break;
         }
     }
+}
+
+double Network::calcPath(vector<Vertex *> path){
+    double result = 0;
+    for(int i = 0; i < path.size()-1; i++){
+        Edge * edge = currentGraph.findEdge(path[i]->getId(), path[i+1]->getId());
+        if(edge == nullptr){
+            result += path[i]->getCoordinate().distance(path[i+1]->getCoordinate());
+        }else{
+            result += edge->getWeight();
+        }
+    }
+    return result;
 }
 
 
