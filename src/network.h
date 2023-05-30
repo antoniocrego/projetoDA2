@@ -43,6 +43,12 @@ public:
 
     void nearestNeighbor(double &min_cost, vector<int>& path);
 
+    vector<int> tspChristofides(double& minCost);
+
+    vector<int> findEulerianCircuit(Graph g);
+
+    vector<Edge *> findMinimumWeightMatching();
+
 private:
     ///@brief Bidirectional Graph that represents the connections between Stations.
     Graph currentGraph;

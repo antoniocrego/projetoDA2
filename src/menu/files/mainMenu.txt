@@ -1,5 +1,5 @@
 Backtracking
 Func2
-Func3
+Nearest Neighbor
 Select Graph
 Quit

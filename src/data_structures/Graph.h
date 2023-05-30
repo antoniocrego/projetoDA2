@@ -51,6 +51,9 @@ public:
     * @param dest Id of the vertex to be considered as target
     * @return Pair of the minimum cost calculated and the max flow between the two vertexes
     */
+    std::vector<int> dfs(const int & source) const;
+    void dfsVisit(Vertex* v, std::vector<int>& traversal) const;
+
     std::pair<int,double> Dijsktra(int source,int dest);
 protected:
     std::vector<Vertex *> vertexSet;    // vertex set

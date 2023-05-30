@@ -5,8 +5,13 @@
 int main(){
 
     Network network = Network();
-    network.readDataset("../data/Toy-Graphs/shipping.csv",false);
-    vector<Edge> mst = network.prim(network.getCurrentGraph().getVertexSet());
+    network.readDataset("../data/Toy-Graphs/stadiums.csv",false);
+    double mincost = 0;
+    vector<int> tour = network.tspChristofides(mincost);
+    for (auto c : tour){
+        cout << "->" << c;
+    }
+    cout << endl << mincost;
 
 
     /*
