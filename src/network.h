@@ -39,6 +39,8 @@ public:
 
     void backtracking(const Graph& test, double &min_cost, double actual_cost, int currPos, vector<int>& path, const vector<int>& currentPath);
 
+    vector<Edge> prim(vector<Vertex *> vertexSet);
+
 
 private:
     ///@brief Bidirectional Graph that represents the connections between Stations.

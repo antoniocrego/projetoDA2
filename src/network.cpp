@@ -76,6 +76,52 @@ void Network::backtracking(const Graph& test, double &min_cost, double actual_co
     }
 }
 
+std::vector<Edge> Network::prim(vector<Vertex *> vertexSet) {
+
+    vector<Edge> mst;
+    if (vertexSet.empty()) {
+        return mst;
+    }
+
+    // Reset auxiliary info
+    for(auto v : vertexSet) {
+        v->setDist(INF);
+        v->setPath(nullptr);
+        v->setVisited(false);
+    }
+
+    // start with an arbitrary vertex
+    Vertex* s = vertexSet.at(0);
+    s->setDist(0);
+
+    // initialize priority queue
+    MutablePriorityQueue<Vertex> q;
+    q.insert(s);
+    // process vertices in the priority queue
+    while( ! q.empty() ) {
+        auto v = q.extractMin();
+        v->setVisited(true);
+        for(auto &e : v->getAdj()) {
+            Vertex* w = e->getDest();
+            if (!w->isVisited()) {
+                auto oldDist = w->getDist();
+                if(e->getWeight() < oldDist) {
+                    w->setDist(e->getWeight());
+                    w->setPath(e);
+                    if (oldDist == INF) {
+                        q.insert(w);
+                    }
+                    else {
+                        q.decreaseKey(w);
+                    }
+                }
+            }
+        }
+    }
+
+    return mst;
+}
+
 
 
 
