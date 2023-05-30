@@ -41,10 +41,12 @@ public:
 
     vector<Edge> prim(vector<Vertex *> vertexSet);
 
+    void nearestNeighbor(double &min_cost, vector<int>& path);
 
 private:
     ///@brief Bidirectional Graph that represents the connections between Stations.
     Graph currentGraph;
+    unordered_map<int,int> mapIDtoIndex;
 };
 
 

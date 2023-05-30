@@ -61,6 +61,7 @@ void Program:: run() {
         clock_t stop;
         vector<int> path = {0};
         double max_double = numeric_limits<double>::max();
+        double minCost = 0;
         double *min_cost = &max_double;
         int option = menus.at(currentMenuPage).getOption();
         switch (this->currentMenuPage) {
@@ -69,7 +70,7 @@ void Program:: run() {
                     case 1:
                         for (auto vertex: network.getCurrentGraph().getVertexSet()){
                             if (vertex->getId()==0) vertex->setVisited(true);
-                            vertex->setVisited(false);
+                            else vertex->setVisited(false);
                         }
                         start = clock();
                         network.backtracking(network.getCurrentGraph(),*min_cost,0,0,path, {0});
@@ -93,6 +94,29 @@ void Program:: run() {
                     case 2:
                         break;
                     case 3:
+                        for (auto vertex: network.getCurrentGraph().getVertexSet()){
+                            if (vertex->getId()==0) vertex->setVisited(true);
+                            else vertex->setVisited(false);
+                        }
+                        start = clock();
+                        network.nearestNeighbor(minCost,path);
+                        stop = clock();
+
+                        clear();
+
+                        cout << "The min cost calculated with the nearest neighbor algorithm was: " << minCost << endl;
+                        cout << "The path found was: " << endl;
+                        for(int i = 0; i < path.size(); i++){
+                            if(i == 0) cout << path[i];
+                            else{
+                                cout << "->" << path[i];
+                            }
+                        }
+                        cout<<endl;
+                        cout << "Running time: " << (float)(stop-start)/CLOCKS_PER_SEC << " seconds" << endl;
+
+
+                        wait();
                         break;
                     case 4:
                         this->currentMenuPage = 1;

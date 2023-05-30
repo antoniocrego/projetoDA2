@@ -19,6 +19,10 @@ Vertex * Graph::findVertex(const int &id) const {
     return nullptr;
 }
 
+Vertex* Graph::indexVertex(const int &id) const{
+    return vertexSet.at(id);
+}
+
 /*
  * Finds the index of the vertex with a given content.
  */
