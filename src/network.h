@@ -41,6 +41,8 @@ public:
 
     vector<Edge *> prim(vector<Vertex *> vertexSet);
 
+    void preorderTraversal(vector<Edge *> mst, Vertex * v, vector<bool>& visited, vector<Vertex *>& preorder);
+
     void nearestNeighbor(double &min_cost, vector<int>& path);
 
 private:

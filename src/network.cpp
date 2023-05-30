@@ -129,6 +129,17 @@ std::vector<Edge *> Network::prim(vector<Vertex *> vertexSet) {
     return mst;
 }
 
+void Network::preorderTraversal(vector<Edge *> mst, Vertex * v, vector<bool>& visited, vector<Vertex *>& preorder){
+    visited[v->getId()] = true;
+    preorder.push_back(v);
+
+    for(auto edge : mst){
+        if(edge->getOrig()->getId() == v->getId() && !visited[edge->getDest()->getId()]){
+            preorderTraversal(mst, edge->getDest(), visited, preorder);
+        }
+    }
+}
+
 void Network::nearestNeighbor(double &min_cost, vector<int>& path){
     while(path.size()<=currentGraph.getNumVertex()){
         int nearestNode = -1;
