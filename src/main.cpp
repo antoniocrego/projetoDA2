@@ -6,7 +6,10 @@ int main(){
 
     Network network = Network();
     network.readDataset("../data/Toy-Graphs/shipping.csv",false);
-    vector<Edge> mst = network.prim(network.getCurrentGraph().getVertexSet());
+    vector<Edge *> mst = network.prim(network.getCurrentGraph().getVertexSet());
+    for(auto e : mst){
+        cout << e->getOrig()->getId() << "->" << e->getDest()->getId() << endl;
+    }
 
 
     /*

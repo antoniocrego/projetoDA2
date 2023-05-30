@@ -39,7 +39,7 @@ public:
 
     void backtracking(const Graph& test, double &min_cost, double actual_cost, int currPos, vector<int>& path, const vector<int>& currentPath);
 
-    vector<Edge> prim(vector<Vertex *> vertexSet);
+    vector<Edge *> prim(vector<Vertex *> vertexSet);
 
     void nearestNeighbor(double &min_cost, vector<int>& path);
 

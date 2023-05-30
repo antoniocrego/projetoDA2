@@ -83,42 +83,42 @@ void Network::backtracking(const Graph& test, double &min_cost, double actual_co
     }
 }
 
-std::vector<Edge> Network::prim(vector<Vertex *> vertexSet) {
+std::vector<Edge *> Network::prim(vector<Vertex *> vertexSet) {
 
-    vector<Edge> mst;
+    vector<Edge *> mst;
     if (vertexSet.empty()) {
         return mst;
     }
 
     // Reset auxiliary info
-    for(auto v : vertexSet) {
+    for (auto v: vertexSet) {
         v->setDist(INF);
         v->setPath(nullptr);
         v->setVisited(false);
     }
 
     // start with an arbitrary vertex
-    Vertex* s = vertexSet.at(0);
+    Vertex *s = vertexSet.at(0);
     s->setDist(0);
 
     // initialize priority queue
     MutablePriorityQueue<Vertex> q;
     q.insert(s);
     // process vertices in the priority queue
-    while( ! q.empty() ) {
+    while (!q.empty()) {
         auto v = q.extractMin();
+        if(v->getId() != 0) mst.push_back(v->getPath());
         v->setVisited(true);
-        for(auto &e : v->getAdj()) {
-            Vertex* w = e->getDest();
+        for (auto &e: v->getAdj()) {
+            Vertex *w = e->getDest();
             if (!w->isVisited()) {
                 auto oldDist = w->getDist();
-                if(e->getWeight() < oldDist) {
+                if (e->getWeight() < oldDist) {
                     w->setDist(e->getWeight());
                     w->setPath(e);
                     if (oldDist == INF) {
                         q.insert(w);
-                    }
-                    else {
+                    } else {
                         q.decreaseKey(w);
                     }
                 }
@@ -127,6 +127,7 @@ std::vector<Edge> Network::prim(vector<Vertex *> vertexSet) {
     }
 
     return mst;
+}
 
 void Network::nearestNeighbor(double &min_cost, vector<int>& path){
     while(path.size()<=currentGraph.getNumVertex()){
