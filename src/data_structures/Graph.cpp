@@ -160,6 +160,7 @@ std::pair<int,double> Graph::Dijsktra(int source,int dest) {
     return {dis[dest],maxFlow};
 }
 
+
 std::vector<int> Graph::dfs(const int & source) const{
     std::vector<int> result;
     auto s = findVertex(source);
@@ -178,4 +179,66 @@ void Graph::dfsVisit(Vertex* v, std::vector<int>& traversal) const{
         auto w = e->getDest();
         if (!w->isVisited()) dfsVisit(w,traversal);
     }
+}
+
+std::string Graph::getType() const {
+    return type;
+}
+
+void Graph::setType(std::string type) {
+    this->type = type;
+}
+
+std::vector<Edge *> Graph::prim() {
+
+    std::vector<Edge *> mst;
+    if (vertexSet.empty()) {
+        return mst;
+    }
+
+    // Reset auxiliary info
+    for (auto v: vertexSet) {
+        v->setDist(INF);
+        v->setPath(nullptr);
+        v->setVisited(false);
+    }
+
+    // start with an arbitrary vertex
+    Vertex *s = vertexSet.at(0);
+    s->setDist(0);
+
+    // initialize priority queue
+    MutablePriorityQueue<Vertex> q;
+    q.insert(s);
+    // process vertices in the priority queue
+    while (!q.empty()) {
+        auto v = q.extractMin();
+        if(v->getId() != 0) mst.push_back(v->getPath());
+        v->setVisited(true);
+        for (auto &e: v->getAdj()) {
+            Vertex *w = e->getDest();
+            if (!w->isVisited()) {
+                auto oldDist = w->getDist();
+                if (e->getWeight() < oldDist) {
+                    w->setDist(e->getWeight());
+                    w->setPath(e);
+                    if (oldDist == INF) {
+                        q.insert(w);
+                    } else {
+                        q.decreaseKey(w);
+                    }
+                }
+            }
+        }
+    }
+
+    return mst;
+}
+
+Edge * Graph::findEdge(int orig, int dest){
+    Vertex * origin = indexVertex(orig);
+    for(auto edge : origin->getAdj()){
+        if(edge->getDest()->getId() == dest) return edge;
+    }
+    return nullptr;
 }

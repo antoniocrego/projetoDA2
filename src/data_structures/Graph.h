@@ -44,6 +44,7 @@ public:
     bool addBidirectionalEdge(const int &sourc, const int &dest, const double &weight);
     int getNumVertex() const;
     std::vector<Vertex *> getVertexSet() const;
+
     /**
     * @brief This function implements the Dijkstra algorithm
     * Time Complexity: O(E + V*log(V)), V being the number of vertexes and E being the number of edges
@@ -55,6 +56,13 @@ public:
     void dfsVisit(Vertex* v, std::vector<int>& traversal) const;
 
     std::pair<int,double> Dijsktra(int source,int dest);
+
+    std::string getType() const;
+
+    void setType(std::string type);
+
+    std::vector<Edge *> prim();
+    Edge * findEdge(int orig, int dest);
 protected:
     std::vector<Vertex *> vertexSet;    // vertex set
 
@@ -65,6 +73,7 @@ protected:
      * Finds the index of the vertex with a given content.
      */
     int findVertexIdx(const int &id) const;
+    std::string type = "";
 };
 
 void deleteMatrix(int **m, int n);

@@ -59,10 +59,17 @@ void Program:: run() {
         string file_path = "";
         clock_t start;
         clock_t stop;
+
+        vector<Edge *> mst;
+        vector<Vertex *> preorder;
+        vector<bool> visited = vector<bool>(network.getCurrentGraph().getVertexSet().size(),false);
+
         vector<int> path = {0};
         double max_double = numeric_limits<double>::max();
         double minCost = 0;
         double *min_cost = &max_double;
+        double result;
+
         int option = menus.at(currentMenuPage).getOption();
         switch (this->currentMenuPage) {
             case 0: // Is on main menu
@@ -92,6 +99,34 @@ void Program:: run() {
                         wait();
                         break;
                     case 2:
+                        if(network.getCurrentGraph().getType() == ""){
+                            cout << "No graph was loaded yet! Please select a graph before trying any feature." << endl;
+                        }else if(network.getCurrentGraph().getType() == "toy"){
+                            cout << "The graph currently loaded is not compatible with this feature! Please try another one." << endl;
+                        }else{
+
+                            start = clock();
+
+                            mst = network.getCurrentGraph().prim();
+                            network.preorderTraversal(mst, network.getCurrentGraph().indexVertex(0), visited, preorder);
+                            preorder.push_back(network.getCurrentGraph().indexVertex(0));
+                            result = network.calcPath(preorder);
+
+                            stop = clock();
+                            cout << "The min cost calculated by the triangular approximation heuristic: " << result << endl;
+                            cout << "The path found was:" << endl;
+                            for(int i = 0; i < preorder.size(); i++){
+                                if(i == 0) cout << preorder[0]->getId();
+                                else{
+                                    cout << "->" << preorder[i]->getId();
+                                }
+                                if(i != 0 && i%15 == 0) cout << endl;
+                            }
+                            cout << endl;
+                            cout << "Running time of the heuristic: " << (float)(stop-start)/CLOCKS_PER_SEC << " seconds" << endl;
+
+                        }
+                        wait();
                         break;
                     case 3:
                         for (auto vertex: network.getCurrentGraph().getVertexSet()){
@@ -178,7 +213,7 @@ void Program:: run() {
                         break;
                 }
                 if(file_path != "Toy-Graphs/"){
-                    network.readDataset(file_path, false);
+                    network.readDataset(file_path, "toy");
                     currentMenuPage = 0;
                 }
                 break;
@@ -223,7 +258,7 @@ void Program:: run() {
                         break;
                 }
                 if(file_path != "Extra_Fully_Connected/edges_") {
-                    network.readDataset(file_path, false);
+                    network.readDataset(file_path, "extra");
                     currentMenuPage = 0;
                 }
                 break;
@@ -241,7 +276,7 @@ void Program:: run() {
                         break;
                 }
                 if(file_path != "Real-world Graphs/") {
-                    network.readDataset(file_path, true);
+                    network.readDataset(file_path, "real");
                     currentMenuPage = 0;
                 }
                 break;

@@ -1,5 +1,5 @@
 Backtracking
-Func2
+Triangular Approximation
 Nearest Neighbor
 Christofides Algorithm
 Select Graph

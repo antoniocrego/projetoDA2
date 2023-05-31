@@ -9,6 +9,7 @@
 #include <limits>
 #include <algorithm>
 #include "../data_structures/MutablePriorityQueue.h"
+#include "Coordinate.h"
 
 class Edge;
 
@@ -39,7 +40,7 @@ public:
     Edge * addEdge(Vertex *dest, double w);
     bool removeEdge(int destID);
     void removeOutgoingEdges();
-
+    Coordinate getCoordinate() const;
     friend class MutablePriorityQueue<Vertex>;
 protected:
     int id;                // identifier
@@ -51,7 +52,7 @@ protected:
     unsigned int indegree; // used by topsort
     double dist = 0;
     Edge *path = nullptr;
-
+    Coordinate coordinate = Coordinate();
     std::vector<Edge *> incoming; // incoming edges
 
     int queueIndex = 0; 		// required by MutablePriorityQueue and UFDS

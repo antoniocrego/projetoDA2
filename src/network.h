@@ -23,7 +23,7 @@ public:
      * @brief Store the information about the Stations from a Data File into a graph.
      * Time Complexity: O(N), N being the number of stations on the file.
      */
-    void readDataset(string path, bool isReal);
+    void readDataset(string path, string type);
 
     /**
      * @brief Store the information about the connections between Stations from a Data File into a graph.
@@ -39,8 +39,6 @@ public:
 
     void backtracking(const Graph& test, double &min_cost, double actual_cost, int currPos, vector<int>& path, const vector<int>& currentPath);
 
-    vector<Edge *> prim(vector<Vertex *> vertexSet);
-
     void preorderTraversal(vector<Edge *> mst, Vertex * v, vector<bool>& visited, vector<Vertex *>& preorder);
 
     void nearestNeighbor(double &min_cost, vector<int>& path);
@@ -54,6 +52,9 @@ public:
     std::vector<Vertex*> getOddDegreeVertices(Graph g);
 
     void make_hamilton(vector<int>& path, double &path_dist);
+
+    double calcPath(vector<Vertex *> path);
+
 
 private:
     ///@brief Bidirectional Graph that represents the connections between Stations.
