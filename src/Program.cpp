@@ -68,7 +68,7 @@ void Program:: run() {
         double max_double = numeric_limits<double>::max();
         double minCost = 0;
         double *min_cost = &max_double;
-        double result;
+        double result = 0;
 
         int option = menus.at(currentMenuPage).getOption();
         switch (this->currentMenuPage) {
@@ -123,7 +123,7 @@ void Program:: run() {
                                 if(i != 0 && i%15 == 0) cout << endl;
                             }
                             cout << endl;
-                            cout << "Running time of the heuristic: " << (float)(stop-start)/CLOCKS_PER_SEC << " seconds" << endl;
+                            cout << "Running time of the heuristic: " << (float)(stop - start)/CLOCKS_PER_SEC << " seconds" << endl;
 
                         }
                         wait();

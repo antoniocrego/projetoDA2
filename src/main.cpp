@@ -1,6 +1,5 @@
 #include "network.h"
 #include "Program.h"
-#include "network.h"
 
 int main(){
 
