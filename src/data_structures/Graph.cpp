@@ -160,6 +160,27 @@ std::pair<int,double> Graph::Dijsktra(int source,int dest) {
     return {dis[dest],maxFlow};
 }
 
+
+std::vector<int> Graph::dfs(const int & source) const{
+    std::vector<int> result;
+    auto s = findVertex(source);
+    if (s==nullptr) return result;
+    for (auto v : vertexSet) v->setVisited(false);
+
+    dfsVisit(s,result);
+
+    return result;
+}
+
+void Graph::dfsVisit(Vertex* v, std::vector<int>& traversal) const{
+    v->setVisited(true);
+    traversal.push_back(v->getId());
+    for (auto& e: v->getAdj()){
+        auto w = e->getDest();
+        if (!w->isVisited()) dfsVisit(w,traversal);
+    }
+}
+
 std::string Graph::getType() const {
     return type;
 }

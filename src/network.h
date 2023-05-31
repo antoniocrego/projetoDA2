@@ -43,7 +43,18 @@ public:
 
     void nearestNeighbor(double &min_cost, vector<int>& path);
 
+    vector<int> tspChristofides(double& minCost);
+
+    vector<int> findEulerianCircuit(Graph g);
+
+    vector<Edge *> findMinimumWeightMatching(vector<Vertex *> odds);
+
+    std::vector<Vertex*> getOddDegreeVertices(Graph g);
+
+    void make_hamilton(vector<int>& path, double &path_dist);
+
     double calcPath(vector<Vertex *> path);
+
 
 private:
     ///@brief Bidirectional Graph that represents the connections between Stations.

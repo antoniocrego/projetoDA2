@@ -154,9 +154,34 @@ void Program:: run() {
                         wait();
                         break;
                     case 4:
-                        this->currentMenuPage = 1;
+                        for (auto vertex: network.getCurrentGraph().getVertexSet()){
+                            if (vertex->getId()==0) vertex->setVisited(true);
+                            else vertex->setVisited(false);
+                        }
+                        start = clock();
+                        path=network.tspChristofides(minCost);
+                        stop = clock();
+
+                        clear();
+
+                        cout << "The min cost calculated with the Christofides algorithm was: " << minCost << endl;
+                        cout << "The path found was: " << endl;
+                        for(int i = 0; i < path.size(); i++){
+                            if(i == 0) cout << path[i];
+                            else{
+                                cout << "->" << path[i];
+                            }
+                        }
+                        cout<<endl;
+                        cout << "Running time: " << (float)(stop-start)/CLOCKS_PER_SEC << " seconds" << endl;
+
+
+                        wait();
                         break;
                     case 5:
+                        this->currentMenuPage = 1;
+                        break;
+                    case 6:
                         this->currentMenuPage = -1;
                         break;
                 }
