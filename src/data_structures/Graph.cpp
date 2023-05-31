@@ -236,7 +236,7 @@ std::vector<Edge *> Graph::prim() {
 }
 
 Edge * Graph::findEdge(int orig, int dest){
-    Vertex * origin = indexVertex(orig);
+    Vertex * origin = findVertex(orig);
     for(auto edge : origin->getAdj()){
         if(edge->getDest()->getId() == dest) return edge;
     }

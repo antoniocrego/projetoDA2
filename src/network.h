@@ -47,7 +47,7 @@ public:
 
     vector<int> findEulerianCircuit(Graph g);
 
-    vector<Edge *> findMinimumWeightMatching(vector<Vertex *> odds);
+    void findMinimumWeightMatching(vector<Vertex *> odds, Graph g);
 
     std::vector<Vertex*> getOddDegreeVertices(Graph g);
 
