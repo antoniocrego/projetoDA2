@@ -1,5 +1,7 @@
 #include <set>
 #include <unordered_set>
+#include <stack>
+#include <cstring>
 #include "network.h"
 
 Network::Network(){
@@ -83,9 +85,9 @@ void Network::backtracking(const Graph& test, double &min_cost, double actual_co
     }
 }
 
-std::vector<Edge> Network::prim(vector<Vertex *> vertexSet) {
+std::vector<Edge *> Network::prim(vector<Vertex *> vertexSet) {
 
-    vector<Edge> mst;
+    vector<Edge *> mst;
     if (vertexSet.empty()) {
         return mst;
     }
@@ -107,6 +109,7 @@ std::vector<Edge> Network::prim(vector<Vertex *> vertexSet) {
     // process vertices in the priority queue
     while (!q.empty()) {
         auto v = q.extractMin();
+        if(v->getId() != 0) mst.push_back(v->getPath());
         v->setVisited(true);
         for (auto &e: v->getAdj()) {
             Vertex *w = e->getDest();
@@ -127,6 +130,18 @@ std::vector<Edge> Network::prim(vector<Vertex *> vertexSet) {
 
     return mst;
 }
+
+void Network::preorderTraversal(vector<Edge *> mst, Vertex * v, vector<bool>& visited, vector<Vertex *>& preorder){
+    visited[v->getId()] = true;
+    preorder.push_back(v);
+
+    for(auto edge : mst){
+        if(edge->getOrig()->getId() == v->getId() && !visited[edge->getDest()->getId()]){
+            preorderTraversal(mst, edge->getDest(), visited, preorder);
+        }
+    }
+}
+
 
 void Network::nearestNeighbor(double &min_cost, vector<int>& path){
     while(path.size()<=currentGraph.getNumVertex()){
@@ -160,13 +175,21 @@ void Network::nearestNeighbor(double &min_cost, vector<int>& path){
 // Function to approximate the TSP using the Christofides algorithm
 std::vector<int> Network::tspChristofides(double& minCost) {
     // Step 1: Find the minimum-weight perfect matching
-    vector<Edge *> matching = prim(currentGraph.getVertexSet());
+    vector<Edge *> mst = prim(currentGraph.getVertexSet());
 
     // Step 2: Create a graph with the matching edges
     Graph newGraph = Graph();
-    for (auto e: matching){
-        newGraph.addVertex(e->getOrig()->getId());
-        newGraph.addVertex(e->getDest()->getId());
+    for(auto v : currentGraph.getVertexSet()){
+        newGraph.addVertex(v->getId());
+    }
+    for(auto e : mst){
+        newGraph.addBidirectionalEdge(e->getOrig()->getId(),e->getDest()->getId(),e->getWeight());
+    }
+
+    vector<Vertex *> vertex = getOddDegreeVertices(newGraph);
+    vector<Edge *> matching = findMinimumWeightMatching(vertex);
+
+    for(auto e : matching){
         newGraph.addBidirectionalEdge(e->getOrig()->getId(),e->getDest()->getId(),e->getWeight());
     }
 
@@ -174,59 +197,124 @@ std::vector<int> Network::tspChristofides(double& minCost) {
     std::vector<int> eulerianCircuit = findEulerianCircuit(newGraph);
 
     // Step 4: Construct the TSP tour from the Eulerian circuit
-    std::vector<int> tour = eulerianCircuit;
+    make_hamilton(eulerianCircuit, minCost);
 
-    for (int i = 0; i<tour.size(); i++){
-        Vertex* current = newGraph.findVertex(tour.at(i));
-        for (auto e : current->getAdj()){
-            if (i!=tour.size()-1) {
-                if (e->getDest()->getId() == tour.at(i + 1)) {
-                    minCost += e->getWeight();
-                    break;
-                }
-            }
-            else{
-                if (e->getDest()->getId() == 0) {
-                    minCost += e->getWeight();
-                    break;
-                }
-            }
-        }
+
+    return eulerianCircuit;
+}
+
+std::vector<Vertex*> Network::getOddDegreeVertices(Graph g) {
+    vector<Vertex*> result;
+    for (auto v : g.getVertexSet()){
+        if (v->getAdj().size()%2==1) result.push_back(v);
     }
-
-    return tour;
+    return result;
 }
 
 // Function to find the Eulerian circuit in a graph
 std::vector<int> Network::findEulerianCircuit(Graph g) {
-    vector<int> circuit = g.dfs(1);
 
-    reverse(circuit.begin(), circuit.end());
+    Graph copy = Graph(g);
+    stack<int> stack;
+    vector<int> circuit;
+
+    int pos = 0;
+
+    while(!stack.empty() || copy.findVertex(pos)->getAdj().size()>0){
+        Vertex* currentVertex=copy.findVertex(pos);
+
+        if(currentVertex->getAdj().size()==0){
+            circuit.push_back(pos);
+            int last = stack.top();
+            stack.pop();
+            pos = last;
+        }
+        else{
+            stack.push(pos);
+            Vertex* neighbor = currentVertex->getAdj().back()->getDest();
+            currentVertex->removeEdge(neighbor->getId());
+            neighbor->removeEdge(currentVertex->getId());
+            pos=neighbor->getId();
+        }
+    }
+    circuit.push_back(pos);
+    reverse(circuit.begin(),circuit.end());
     return circuit;
 }
 
+void Network::make_hamilton(vector<int>& path, double &path_dist){
+    bool visited[currentGraph.getNumVertex()];
+    memset(visited,0,currentGraph.getNumVertex()*sizeof(bool));
+    path_dist = 0;
+
+    int root = path.front();
+    vector<int>::iterator curr = path.begin();
+    vector<int>::iterator next = path.begin()+1;
+    visited[root]=true;
+
+    while(next!=path.end()){
+        if(!visited[*next]){
+            for(auto e: currentGraph.getVertexSet().at(mapIDtoIndex.at(*curr))->getAdj()){
+                if(e->getDest()->getId()==*next){
+                    path_dist+=e->getWeight();
+                    break;
+                }
+            }
+            curr=next;
+            visited[*curr]=true;
+            next=curr+1;
+        }
+        else next=path.erase(next);
+    }
+    for(auto e : currentGraph.getVertexSet().at(mapIDtoIndex.at(*curr))->getAdj()){
+        if(e->getDest()->getId()==0){
+            path.push_back(0);
+            path_dist+=e->getWeight();
+            break;
+        }
+    }
+}
+
+
+
 // Function to find the minimum-weight perfect matching in a graph
-vector<Edge *> Network::findMinimumWeightMatching() {
+vector<Edge *> Network::findMinimumWeightMatching(vector<Vertex *> odds) {
     vector<Edge *> matching;
+    set<int> check;
 
     // Find the minimum-weight perfect matching using a greedy algorithm
-    vector<int> nearestNeighbors(currentGraph.getNumVertex(), -1);
+    for (auto v : odds){
+        check.insert(v->getId());
+    }
 
-    for (int i = 1; i < currentGraph.getNumVertex(); ++i) {
+    for (auto v : currentGraph.getVertexSet()){
+        v->setVisited(false);
+    }
+
+    for (int i = 0; i < odds.size(); ++i) {
         int u = -1;
+        if (currentGraph.getVertexSet().at(mapIDtoIndex.at(odds.at(i)->getId()))->isVisited()) continue;
         double currentMin = std::numeric_limits<double>::max();
-        Vertex* current = currentGraph.indexVertex(mapIDtoIndex.at(i));
         Edge* closestEdge;
-        for(auto e : current->getAdj()){
-            if (!e->getDest()->isVisited() && (currentMin>e->getWeight())){
+        for(auto e : currentGraph.getVertexSet().at(mapIDtoIndex.at(odds.at(i)->getId()))->getAdj()){
+            if (!e->getDest()->isVisited() && (currentMin>e->getWeight()) && (check.find(e->getDest()->getId())!=check.end())){
                 u=e->getDest()->getId();
                 closestEdge=e;
             }
         }
-        matching.push_back(closestEdge);
-        if (u!=-1) currentGraph.indexVertex(mapIDtoIndex.at(u))->setVisited(true);
+        bool exists = false;
+        for (auto e : odds.at(i)->getAdj()){
+            if (e->getDest()->getId()==u){
+                exists=true;
+                break;
+            }
+        }
+        if(!exists) matching.push_back(closestEdge);
+        if (u!=-1){
+            currentGraph.getVertexSet().at(mapIDtoIndex.at(odds.at(i)->getId()))->setVisited(true);
+            currentGraph.getVertexSet().at(mapIDtoIndex.at(closestEdge->getDest()->getId()))->setVisited(true);
+        }
     }
-
     return matching;
 }
 

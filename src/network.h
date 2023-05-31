@@ -39,7 +39,9 @@ public:
 
     void backtracking(const Graph& test, double &min_cost, double actual_cost, int currPos, vector<int>& path, const vector<int>& currentPath);
 
-    vector<Edge> prim(vector<Vertex *> vertexSet);
+    vector<Edge *> prim(vector<Vertex *> vertexSet);
+
+    void preorderTraversal(vector<Edge *> mst, Vertex * v, vector<bool>& visited, vector<Vertex *>& preorder);
 
     void nearestNeighbor(double &min_cost, vector<int>& path);
 
@@ -47,7 +49,11 @@ public:
 
     vector<int> findEulerianCircuit(Graph g);
 
-    vector<Edge *> findMinimumWeightMatching();
+    vector<Edge *> findMinimumWeightMatching(vector<Vertex *> odds);
+
+    std::vector<Vertex*> getOddDegreeVertices(Graph g);
+
+    void make_hamilton(vector<int>& path, double &path_dist);
 
 private:
     ///@brief Bidirectional Graph that represents the connections between Stations.

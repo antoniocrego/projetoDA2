@@ -1,5 +1,6 @@
 Backtracking
 Func2
 Nearest Neighbor
+Christofides Algorithm
 Select Graph
 Quit
