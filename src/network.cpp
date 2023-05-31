@@ -129,9 +129,12 @@ void Network::nearestNeighbor(double &min_cost, vector<int>& path){
 double Network::calcPath(vector<Vertex *> path){
     double result = 0;
     for(int i = 0; i < path.size()-1; i++){
-        Edge * edge = currentGraph.findEdge(path[i]->getId(), path[i+1]->getId());
+        Vertex * origin = path[i];
+        Vertex * dest = path[i+1];
+        Edge * edge = currentGraph.findEdge(mapIDtoIndex.at(origin->getId()), dest->getId());
         if(edge == nullptr){
-            result += path[i]->getCoordinate().distance(path[i+1]->getCoordinate());
+            double dist = path[i]->getCoordinate().distance(path[i+1]->getCoordinate());
+            result += dist;
         }else{
             result += edge->getWeight();
         }
