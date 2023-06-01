@@ -128,6 +128,9 @@ void Vertex::deleteEdge(Edge *edge) {
 }
 
 Coordinate Vertex::getCoordinate() const {return coordinate;}
+void Vertex::setCoordinate(Coordinate coordinate){
+    this->coordinate = coordinate;
+}
 
 /********************** Edge  ****************************/
 

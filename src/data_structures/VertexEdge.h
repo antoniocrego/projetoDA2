@@ -41,6 +41,7 @@ public:
     bool removeEdge(int destID);
     void removeOutgoingEdges();
     Coordinate getCoordinate() const;
+    void setCoordinate(Coordinate coordinate);
     friend class MutablePriorityQueue<Vertex>;
 protected:
     int id;                // identifier

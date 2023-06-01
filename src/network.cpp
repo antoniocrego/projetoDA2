@@ -45,14 +45,19 @@ void Network::readDataset(string path, string type) {
 
 void Network::readNodes(const string& graph) {
     ifstream in(graph+"/nodes.csv");
-    string aLine, node;
+    string aLine, node, longitude, latitude;
     getline(in, aLine);
     while (getline(in, aLine))
     {
         istringstream inn(aLine);
         getline(inn,node,',');
+        getline(inn,longitude,',');
+        getline(inn,latitude,',');
         currentGraph.addVertex(stoi(node));
+        Coordinate coordinate = Coordinate(stod(latitude), stod(longitude));
         mapIDtoIndex.emplace(stoi(node),currentGraph.getNumVertex()-1);
+        Vertex * last = currentGraph.getVertexSet().at(currentGraph.getNumVertex()-1);
+        last->setCoordinate(coordinate);
     }
 }
 
