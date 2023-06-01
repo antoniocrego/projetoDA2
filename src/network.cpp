@@ -165,11 +165,7 @@ std::vector<int> Network::tspChristofides(double& minCost) {
     }
 
     vector<Vertex *> vertex = getOddDegreeVertices(newGraph);
-    vector<Edge *> matching = findMinimumWeightMatching(vertex);
-
-    for(auto e : matching){
-        newGraph.addBidirectionalEdge(e->getOrig()->getId(),e->getDest()->getId(),e->getWeight());
-    }
+    findMinimumWeightMatching(vertex,newGraph);
 
     // Step 3: Find the Eulerian circuit in the graph
     std::vector<int> eulerianCircuit = findEulerianCircuit(newGraph);
@@ -256,44 +252,29 @@ void Network::make_hamilton(vector<int>& path, double &path_dist){
 
 
 // Function to find the minimum-weight perfect matching in a graph
-vector<Edge *> Network::findMinimumWeightMatching(vector<Vertex *> odds) {
-    vector<Edge *> matching;
-    set<int> check;
+void Network::findMinimumWeightMatching(vector<Vertex *> odds, Graph g) {
+    double length;
+    Vertex* closest;
+    vector<Vertex *>::iterator tmp, first;
 
-    // Find the minimum-weight perfect matching using a greedy algorithm
-    for (auto v : odds){
-        check.insert(v->getId());
-    }
-
-    for (auto v : currentGraph.getVertexSet()){
-        v->setVisited(false);
-    }
-
-    for (int i = 0; i < odds.size(); ++i) {
-        int u = -1;
-        if (currentGraph.getVertexSet().at(mapIDtoIndex.at(odds.at(i)->getId()))->isVisited()) continue;
-        double currentMin = std::numeric_limits<double>::max();
-        Edge* closestEdge;
-        for(auto e : currentGraph.getVertexSet().at(mapIDtoIndex.at(odds.at(i)->getId()))->getAdj()){
-            if (!e->getDest()->isVisited() && (currentMin>e->getWeight()) && (check.find(e->getDest()->getId())!=check.end())){
-                u=e->getDest()->getId();
-                closestEdge=e;
+    while(!odds.empty()){
+        first = odds.begin();
+        auto it = odds.begin() + 1;
+        auto end = odds.end();
+        length = std::numeric_limits<double>::max();
+        for(;it!=end;++it){
+            Edge* current = currentGraph.findEdge((*first)->getId(),(*it)->getId());
+            if(current->getWeight()<length){
+                length=current->getWeight();
+                closest=*it;
+                tmp=it;
             }
         }
-        bool exists = false;
-        for (auto e : odds.at(i)->getAdj()){
-            if (e->getDest()->getId()==u){
-                exists=true;
-                break;
-            }
-        }
-        if(!exists) matching.push_back(closestEdge);
-        if (u!=-1){
-            currentGraph.getVertexSet().at(mapIDtoIndex.at(odds.at(i)->getId()))->setVisited(true);
-            currentGraph.getVertexSet().at(mapIDtoIndex.at(closestEdge->getDest()->getId()))->setVisited(true);
-        }
+        (*first)->addEdge(*tmp,length);
+        (*tmp)->addEdge(*first,length);
+        odds.erase(tmp);
+        odds.erase(first);
     }
-    return matching;
 }
 
 
