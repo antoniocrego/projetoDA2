@@ -61,7 +61,7 @@ void Program:: run() {
         clock_t stop;
 
         vector<Edge *> mst;
-        vector<Vertex *> preorder;
+        vector<Vertex *> vertex_path;
         vector<bool> visited = vector<bool>(network.getCurrentGraph().getVertexSet().size(),false);
 
         vector<int> path = {0};
@@ -108,17 +108,17 @@ void Program:: run() {
                             start = clock();
 
                             mst = network.getCurrentGraph().prim();
-                            network.preorderTraversal(mst, network.getCurrentGraph().indexVertex(0), visited, preorder);
-                            preorder.push_back(network.getCurrentGraph().indexVertex(0));
-                            result = network.calcPath(preorder);
+                            network.preorderTraversal(mst, network.getCurrentGraph().indexVertex(0), visited, vertex_path);
+                            vertex_path.push_back(network.getCurrentGraph().indexVertex(0));
+                            result = network.calcPath(vertex_path);
 
                             stop = clock();
                             cout << "The min cost calculated by the triangular approximation heuristic: " << result << endl;
                             cout << "The path found was:" << endl;
-                            for(int i = 0; i < preorder.size(); i++){
-                                if(i == 0) cout << preorder[0]->getId();
+                            for(int i = 0; i < vertex_path.size(); i++){
+                                if(i == 0) cout << vertex_path[i]->getId();
                                 else{
-                                    cout << "->" << preorder[i]->getId();
+                                    cout << "->" << vertex_path[i]->getId();
                                 }
                                 if(i != 0 && i%15 == 0) cout << endl;
                             }
@@ -179,9 +179,29 @@ void Program:: run() {
                         wait();
                         break;
                     case 5:
-                        this->currentMenuPage = 1;
+
+                        start = clock();
+                        vertex_path = network.simulated_annealing();
+                        stop = clock();
+                        cout << "The min cost calculated with the Simulated Annealing algorithm was: " << network.calcPath(vertex_path) << endl;
+                        for(int i = 0; i < vertex_path.size(); i++){
+                            if(i == 0){
+                                cout << vertex_path[i]->getId();
+                            } else{
+                                cout << "->" << vertex_path[i]->getId();
+                            }
+                            if(i != 0 && i%15 == 0) cout << endl;
+                        }
+                        cout<<endl;
+                        cout << "Running time: " << (float)(stop-start)/CLOCKS_PER_SEC << " seconds" << endl;
+
+
+                        wait();
                         break;
                     case 6:
+                        this->currentMenuPage = 1;
+                        break;
+                    case 7:
                         this->currentMenuPage = -1;
                         break;
                 }

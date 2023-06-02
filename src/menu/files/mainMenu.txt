@@ -2,5 +2,6 @@ Backtracking
 Triangular Approximation
 Nearest Neighbor
 Christofides Algorithm
+Simulated Annealing
 Select Graph
 Quit

@@ -277,5 +277,77 @@ void Network::findMinimumWeightMatching(vector<Vertex *> odds, Graph g) {
     }
 }
 
+std::vector<Vertex *> Network::generateRandomPath() {
+    vector<Vertex *> path;
+    vector<Vertex *> remaining = currentGraph.getVertexSet();
+    Vertex * v0 = remaining.at(mapIDtoIndex.at(0));
+    path.push_back(v0);
+    remaining.erase(remaining.begin() + mapIDtoIndex.at(0));
 
+    std::srand(clock());
+    while(!remaining.empty()){
+        int rand = std::rand();
+        rand = rand%remaining.size();
+        path.push_back(remaining.at(rand));
+        remaining.erase(remaining.begin()+rand);
+    }
+
+    path.push_back(v0);
+
+    return path;
+}
+
+std::vector<Vertex *> Network::generateNext(vector<Vertex *> current){
+    std::srand(clock());
+    int firstId = std::rand() % current.size();
+    while (firstId == 0 || firstId == current.size() - 1){
+        firstId = std::rand() % current.size();
+    }
+    std::srand(clock());
+    int lastId = std::rand() % current.size();
+    while (lastId == 0 || lastId == current.size() - 1 || lastId == firstId){
+        lastId = std::rand() % current.size();
+    }
+
+    Vertex * v1 = current.at(firstId);
+    Vertex * v2 = current.at(lastId);
+
+    current[firstId] = v2;
+    current[lastId] = v1;
+
+    return current;
+}
+
+vector<Vertex *> Network::simulated_annealing(){
+    vector<int> path = {0};
+    double val = 0;
+    vector<Vertex *> currentPath;
+    nearestNeighbor(val, path);
+    for(int i : path){
+        currentPath.push_back(currentGraph.indexVertex(mapIDtoIndex.at(i)));
+    }
+    vector<Vertex *> bestPath = currentPath;
+    double best_val = val;
+    double temperature = 1000;
+    int n = currentGraph.getNumVertex();
+    while (temperature >= 0.1){
+        for(int i = 0; i < 500; i++) {
+            std::srand(clock());
+            vector<Vertex *> nextPath = generateNext(currentPath);
+            double next_val = calcPath(nextPath);
+            double prob = 1 / (1 + std::exp((next_val - val)/temperature));
+            int rand = std::rand() % 100;
+            if (rand <= prob * 100) {
+                currentPath = nextPath;
+                val = next_val;
+            }
+            if(next_val < best_val){
+                best_val = next_val;
+                bestPath = nextPath;
+            }
+        }
+        temperature = temperature * 0.99;
+    }
+    return bestPath;
+}
 
