@@ -56,13 +56,15 @@ public:
     double calcPath(vector<Vertex *> path);
 
     std::vector<Vertex*> generateRandomPath();
-    vector<Vertex *> generateNext(vector<Vertex *> current);
+    vector<Vertex *> generateNext(vector<Vertex *> current, double &val);
     std::vector<Vertex *> simulated_annealing();
 
 private:
     ///@brief Bidirectional Graph that represents the connections between Stations.
     Graph currentGraph;
     unordered_map<int,int> mapIDtoIndex;
+
+
 };
 
 
