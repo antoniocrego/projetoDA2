@@ -286,8 +286,6 @@ void Network::findMinimumWeightMatching(vector<Vertex *> odds, Graph g) {
     }
 }
 
-<<<<<<< HEAD
-=======
 int Network::twoOpt(vector<int>& path, double& cost, int max_runs){
     double value1;
     double value2;
@@ -316,7 +314,6 @@ int Network::twoOpt(vector<int>& path, double& cost, int max_runs){
     return counter;
 }
 
->>>>>>> 48ed74598d2c05d2345cf99dadbb5951b4ee416f
 std::vector<Vertex *> Network::generateNext(vector<Vertex *> current, double &val){
     std::srand(clock());
     int firstId = std::rand() % current.size();
@@ -330,46 +327,6 @@ std::vector<Vertex *> Network::generateNext(vector<Vertex *> current, double &va
         lastId = std::rand() % current.size();
     }
 
-<<<<<<< HEAD
-        Vertex *v1 = current.at(firstId);
-        Vertex *v2 = current.at(lastId);
-
-        double keep1 = 0;
-
-        Edge * edge = currentGraph.findEdge(mapIDtoIndex.at(current[firstId - 1]->getId()),
-                                            current[firstId]->getId());
-        if(edge == nullptr){
-            keep1 += current[firstId-1]->getCoordinate().distance(current[firstId]->getCoordinate());
-        }else{
-            keep1 += edge->getWeight();
-        }
-
-        edge = currentGraph.findEdge(mapIDtoIndex.at(current[firstId]->getId()),
-                                     current[firstId + 1]->getId());
-        if(edge == nullptr){
-            keep1 += current[firstId]->getCoordinate().distance(current[firstId+1]->getCoordinate());
-        }else{
-            keep1 += edge->getWeight();
-        }
-
-        edge = currentGraph.findEdge(mapIDtoIndex.at(current[lastId - 1]->getId()),
-                                     current[lastId]->getId());
-
-        if(edge == nullptr){
-            keep1 += current[lastId-1]->getCoordinate().distance(current[lastId]->getCoordinate());
-        }else{
-            keep1 += edge->getWeight();
-        }
-
-        edge = currentGraph.findEdge(mapIDtoIndex.at(current[lastId]->getId()),
-                                     current[lastId + 1]->getId());
-
-        if(edge == nullptr){
-            keep1 += current[lastId]->getCoordinate().distance(current[lastId+1]->getCoordinate());
-        }else{
-            keep1 += edge->getWeight();
-        }
-=======
     Vertex *v1 = current.at(firstId);
     Vertex *v2 = current.at(lastId);
 
@@ -402,7 +359,6 @@ std::vector<Vertex *> Network::generateNext(vector<Vertex *> current, double &va
 
     edge = currentGraph.findEdge(mapIDtoIndex.at(current[lastId]->getId()),
                                  current[lastId + 1]->getId());
->>>>>>> 48ed74598d2c05d2345cf99dadbb5951b4ee416f
 
     if(edge == nullptr){
         keep1 += current[lastId]->getCoordinate().distance(current[lastId+1]->getCoordinate());
@@ -410,46 +366,8 @@ std::vector<Vertex *> Network::generateNext(vector<Vertex *> current, double &va
         keep1 += edge->getWeight();
     }
 
-<<<<<<< HEAD
-    double keep2 = 0;
-
-    edge = currentGraph.findEdge(mapIDtoIndex.at(current[firstId - 1]->getId()),
-                                        current[firstId]->getId());
-    if(edge == nullptr){
-        keep2 += current[firstId-1]->getCoordinate().distance(current[firstId]->getCoordinate());
-    }else{
-        keep2 += edge->getWeight();
-    }
-
-    edge = currentGraph.findEdge(mapIDtoIndex.at(current[firstId]->getId()),
-                                 current[firstId + 1]->getId());
-    if(edge == nullptr){
-        keep2 += current[firstId]->getCoordinate().distance(current[firstId+1]->getCoordinate());
-    }else{
-        keep2 += edge->getWeight();
-    }
-
-    edge = currentGraph.findEdge(mapIDtoIndex.at(current[lastId - 1]->getId()),
-                                 current[lastId]->getId());
-
-    if(edge == nullptr){
-        keep2 += current[lastId-1]->getCoordinate().distance(current[lastId]->getCoordinate());
-    }else{
-        keep2 += edge->getWeight();
-    }
-
-    edge = currentGraph.findEdge(mapIDtoIndex.at(current[lastId]->getId()),
-                                 current[lastId + 1]->getId());
-
-    if(edge == nullptr){
-        keep2 += current[lastId]->getCoordinate().distance(current[lastId+1]->getCoordinate());
-    }else{
-        keep2 += edge->getWeight();
-    }
-=======
     current[firstId] = v2;
     current[lastId] = v1;
->>>>>>> 48ed74598d2c05d2345cf99dadbb5951b4ee416f
 
     double keep2 = 0;
 
@@ -486,7 +404,7 @@ std::vector<Vertex *> Network::generateNext(vector<Vertex *> current, double &va
     }else{
         keep2 += edge->getWeight();
     }
-    
+
     val = keep2 - keep1;
 
     return current;
