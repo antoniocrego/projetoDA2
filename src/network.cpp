@@ -329,34 +329,85 @@ std::vector<Vertex *> Network::generateNext(vector<Vertex *> current, double &va
         lastId = std::rand() % current.size();
     }
 
-    //int alg = std::rand()%3;
+    Vertex *v1 = current.at(firstId);
+    Vertex *v2 = current.at(lastId);
 
-        Vertex *v1 = current.at(firstId);
-        Vertex *v2 = current.at(lastId);
+    double keep1 = 0;
 
-        double keep1 = currentGraph.findEdge(mapIDtoIndex.at(current[firstId - 1]->getId()),
-                                             current[firstId]->getId())->getWeight();
-        keep1 += currentGraph.findEdge(mapIDtoIndex.at(current[firstId]->getId()),
-                                       current[firstId + 1]->getId())->getWeight();
-        keep1 += currentGraph.findEdge(mapIDtoIndex.at(current[lastId - 1]->getId()),
-                                       current[lastId]->getId())->getWeight();
-        keep1 += currentGraph.findEdge(mapIDtoIndex.at(current[lastId]->getId()),
-                                       current[lastId + 1]->getId())->getWeight();
+    Edge * edge = currentGraph.findEdge(mapIDtoIndex.at(current[firstId - 1]->getId()),
+                                        current[firstId]->getId());
+    if(edge == nullptr){
+        keep1 += current[firstId-1]->getCoordinate().distance(current[firstId]->getCoordinate());
+    }else{
+        keep1 += edge->getWeight();
+    }
 
-        current[firstId] = v2;
-        current[lastId] = v1;
+    edge = currentGraph.findEdge(mapIDtoIndex.at(current[firstId]->getId()),
+                                 current[firstId + 1]->getId());
+    if(edge == nullptr){
+        keep1 += current[firstId]->getCoordinate().distance(current[firstId+1]->getCoordinate());
+    }else{
+        keep1 += edge->getWeight();
+    }
 
-        double keep2 = currentGraph.findEdge(mapIDtoIndex.at(current[firstId - 1]->getId()),
-                                             current[firstId]->getId())->getWeight();
-        keep2 += currentGraph.findEdge(mapIDtoIndex.at(current[firstId]->getId()),
-                                       current[firstId + 1]->getId())->getWeight();
-        keep2 += currentGraph.findEdge(mapIDtoIndex.at(current[lastId - 1]->getId()),
-                                       current[lastId]->getId())->getWeight();
-        keep2 += currentGraph.findEdge(mapIDtoIndex.at(current[lastId]->getId()),
-                                       current[lastId + 1]->getId())->getWeight();
+    edge = currentGraph.findEdge(mapIDtoIndex.at(current[lastId - 1]->getId()),
+                                 current[lastId]->getId());
 
+    if(edge == nullptr){
+        keep1 += current[lastId-1]->getCoordinate().distance(current[lastId]->getCoordinate());
+    }else{
+        keep1 += edge->getWeight();
+    }
 
-        val = keep2 - keep1;
+    edge = currentGraph.findEdge(mapIDtoIndex.at(current[lastId]->getId()),
+                                 current[lastId + 1]->getId());
+
+    if(edge == nullptr){
+        keep1 += current[lastId]->getCoordinate().distance(current[lastId+1]->getCoordinate());
+    }else{
+        keep1 += edge->getWeight();
+    }
+
+    current[firstId] = v2;
+    current[lastId] = v1;
+
+    double keep2 = 0;
+
+    edge = currentGraph.findEdge(mapIDtoIndex.at(current[firstId - 1]->getId()),
+                                 current[firstId]->getId());
+    if(edge == nullptr){
+        keep2 += current[firstId-1]->getCoordinate().distance(current[firstId]->getCoordinate());
+    }else{
+        keep2 += edge->getWeight();
+    }
+
+    edge = currentGraph.findEdge(mapIDtoIndex.at(current[firstId]->getId()),
+                                 current[firstId + 1]->getId());
+    if(edge == nullptr){
+        keep2 += current[firstId]->getCoordinate().distance(current[firstId+1]->getCoordinate());
+    }else{
+        keep2 += edge->getWeight();
+    }
+
+    edge = currentGraph.findEdge(mapIDtoIndex.at(current[lastId - 1]->getId()),
+                                 current[lastId]->getId());
+
+    if(edge == nullptr){
+        keep2 += current[lastId-1]->getCoordinate().distance(current[lastId]->getCoordinate());
+    }else{
+        keep2 += edge->getWeight();
+    }
+
+    edge = currentGraph.findEdge(mapIDtoIndex.at(current[lastId]->getId()),
+                                 current[lastId + 1]->getId());
+
+    if(edge == nullptr){
+        keep2 += current[lastId]->getCoordinate().distance(current[lastId+1]->getCoordinate());
+    }else{
+        keep2 += edge->getWeight();
+    }
+    
+    val = keep2 - keep1;
 
     return current;
 }
