@@ -161,7 +161,7 @@ void Program:: run() {
                             else vertex->setVisited(false);
                         }
                         clear();
-                        cout << "Introduce the number of runs (-1 for maximum runs): ";
+                        cout << "Introduce the maximum number of optimizations (-1 for as many as needed): ";
                         while (true){
                             cin >> input_runs;
                             try {
