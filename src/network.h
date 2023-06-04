@@ -55,7 +55,6 @@ public:
 
     double calcPath(vector<Vertex *> path);
 
-    std::vector<Vertex*> generateRandomPath();
     vector<Vertex *> generateNext(vector<Vertex *> current, double &val);
     std::vector<Vertex *> simulated_annealing();
 

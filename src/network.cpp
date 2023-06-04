@@ -277,26 +277,6 @@ void Network::findMinimumWeightMatching(vector<Vertex *> odds, Graph g) {
     }
 }
 
-std::vector<Vertex *> Network::generateRandomPath() {
-    vector<Vertex *> path;
-    vector<Vertex *> remaining = currentGraph.getVertexSet();
-    Vertex * v0 = remaining.at(mapIDtoIndex.at(0));
-    path.push_back(v0);
-    remaining.erase(remaining.begin() + mapIDtoIndex.at(0));
-
-    std::srand(clock());
-    while(!remaining.empty()){
-        int rand = std::rand();
-        rand = rand%remaining.size();
-        path.push_back(remaining.at(rand));
-        remaining.erase(remaining.begin()+rand);
-    }
-
-    path.push_back(v0);
-
-    return path;
-}
-
 std::vector<Vertex *> Network::generateNext(vector<Vertex *> current, double &val){
     std::srand(clock());
     int firstId = std::rand() % current.size();
@@ -304,16 +284,14 @@ std::vector<Vertex *> Network::generateNext(vector<Vertex *> current, double &va
         firstId = std::rand() % current.size();
     }
 
-    int v = current.size();
-
     std::srand(clock());
     int lastId = std::rand() % current.size();
     while ((lastId == 0) || (lastId == (current.size() - 1)) || (lastId == firstId)){
         lastId = std::rand() % current.size();
     }
 
-    //int alg = std::rand()%3;
-
+    int alg = std::rand()%2;
+    if(alg == 0) {
         Vertex *v1 = current.at(firstId);
         Vertex *v2 = current.at(lastId);
 
@@ -340,7 +318,23 @@ std::vector<Vertex *> Network::generateNext(vector<Vertex *> current, double &va
 
 
         val = keep2 - keep1;
+    }else if(alg == 1){
+        if(firstId > lastId){
+            int temp = firstId;
+            firstId = lastId;
+            lastId = temp;
+        }
 
+        double keep1 = currentGraph.findEdge(mapIDtoIndex.at(current[firstId - 1]->getId()), current[firstId]->getId())->getWeight();
+        keep1 += currentGraph.findEdge(mapIDtoIndex.at(current[lastId]->getId()), current[lastId + 1]->getId())->getWeight();
+
+        reverse(current.begin() + firstId, current.begin() + lastId);
+
+        double keep2 = currentGraph.findEdge(mapIDtoIndex.at(current[firstId - 1]->getId()), current[firstId]->getId())->getWeight();
+        keep2 += currentGraph.findEdge(mapIDtoIndex.at(current[lastId]->getId()), current[lastId + 1]->getId())->getWeight();
+
+        val = keep2 - keep1;
+    }
     return current;
 }
 
@@ -358,9 +352,9 @@ vector<Vertex *> Network::simulated_annealing(){
     }
     vector<Vertex *> bestPath = currentPath;
     double best_val = val;
-    double temperature = 2000;
+    double temperature = 1000;
     while (temperature >= 1){
-        for(int i = 0; i < 4000; i++) {
+        for(int i = 0; i < 1000; i++) {
             std::srand(clock());
             double next_val = 0;
             vector<Vertex *> nextPath = generateNext(currentPath, next_val);
