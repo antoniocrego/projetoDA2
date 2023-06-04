@@ -314,26 +314,6 @@ int Network::twoOpt(vector<int>& path, double& cost, int max_runs){
     return counter;
 }
 
-std::vector<Vertex *> Network::generateRandomPath() {
-    vector<Vertex *> path;
-    vector<Vertex *> remaining = currentGraph.getVertexSet();
-    Vertex * v0 = remaining.at(mapIDtoIndex.at(0));
-    path.push_back(v0);
-    remaining.erase(remaining.begin() + mapIDtoIndex.at(0));
-
-    std::srand(clock());
-    while(!remaining.empty()){
-        int rand = std::rand();
-        rand = rand%remaining.size();
-        path.push_back(remaining.at(rand));
-        remaining.erase(remaining.begin()+rand);
-    }
-
-    path.push_back(v0);
-
-    return path;
-}
-
 std::vector<Vertex *> Network::generateNext(vector<Vertex *> current, double &val){
     std::srand(clock());
     int firstId = std::rand() % current.size();
