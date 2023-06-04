@@ -69,7 +69,8 @@ void Program:: run() {
         double minCost = 0;
         double *min_cost = &max_double;
         double result = 0;
-        int runs = 0;
+        string input_runs = "";
+        int runs = -1;
 
         int option = menus.at(currentMenuPage).getOption();
         switch (this->currentMenuPage) {
@@ -159,8 +160,22 @@ void Program:: run() {
                             if (vertex->getId()==0) vertex->setVisited(true);
                             else vertex->setVisited(false);
                         }
+                        clear();
+                        cout << "Introduce the maximum number of optimizations (-1 for as many as needed): ";
+                        while (true){
+                            cin >> input_runs;
+                            try {
+                                runs = stoi(input_runs);
+                                if(runs >= -1) break;
+                                cout << "\nInvalid option! Please introduce a valid one: ";
+                            }
+                            catch (std::invalid_argument ia){
+                                cout << "\nInvalid option! Please introduce a valid one: ";
+                            }
+                        }
+
                         start = clock();
-                        runs=network.tspChristofides(minCost,path,0);
+                        runs=network.tspChristofides(minCost,path,runs);
                         stop = clock();
 
                         clear();

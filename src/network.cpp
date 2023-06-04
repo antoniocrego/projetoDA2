@@ -178,7 +178,7 @@ int Network::tspChristofides(double& minCost, std::vector<int>& path, int runs) 
     if(runs==-1) runs = INT32_MAX;
     while (saveCost != minCost && runSaver<=runs) {
         saveCost = minCost;
-        runSaver+=twoOpt(eulerianCircuit, minCost, runs);
+        runSaver+=twoOpt(eulerianCircuit, minCost, runs-runSaver);
     }
     path=eulerianCircuit;
     return runSaver;
