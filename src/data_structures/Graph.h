@@ -45,23 +45,26 @@ public:
     int getNumVertex() const;
     std::vector<Vertex *> getVertexSet() const;
 
-    /**
-    * @brief This function implements the Dijkstra algorithm
-    * Time Complexity: O(E + V*log(V)), V being the number of vertexes and E being the number of edges
-    * @param source Id of the vertex to be considered as source
-    * @param dest Id of the vertex to be considered as target
-    * @return Pair of the minimum cost calculated and the max flow between the two vertexes
-    */
-    std::vector<int> dfs(const int & source) const;
-    void dfsVisit(Vertex* v, std::vector<int>& traversal) const;
-
-    std::pair<int,double> Dijsktra(int source,int dest);
-
     std::string getType() const;
 
     void setType(std::string type);
 
+    /**
+     *
+     * @return Vector of edges in the Minimum Spanning Tree of the graph
+     * @brief Function that calculates the MST of the graph utilising the Prim algorithm
+     * Time Complexity: O(V * E), V being the number of nodes in the graph and E being the number of edges
+     */
     std::vector<Edge *> prim();
+
+    /**
+     *
+     * @param orig Id of the origin vertex in the vertex set.
+     * @param dest Id of the destination vertex.
+     * @return The edge if found and null otherwise.
+     * @brief Function that searches for an edge in the graph.
+     * Time Complexity: O(E), E being the number of edges.
+     */
     Edge * findEdge(int orig, int dest);
 protected:
     std::vector<Vertex *> vertexSet;    // vertex set

@@ -128,10 +128,31 @@ public:
      */
     void make_hamilton(vector<int>& path, double &path_dist);
 
+    /**
+     *
+     * @param path vector that stores the path of which we want to calculate the length.
+     * @return Length of the path
+     * @brief Function that calculates the length of a given path.
+     * Time Complexity: O(V), V being the number of nodes in the path.
+     */
     double calcPath(vector<Vertex *> path);
 
+    /**
+     *
+     * @param current Current path being used in the simulated annealing.
+     * @param val Reference value that returns the difference in length before and after the change.
+     * @return Vector with the new path after the random changes.
+     * @brief Function that generates the next neighbor for the current path in the simulated annealing.
+     * Time Complexity: O(V), V being the number of nodes in the graph
+     */
     vector<Vertex *> generateNext(vector<Vertex *> current, double &val);
 
+    /**
+     *
+     * @return Vector with references to the vertexes in the path
+     * @brief Function that calculates an approximate solution using the Simulated Annealing algorithm.
+     * Time Complexity: O(V), V being the number of nodes in the graph
+     */
     std::vector<Vertex *> simulated_annealing();
 
 private:
