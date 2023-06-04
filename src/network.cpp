@@ -290,51 +290,87 @@ std::vector<Vertex *> Network::generateNext(vector<Vertex *> current, double &va
         lastId = std::rand() % current.size();
     }
 
-    int alg = std::rand()%2;
-    if(alg == 0) {
         Vertex *v1 = current.at(firstId);
         Vertex *v2 = current.at(lastId);
 
-        double keep1 = currentGraph.findEdge(mapIDtoIndex.at(current[firstId - 1]->getId()),
-                                             current[firstId]->getId())->getWeight();
-        keep1 += currentGraph.findEdge(mapIDtoIndex.at(current[firstId]->getId()),
-                                       current[firstId + 1]->getId())->getWeight();
-        keep1 += currentGraph.findEdge(mapIDtoIndex.at(current[lastId - 1]->getId()),
-                                       current[lastId]->getId())->getWeight();
-        keep1 += currentGraph.findEdge(mapIDtoIndex.at(current[lastId]->getId()),
-                                       current[lastId + 1]->getId())->getWeight();
+        double keep1 = 0;
+
+        Edge * edge = currentGraph.findEdge(mapIDtoIndex.at(current[firstId - 1]->getId()),
+                                            current[firstId]->getId());
+        if(edge == nullptr){
+            keep1 += current[firstId-1]->getCoordinate().distance(current[firstId]->getCoordinate());
+        }else{
+            keep1 += edge->getWeight();
+        }
+
+        edge = currentGraph.findEdge(mapIDtoIndex.at(current[firstId]->getId()),
+                                     current[firstId + 1]->getId());
+        if(edge == nullptr){
+            keep1 += current[firstId]->getCoordinate().distance(current[firstId+1]->getCoordinate());
+        }else{
+            keep1 += edge->getWeight();
+        }
+
+        edge = currentGraph.findEdge(mapIDtoIndex.at(current[lastId - 1]->getId()),
+                                     current[lastId]->getId());
+
+        if(edge == nullptr){
+            keep1 += current[lastId-1]->getCoordinate().distance(current[lastId]->getCoordinate());
+        }else{
+            keep1 += edge->getWeight();
+        }
+
+        edge = currentGraph.findEdge(mapIDtoIndex.at(current[lastId]->getId()),
+                                     current[lastId + 1]->getId());
+
+        if(edge == nullptr){
+            keep1 += current[lastId]->getCoordinate().distance(current[lastId+1]->getCoordinate());
+        }else{
+            keep1 += edge->getWeight();
+        }
 
         current[firstId] = v2;
         current[lastId] = v1;
 
-        double keep2 = currentGraph.findEdge(mapIDtoIndex.at(current[firstId - 1]->getId()),
-                                             current[firstId]->getId())->getWeight();
-        keep2 += currentGraph.findEdge(mapIDtoIndex.at(current[firstId]->getId()),
-                                       current[firstId + 1]->getId())->getWeight();
-        keep2 += currentGraph.findEdge(mapIDtoIndex.at(current[lastId - 1]->getId()),
-                                       current[lastId]->getId())->getWeight();
-        keep2 += currentGraph.findEdge(mapIDtoIndex.at(current[lastId]->getId()),
-                                       current[lastId + 1]->getId())->getWeight();
+    double keep2 = 0;
 
-
-        val = keep2 - keep1;
-    }else if(alg == 1){
-        if(firstId > lastId){
-            int temp = firstId;
-            firstId = lastId;
-            lastId = temp;
-        }
-
-        double keep1 = currentGraph.findEdge(mapIDtoIndex.at(current[firstId - 1]->getId()), current[firstId]->getId())->getWeight();
-        keep1 += currentGraph.findEdge(mapIDtoIndex.at(current[lastId]->getId()), current[lastId + 1]->getId())->getWeight();
-
-        reverse(current.begin() + firstId, current.begin() + lastId);
-
-        double keep2 = currentGraph.findEdge(mapIDtoIndex.at(current[firstId - 1]->getId()), current[firstId]->getId())->getWeight();
-        keep2 += currentGraph.findEdge(mapIDtoIndex.at(current[lastId]->getId()), current[lastId + 1]->getId())->getWeight();
-
-        val = keep2 - keep1;
+    edge = currentGraph.findEdge(mapIDtoIndex.at(current[firstId - 1]->getId()),
+                                        current[firstId]->getId());
+    if(edge == nullptr){
+        keep2 += current[firstId-1]->getCoordinate().distance(current[firstId]->getCoordinate());
+    }else{
+        keep2 += edge->getWeight();
     }
+
+    edge = currentGraph.findEdge(mapIDtoIndex.at(current[firstId]->getId()),
+                                 current[firstId + 1]->getId());
+    if(edge == nullptr){
+        keep2 += current[firstId]->getCoordinate().distance(current[firstId+1]->getCoordinate());
+    }else{
+        keep2 += edge->getWeight();
+    }
+
+    edge = currentGraph.findEdge(mapIDtoIndex.at(current[lastId - 1]->getId()),
+                                 current[lastId]->getId());
+
+    if(edge == nullptr){
+        keep2 += current[lastId-1]->getCoordinate().distance(current[lastId]->getCoordinate());
+    }else{
+        keep2 += edge->getWeight();
+    }
+
+    edge = currentGraph.findEdge(mapIDtoIndex.at(current[lastId]->getId()),
+                                 current[lastId + 1]->getId());
+
+    if(edge == nullptr){
+        keep2 += current[lastId]->getCoordinate().distance(current[lastId+1]->getCoordinate());
+    }else{
+        keep2 += edge->getWeight();
+    }
+
+
+        val = keep2 - keep1;
+
     return current;
 }
 
@@ -353,8 +389,8 @@ vector<Vertex *> Network::simulated_annealing(){
     vector<Vertex *> bestPath = currentPath;
     double best_val = val;
     double temperature = 1000;
-    while (temperature >= 1){
-        for(int i = 0; i < 1000; i++) {
+    while (temperature >= 0.01){
+        for(int i = 0; i < 2000; i++) {
             std::srand(clock());
             double next_val = 0;
             vector<Vertex *> nextPath = generateNext(currentPath, next_val);
@@ -366,6 +402,8 @@ vector<Vertex *> Network::simulated_annealing(){
                 val = next_val;
             }
             if(next_val < best_val){
+                currentPath = nextPath;
+                val = next_val;
                 best_val = next_val;
                 bestPath = nextPath;
             }
