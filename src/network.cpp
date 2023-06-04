@@ -21,7 +21,7 @@ void Network::readDataset(string path, string type) {
 
     ifstream in(url);
     string aLine, origin, dest, distance;
-    getline(in, aLine);
+    if(type!="extra") getline(in, aLine);
     while (getline(in, aLine))
     {
         istringstream inn(aLine);
@@ -173,6 +173,11 @@ std::vector<int> Network::tspChristofides(double& minCost) {
     // Step 4: Construct the TSP tour from the Eulerian circuit
     make_hamilton(eulerianCircuit, minCost);
 
+    double saveCost=0;
+    while(saveCost!=minCost){
+        saveCost=minCost;
+        twoOpt(eulerianCircuit,minCost);
+    }
 
     return eulerianCircuit;
 }
@@ -264,16 +269,43 @@ void Network::findMinimumWeightMatching(vector<Vertex *> odds, Graph g) {
         length = std::numeric_limits<double>::max();
         for(;it!=end;++it){
             Edge* current = currentGraph.findEdge((*first)->getId(),(*it)->getId());
-            if(current->getWeight()<length){
-                length=current->getWeight();
-                closest=*it;
-                tmp=it;
+            if (current!=nullptr) {
+                if (current->getWeight() < length) {
+                    length = current->getWeight();
+                    closest = *it;
+                    tmp = it;
+                }
             }
         }
         (*first)->addEdge(*tmp,length);
         (*tmp)->addEdge(*first,length);
         odds.erase(tmp);
         odds.erase(first);
+    }
+}
+
+void Network::twoOpt(vector<int>& path, double& cost){
+    double value1;
+    double value2;
+    double store;
+    double newCost;
+    for(int i=1; i<path.size()-2;i++){
+        for(int j=i+2; j<path.size()-1;j++){
+            vector<int> copy(path);
+            store=cost;
+            value1 = currentGraph.findEdge(copy.at(i-1),copy.at(i))->getWeight();
+            value2 = currentGraph.findEdge(copy.at(j),copy.at(j+1))->getWeight();
+            store=store-value1-value2;
+            std::reverse(copy.begin()+i,copy.begin()+j+1);
+            value1 = currentGraph.findEdge(copy.at(i-1),copy.at(i))->getWeight();
+            value2 = currentGraph.findEdge(copy.at(j),copy.at(j+1))->getWeight();
+            newCost=store+value1+value2;
+            if(newCost<cost){
+                cost=newCost;
+                path=copy;
+                return;
+            }
+        }
     }
 }
 

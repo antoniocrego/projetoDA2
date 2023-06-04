@@ -49,6 +49,8 @@ public:
 
     void findMinimumWeightMatching(vector<Vertex *> odds, Graph g);
 
+    void twoOpt(vector<int>& path, double& cost);
+
     std::vector<Vertex*> getOddDegreeVertices(Graph g);
 
     void make_hamilton(vector<int>& path, double &path_dist);
