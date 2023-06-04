@@ -69,6 +69,7 @@ void Program:: run() {
         double minCost = 0;
         double *min_cost = &max_double;
         double result = 0;
+        int runs = 0;
 
         int option = menus.at(currentMenuPage).getOption();
         switch (this->currentMenuPage) {
@@ -159,7 +160,7 @@ void Program:: run() {
                             else vertex->setVisited(false);
                         }
                         start = clock();
-                        path=network.tspChristofides(minCost);
+                        runs=network.tspChristofides(minCost,path,-1);
                         stop = clock();
 
                         clear();
@@ -173,6 +174,7 @@ void Program:: run() {
                             }
                         }
                         cout<<endl;
+                        cout << "The 2-opt optimized the path " << runs << " times" << endl;
                         cout << "Running time: " << (float)(stop-start)/CLOCKS_PER_SEC << " seconds" << endl;
 
 

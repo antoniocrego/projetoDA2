@@ -43,13 +43,13 @@ public:
 
     void nearestNeighbor(double &min_cost, vector<int>& path);
 
-    vector<int> tspChristofides(double& minCost);
+    int tspChristofides(double& minCost, std::vector<int>& path, int runs);
 
     vector<int> findEulerianCircuit(Graph g);
 
     void findMinimumWeightMatching(vector<Vertex *> odds, Graph g);
 
-    void twoOpt(vector<int>& path, double& cost);
+    int twoOpt(vector<int>& path, double& cost, int max_runs);
 
     std::vector<Vertex*> getOddDegreeVertices(Graph g);
 
@@ -58,13 +58,15 @@ public:
     double calcPath(vector<Vertex *> path);
 
     std::vector<Vertex*> generateRandomPath();
-    vector<Vertex *> generateNext(vector<Vertex *> current);
+    vector<Vertex *> generateNext(vector<Vertex *> current, double &val);
     std::vector<Vertex *> simulated_annealing();
 
 private:
     ///@brief Bidirectional Graph that represents the connections between Stations.
     Graph currentGraph;
     unordered_map<int,int> mapIDtoIndex;
+
+
 };
 
 
