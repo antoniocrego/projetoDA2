@@ -294,6 +294,7 @@ int Network::twoOpt(vector<int>& path, double& cost, int max_runs){
     int counter = 0;
     for(int i=1; i<path.size()-2;i++){
         for(int j=i+2; j<path.size()-1;j++){
+            if(counter==max_runs) return counter;
             vector<int> copy(path);
             store=cost;
             value1 = currentGraph.findEdge(copy.at(i-1),copy.at(i))->getWeight();
@@ -306,7 +307,6 @@ int Network::twoOpt(vector<int>& path, double& cost, int max_runs){
             if(newCost<cost){
                 cost=newCost;
                 path=copy;
-                if(counter==max_runs) return counter;
                 counter++;
             }
         }

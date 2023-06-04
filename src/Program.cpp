@@ -160,7 +160,7 @@ void Program:: run() {
                             else vertex->setVisited(false);
                         }
                         start = clock();
-                        runs=network.tspChristofides(minCost,path,-1);
+                        runs=network.tspChristofides(minCost,path,0);
                         stop = clock();
 
                         clear();
