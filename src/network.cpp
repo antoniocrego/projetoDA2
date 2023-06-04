@@ -21,7 +21,7 @@ void Network::readDataset(string path, string type) {
 
     ifstream in(url);
     string aLine, origin, dest, distance;
-    if(type != "extra") getline(in, aLine);
+    if(type!="extra") getline(in, aLine);
     while (getline(in, aLine))
     {
         istringstream inn(aLine);
@@ -151,7 +151,7 @@ void Network::nearestNeighbor(double &min_cost, vector<int>& path){
 }
 
 // Function to approximate the TSP using the Christofides algorithm
-std::vector<int> Network::tspChristofides(double& minCost) {
+int Network::tspChristofides(double& minCost, std::vector<int>& path, int runs) {
     // Step 1: Find the minimum-weight perfect matching
     vector<Edge *> mst = currentGraph.prim();
 
@@ -173,8 +173,15 @@ std::vector<int> Network::tspChristofides(double& minCost) {
     // Step 4: Construct the TSP tour from the Eulerian circuit
     make_hamilton(eulerianCircuit, minCost);
 
-
-    return eulerianCircuit;
+    double saveCost=0;
+    int runSaver = 0;
+    if(runs==-1) runs = INT32_MAX;
+    while (saveCost != minCost && runSaver<=runs) {
+        saveCost = minCost;
+        runSaver+=twoOpt(eulerianCircuit, minCost, runs-runSaver);
+    }
+    path=eulerianCircuit;
+    return runSaver;
 }
 
 std::vector<Vertex*> Network::getOddDegreeVertices(Graph g) {
@@ -264,10 +271,12 @@ void Network::findMinimumWeightMatching(vector<Vertex *> odds, Graph g) {
         length = std::numeric_limits<double>::max();
         for(;it!=end;++it){
             Edge* current = currentGraph.findEdge((*first)->getId(),(*it)->getId());
-            if(current->getWeight()<length){
-                length=current->getWeight();
-                closest=*it;
-                tmp=it;
+            if (current!=nullptr) {
+                if (current->getWeight() < length) {
+                    length = current->getWeight();
+                    closest = *it;
+                    tmp = it;
+                }
             }
         }
         (*first)->addEdge(*tmp,length);
@@ -277,6 +286,37 @@ void Network::findMinimumWeightMatching(vector<Vertex *> odds, Graph g) {
     }
 }
 
+<<<<<<< HEAD
+=======
+int Network::twoOpt(vector<int>& path, double& cost, int max_runs){
+    double value1;
+    double value2;
+    double store;
+    double newCost;
+    int counter = 0;
+    for(int i=1; i<path.size()-2;i++){
+        for(int j=i+2; j<path.size()-1;j++){
+            if(counter==max_runs) return counter;
+            vector<int> copy(path);
+            store=cost;
+            value1 = currentGraph.findEdge(copy.at(i-1),copy.at(i))->getWeight();
+            value2 = currentGraph.findEdge(copy.at(j),copy.at(j+1))->getWeight();
+            store=store-value1-value2;
+            std::reverse(copy.begin()+i,copy.begin()+j+1);
+            value1 = currentGraph.findEdge(copy.at(i-1),copy.at(i))->getWeight();
+            value2 = currentGraph.findEdge(copy.at(j),copy.at(j+1))->getWeight();
+            newCost=store+value1+value2;
+            if(newCost<cost){
+                cost=newCost;
+                path=copy;
+                counter++;
+            }
+        }
+    }
+    return counter;
+}
+
+>>>>>>> 48ed74598d2c05d2345cf99dadbb5951b4ee416f
 std::vector<Vertex *> Network::generateNext(vector<Vertex *> current, double &val){
     std::srand(clock());
     int firstId = std::rand() % current.size();
@@ -290,6 +330,7 @@ std::vector<Vertex *> Network::generateNext(vector<Vertex *> current, double &va
         lastId = std::rand() % current.size();
     }
 
+<<<<<<< HEAD
         Vertex *v1 = current.at(firstId);
         Vertex *v2 = current.at(lastId);
 
@@ -328,10 +369,48 @@ std::vector<Vertex *> Network::generateNext(vector<Vertex *> current, double &va
         }else{
             keep1 += edge->getWeight();
         }
+=======
+    Vertex *v1 = current.at(firstId);
+    Vertex *v2 = current.at(lastId);
 
-        current[firstId] = v2;
-        current[lastId] = v1;
+    double keep1 = 0;
 
+    Edge * edge = currentGraph.findEdge(mapIDtoIndex.at(current[firstId - 1]->getId()),
+                                        current[firstId]->getId());
+    if(edge == nullptr){
+        keep1 += current[firstId-1]->getCoordinate().distance(current[firstId]->getCoordinate());
+    }else{
+        keep1 += edge->getWeight();
+    }
+
+    edge = currentGraph.findEdge(mapIDtoIndex.at(current[firstId]->getId()),
+                                 current[firstId + 1]->getId());
+    if(edge == nullptr){
+        keep1 += current[firstId]->getCoordinate().distance(current[firstId+1]->getCoordinate());
+    }else{
+        keep1 += edge->getWeight();
+    }
+
+    edge = currentGraph.findEdge(mapIDtoIndex.at(current[lastId - 1]->getId()),
+                                 current[lastId]->getId());
+
+    if(edge == nullptr){
+        keep1 += current[lastId-1]->getCoordinate().distance(current[lastId]->getCoordinate());
+    }else{
+        keep1 += edge->getWeight();
+    }
+
+    edge = currentGraph.findEdge(mapIDtoIndex.at(current[lastId]->getId()),
+                                 current[lastId + 1]->getId());
+>>>>>>> 48ed74598d2c05d2345cf99dadbb5951b4ee416f
+
+    if(edge == nullptr){
+        keep1 += current[lastId]->getCoordinate().distance(current[lastId+1]->getCoordinate());
+    }else{
+        keep1 += edge->getWeight();
+    }
+
+<<<<<<< HEAD
     double keep2 = 0;
 
     edge = currentGraph.findEdge(mapIDtoIndex.at(current[firstId - 1]->getId()),
@@ -367,9 +446,48 @@ std::vector<Vertex *> Network::generateNext(vector<Vertex *> current, double &va
     }else{
         keep2 += edge->getWeight();
     }
+=======
+    current[firstId] = v2;
+    current[lastId] = v1;
+>>>>>>> 48ed74598d2c05d2345cf99dadbb5951b4ee416f
 
+    double keep2 = 0;
 
-        val = keep2 - keep1;
+    edge = currentGraph.findEdge(mapIDtoIndex.at(current[firstId - 1]->getId()),
+                                 current[firstId]->getId());
+    if(edge == nullptr){
+        keep2 += current[firstId-1]->getCoordinate().distance(current[firstId]->getCoordinate());
+    }else{
+        keep2 += edge->getWeight();
+    }
+
+    edge = currentGraph.findEdge(mapIDtoIndex.at(current[firstId]->getId()),
+                                 current[firstId + 1]->getId());
+    if(edge == nullptr){
+        keep2 += current[firstId]->getCoordinate().distance(current[firstId+1]->getCoordinate());
+    }else{
+        keep2 += edge->getWeight();
+    }
+
+    edge = currentGraph.findEdge(mapIDtoIndex.at(current[lastId - 1]->getId()),
+                                 current[lastId]->getId());
+
+    if(edge == nullptr){
+        keep2 += current[lastId-1]->getCoordinate().distance(current[lastId]->getCoordinate());
+    }else{
+        keep2 += edge->getWeight();
+    }
+
+    edge = currentGraph.findEdge(mapIDtoIndex.at(current[lastId]->getId()),
+                                 current[lastId + 1]->getId());
+
+    if(edge == nullptr){
+        keep2 += current[lastId]->getCoordinate().distance(current[lastId+1]->getCoordinate());
+    }else{
+        keep2 += edge->getWeight();
+    }
+    
+    val = keep2 - keep1;
 
     return current;
 }

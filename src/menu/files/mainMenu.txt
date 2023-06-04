@@ -1,7 +1,7 @@
 Backtracking
 Triangular Approximation
 Nearest Neighbor
-Christofides Algorithm
+Christofides + 2-opt
 Simulated Annealing
 Select Graph
 Quit
