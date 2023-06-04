@@ -1,0 +1,65 @@
+\hypertarget{network_8h_source}{}\doxysection{network.\+h}
+\label{network_8h_source}\index{src/network.h@{src/network.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef PROJETODA\_NETWORK\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define PROJETODA\_NETWORK\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}data\_structures/Graph.h"{}}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <unordered\_map>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <unordered\_set>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <cmath>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{keyword}{class }\mbox{\hyperlink{class_network}{Network}} \{}
+\DoxyCodeLine{17 \textcolor{keyword}{public}:}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{20     \mbox{\hyperlink{class_network_a3cc2fb4f8fa4d507077e8da85ce5a1c8}{Network}}();}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{26     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_network_a97319b323e8da44f606f6288c893fd03}{readDataset}}(\textcolor{keywordtype}{string} path, \textcolor{keywordtype}{string} type);}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{32     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_network_a4be80f678eee23e614b50b7c9e292652}{readNodes}}(\textcolor{keyword}{const} \textcolor{keywordtype}{string}\& graph);}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{38     \mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_network_aecd5cc7f90bff3d42006c4d706da1d8d}{getCurrentGraph}}();}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{51     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_network_a0e3d29d2de9c44113f8c90e7bb184ac9}{backtracking}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_graph}{Graph}}\& test, \textcolor{keywordtype}{double} \&min\_cost, \textcolor{keywordtype}{double} actual\_cost, \textcolor{keywordtype}{int} currPos, vector<int>\& path, \textcolor{keyword}{const} vector<int>\& currentPath);}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{62     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_network_a253abff1590a8df46a3b6eee87e13d51}{preorderTraversal}}(vector<Edge *> mst, \mbox{\hyperlink{class_vertex}{Vertex}} * v, vector<bool>\& visited, vector<Vertex *>\& preorder);}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{71     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_network_a1bc11e7aa7d964657b5e537c6e88349b}{nearestNeighbor}}(\textcolor{keywordtype}{double} \&min\_cost, vector<int>\& path);}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{82     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_network_a80ad857b0aa38c97ff32f638d51ef182}{tspChristofides}}(\textcolor{keywordtype}{double}\& minCost, std::vector<int>\& path, \textcolor{keywordtype}{int} runs);}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{91     vector<int> \mbox{\hyperlink{class_network_ad96cf396189630eb9a399dd5f0b928c4}{findEulerianCircuit}}(\mbox{\hyperlink{class_graph}{Graph}} g);}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{100     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_network_a13a114a3caf54c9bba01942418dc283d}{findMinimumWeightMatching}}(vector<Vertex *> odds, \mbox{\hyperlink{class_graph}{Graph}} g);}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{111     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_network_afe24346ba8912a73dc4a44b81ae0b0be}{twoOpt}}(vector<int>\& path, \textcolor{keywordtype}{double}\& cost, \textcolor{keywordtype}{int} max\_runs);}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{120     std::vector<Vertex*> \mbox{\hyperlink{class_network_aee1b7d095b45c7f6047ba5b022cf4802}{getOddDegreeVertices}}(\mbox{\hyperlink{class_graph}{Graph}} g);}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{129     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_network_ad8d1c23faab946f9e8e7d03bdd0623e2}{make\_hamilton}}(vector<int>\& path, \textcolor{keywordtype}{double} \&path\_dist);}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{138     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_network_a170d5198faeecbbac828825e757bfe49}{calcPath}}(vector<Vertex *> path);}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{148     vector<Vertex *> \mbox{\hyperlink{class_network_a341a2a96a82c618280a2daec5bd681f0}{generateNext}}(vector<Vertex *> current, \textcolor{keywordtype}{double} \&val);}
+\DoxyCodeLine{149 }
+\DoxyCodeLine{156     std::vector<Vertex *> \mbox{\hyperlink{class_network_a8053052262b71e57d0318fbb6cd9fdab}{simulated\_annealing}}();}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{158 \textcolor{keyword}{private}:}
+\DoxyCodeLine{160     \mbox{\hyperlink{class_graph}{Graph}} currentGraph;}
+\DoxyCodeLine{162     unordered\_map<int,int> mapIDtoIndex;}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164 }
+\DoxyCodeLine{165 \};}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167 }
+\DoxyCodeLine{168 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//PROJETODA\_NETWORK\_H}}
+
+\end{DoxyCode}

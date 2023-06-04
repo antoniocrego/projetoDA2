@@ -1,0 +1,119 @@
+\hypertarget{class_graph}{}\doxysection{Graph Class Reference}
+\label{class_graph}\index{Graph@{Graph}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_graph_a089f7fc73ea9976295d387846ad36c69}\label{class_graph_a089f7fc73ea9976295d387846ad36c69}} 
+\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ {\bfseries find\+Vertex} (const int \&id) const
+\item 
+\mbox{\Hypertarget{class_graph_a845ceaa40a14b6a71de138bfcee3f032}\label{class_graph_a845ceaa40a14b6a71de138bfcee3f032}} 
+\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ {\bfseries index\+Vertex} (const int \&id) const
+\item 
+\mbox{\Hypertarget{class_graph_ad354c018724ef3f137a0b8554089105e}\label{class_graph_ad354c018724ef3f137a0b8554089105e}} 
+bool {\bfseries add\+Vertex} (const int \&id)
+\item 
+bool \mbox{\hyperlink{class_graph_a697561b2a2c1b25147b1750b250c1fdf}{remove\+Vertex}} (const int \&id)
+\begin{DoxyCompactList}\small\item\em This function removes as vertex from the graph. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_graph_aee876d2c8422a5e638299bbcf904333b}\label{class_graph_aee876d2c8422a5e638299bbcf904333b}} 
+bool {\bfseries add\+Edge} (const int \&sourc, const int \&dest, const double \&weight)
+\item 
+\mbox{\Hypertarget{class_graph_af0c628567a826771f01b3db722fe062e}\label{class_graph_af0c628567a826771f01b3db722fe062e}} 
+bool {\bfseries add\+Bidirectional\+Edge} (const int \&sourc, const int \&dest, const double \&weight)
+\item 
+\mbox{\Hypertarget{class_graph_abb5e0517e2979c54eebdafc2a9875e8f}\label{class_graph_abb5e0517e2979c54eebdafc2a9875e8f}} 
+int {\bfseries get\+Num\+Vertex} () const
+\item 
+\mbox{\Hypertarget{class_graph_a619ac583094079134074658e29463c0e}\label{class_graph_a619ac583094079134074658e29463c0e}} 
+std\+::vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ {\bfseries get\+Vertex\+Set} () const
+\item 
+\mbox{\Hypertarget{class_graph_a2677100ffff84685d77f5b12a5d0f863}\label{class_graph_a2677100ffff84685d77f5b12a5d0f863}} 
+std\+::string {\bfseries get\+Type} () const
+\item 
+\mbox{\Hypertarget{class_graph_a35cb3c9a8787c25b2be6213c201b294c}\label{class_graph_a35cb3c9a8787c25b2be6213c201b294c}} 
+void {\bfseries set\+Type} (std\+::string type)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_edge}{Edge}} $\ast$ $>$ \mbox{\hyperlink{class_graph_ade5abbd54af96978ea2d1a7c7c9246bf}{prim}} ()
+\begin{DoxyCompactList}\small\item\em Function that calculates the MST of the graph utilising the Prim algorithm Time Complexity\+: O(\+V $\ast$ E), V being the number of nodes in the graph and E being the number of edges. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_edge}{Edge}} $\ast$ \mbox{\hyperlink{class_graph_a6857599c7a3eb276cb9dc802e342b20b}{find\+Edge}} (int orig, int dest)
+\begin{DoxyCompactList}\small\item\em Function that searches for an edge in the graph. Time Complexity\+: O(\+E), E being the number of edges. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_graph_a7dfcef08a9286cf144902cd7e56940ee}\label{class_graph_a7dfcef08a9286cf144902cd7e56940ee}} 
+int {\bfseries find\+Vertex\+Idx} (const int \&id) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_graph_aa9b0a6d8ad43c5eabaca5a7140bcc8b6}\label{class_graph_aa9b0a6d8ad43c5eabaca5a7140bcc8b6}} 
+std\+::vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ {\bfseries vertex\+Set}
+\item 
+\mbox{\Hypertarget{class_graph_a9e61864da69191c1896a25a708d1a02d}\label{class_graph_a9e61864da69191c1896a25a708d1a02d}} 
+double $\ast$$\ast$ {\bfseries dist\+Matrix} = nullptr
+\item 
+\mbox{\Hypertarget{class_graph_a3ae09699c3616af3ebfcb1eb045f2b62}\label{class_graph_a3ae09699c3616af3ebfcb1eb045f2b62}} 
+int $\ast$$\ast$ {\bfseries path\+Matrix} = nullptr
+\item 
+\mbox{\Hypertarget{class_graph_a228cf1e373a05c002e5931c9c9672ab0}\label{class_graph_a228cf1e373a05c002e5931c9c9672ab0}} 
+std\+::string {\bfseries type} = \char`\"{}\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_graph_a6857599c7a3eb276cb9dc802e342b20b}\label{class_graph_a6857599c7a3eb276cb9dc802e342b20b}} 
+\index{Graph@{Graph}!findEdge@{findEdge}}
+\index{findEdge@{findEdge}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{findEdge()}{findEdge()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_edge}{Edge}} $\ast$ Graph\+::find\+Edge (\begin{DoxyParamCaption}\item[{int}]{orig,  }\item[{int}]{dest }\end{DoxyParamCaption})}
+
+
+
+Function that searches for an edge in the graph. Time Complexity\+: O(\+E), E being the number of edges. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em orig} & Id of the origin vertex in the vertex set. \\
+\hline
+{\em dest} & Id of the destination vertex. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The edge if found and null otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_ade5abbd54af96978ea2d1a7c7c9246bf}\label{class_graph_ade5abbd54af96978ea2d1a7c7c9246bf}} 
+\index{Graph@{Graph}!prim@{prim}}
+\index{prim@{prim}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{prim()}{prim()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_edge}{Edge}} $\ast$ $>$ Graph\+::prim (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function that calculates the MST of the graph utilising the Prim algorithm Time Complexity\+: O(\+V $\ast$ E), V being the number of nodes in the graph and E being the number of edges. 
+
+\begin{DoxyReturn}{Returns}
+Vector of edges in the Minimum Spanning Tree of the graph 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a697561b2a2c1b25147b1750b250c1fdf}\label{class_graph_a697561b2a2c1b25147b1750b250c1fdf}} 
+\index{Graph@{Graph}!removeVertex@{removeVertex}}
+\index{removeVertex@{removeVertex}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{removeVertex()}{removeVertex()}}
+{\footnotesize\ttfamily bool Graph\+::remove\+Vertex (\begin{DoxyParamCaption}\item[{const int \&}]{id }\end{DoxyParamCaption})}
+
+
+
+This function removes as vertex from the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Id of the vertex to be removed Time Complexity\+: O(\+V $\ast$ E), V being the amount of vertexes and E being the amount of Edges \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the vertex is successfully removed, false otherwise 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/data\+\_\+structures/Graph.\+h\item 
+src/data\+\_\+structures/Graph.\+cpp\end{DoxyCompactItemize}

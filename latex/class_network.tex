@@ -1,0 +1,290 @@
+\hypertarget{class_network}{}\doxysection{Network Class Reference}
+\label{class_network}\index{Network@{Network}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_network_a3cc2fb4f8fa4d507077e8da85ce5a1c8}\label{class_network_a3cc2fb4f8fa4d507077e8da85ce5a1c8}} 
+{\bfseries Network} ()
+\begin{DoxyCompactList}\small\item\em Empty Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_network_a97319b323e8da44f606f6288c893fd03}\label{class_network_a97319b323e8da44f606f6288c893fd03}} 
+void {\bfseries read\+Dataset} (string path, string type)
+\begin{DoxyCompactList}\small\item\em Reads the edges in a file that includes only edges, adding the new found nodes along the way. Time Complexity\+: O(\+N), N being the number of connections in the file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_network_a4be80f678eee23e614b50b7c9e292652}\label{class_network_a4be80f678eee23e614b50b7c9e292652}} 
+void {\bfseries read\+Nodes} (const string \&graph)
+\begin{DoxyCompactList}\small\item\em Reads the nodes in a file that includes only nodes, i.\+e. real world graphs. Time Complexity\+: O(\+N), N being the number of nodes in the file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_network_aecd5cc7f90bff3d42006c4d706da1d8d}{get\+Current\+Graph}} ()
+\begin{DoxyCompactList}\small\item\em Function that returns the currently selected graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_network_a0e3d29d2de9c44113f8c90e7bb184ac9}{backtracking}} (const \mbox{\hyperlink{class_graph}{Graph}} \&test, double \&min\+\_\+cost, double actual\+\_\+cost, int curr\+Pos, vector$<$ int $>$ \&path, const vector$<$ int $>$ \&current\+Path)
+\begin{DoxyCompactList}\small\item\em Backtracking algorithm which returns the optimal solution through brute force, stopping an explored path when the cost gets too high. Time Complexity\+: O(2$^\wedge$n), N being the number of nodes in the graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_network_a253abff1590a8df46a3b6eee87e13d51}{preorder\+Traversal}} (vector$<$ \mbox{\hyperlink{class_edge}{Edge}} $\ast$ $>$ mst, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$v, vector$<$ bool $>$ \&visited, vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ \&preorder)
+\begin{DoxyCompactList}\small\item\em Function that returns the preorder traversal of a given tree structure. Time Complexity\+: O(n), N being the number of nodes in the tree. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_network_a1bc11e7aa7d964657b5e537c6e88349b}{nearest\+Neighbor}} (double \&min\+\_\+cost, vector$<$ int $>$ \&path)
+\begin{DoxyCompactList}\small\item\em Function that traverses the currently selected graph using the nearest neighbor algorithm. Time Complexity\+: O(\+V$\ast$\+E), V being the number of nodes in the graph and E the number of edges. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_network_a80ad857b0aa38c97ff32f638d51ef182}{tsp\+Christofides}} (double \&min\+Cost, std\+::vector$<$ int $>$ \&path, int runs)
+\begin{DoxyCompactList}\small\item\em Function that traverses the currently selected graph using the Christofides algorithm and 2-\/opt. Time Complexity\+: O(\+V$^\wedge$3), V being the number of nodes in the graph. \end{DoxyCompactList}\item 
+vector$<$ int $>$ \mbox{\hyperlink{class_network_ad96cf396189630eb9a399dd5f0b928c4}{find\+Eulerian\+Circuit}} (\mbox{\hyperlink{class_graph}{Graph}} g)
+\begin{DoxyCompactList}\small\item\em Finds the euler circuit of a given graph. Time Complexity\+: O(V+E), V being the number of nodes in the graph and E the number of edges. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_network_a13a114a3caf54c9bba01942418dc283d}{find\+Minimum\+Weight\+Matching}} (vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ odds, \mbox{\hyperlink{class_graph}{Graph}} g)
+\begin{DoxyCompactList}\small\item\em Finds perfect matches for the odd degree vertices in a graph, making them all, ideally, even degree. Time Complexity\+: O(\+V$\ast$\+E), V being the number of nodes in the graph and E the number of edges. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_network_afe24346ba8912a73dc4a44b81ae0b0be}{two\+Opt}} (vector$<$ int $>$ \&path, double \&cost, int max\+\_\+runs)
+\begin{DoxyCompactList}\small\item\em Function that uses the 2-\/opt optimization algorithm to improve a path. Time Complexity\+: O(\+E$\ast$\+V$^\wedge$2), V being the number of nodes in the given path and E the amount of edges in the graph. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ \mbox{\hyperlink{class_network_aee1b7d095b45c7f6047ba5b022cf4802}{get\+Odd\+Degree\+Vertices}} (\mbox{\hyperlink{class_graph}{Graph}} g)
+\begin{DoxyCompactList}\small\item\em Function that returns the odd degree vertices in a graph. Time Complexity\+: O(\+V), V being the number of nodes in the graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_network_ad8d1c23faab946f9e8e7d03bdd0623e2}{make\+\_\+hamilton}} (vector$<$ int $>$ \&path, double \&path\+\_\+dist)
+\begin{DoxyCompactList}\small\item\em Function that turns a Eulerian circuit into a Hamiltonian cycle. Time Complexity\+: O(\+N$\ast$\+E), N being the number of nodes in the original path and E the number of edges in the graph. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_network_a170d5198faeecbbac828825e757bfe49}{calc\+Path}} (vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ path)
+\begin{DoxyCompactList}\small\item\em Function that calculates the length of a given path. Time Complexity\+: O(\+V), V being the number of nodes in the path. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ \mbox{\hyperlink{class_network_a341a2a96a82c618280a2daec5bd681f0}{generate\+Next}} (vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ current, double \&val)
+\begin{DoxyCompactList}\small\item\em Function that generates the next neighbor for the current path in the simulated annealing. Time Complexity\+: O(\+V), V being the number of nodes in the graph. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ \mbox{\hyperlink{class_network_a8053052262b71e57d0318fbb6cd9fdab}{simulated\+\_\+annealing}} ()
+\begin{DoxyCompactList}\small\item\em Function that calculates an approximate solution using the Simulated Annealing algorithm. Time Complexity\+: O(\+V), V being the number of nodes in the graph. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_network_a0e3d29d2de9c44113f8c90e7bb184ac9}\label{class_network_a0e3d29d2de9c44113f8c90e7bb184ac9}} 
+\index{Network@{Network}!backtracking@{backtracking}}
+\index{backtracking@{backtracking}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{backtracking()}{backtracking()}}
+{\footnotesize\ttfamily void Network\+::backtracking (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_graph}{Graph}} \&}]{test,  }\item[{double \&}]{min\+\_\+cost,  }\item[{double}]{actual\+\_\+cost,  }\item[{int}]{curr\+Pos,  }\item[{vector$<$ int $>$ \&}]{path,  }\item[{const vector$<$ int $>$ \&}]{current\+Path }\end{DoxyParamCaption})}
+
+
+
+Backtracking algorithm which returns the optimal solution through brute force, stopping an explored path when the cost gets too high. Time Complexity\+: O(2$^\wedge$n), N being the number of nodes in the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em test} & The graph to be used in the backtrack. \\
+\hline
+{\em min\+\_\+cost} & Reference variable that stores the actual lowest cost found. \\
+\hline
+{\em actual\+\_\+cost} & Variable passed down through recursion that stores the current paths cost. \\
+\hline
+{\em curr\+Pos} & Variable that indicates what node to explore next. \\
+\hline
+{\em path} & Vector reference that stores the path corresponding to the lowest cost found. \\
+\hline
+{\em current\+Path} & Vector passed down through recursion that stores the current explored path. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_network_a170d5198faeecbbac828825e757bfe49}\label{class_network_a170d5198faeecbbac828825e757bfe49}} 
+\index{Network@{Network}!calcPath@{calcPath}}
+\index{calcPath@{calcPath}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{calcPath()}{calcPath()}}
+{\footnotesize\ttfamily double Network\+::calc\+Path (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$}]{path }\end{DoxyParamCaption})}
+
+
+
+Function that calculates the length of a given path. Time Complexity\+: O(\+V), V being the number of nodes in the path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & vector that stores the path of which we want to calculate the length. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Length of the path 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_network_ad96cf396189630eb9a399dd5f0b928c4}\label{class_network_ad96cf396189630eb9a399dd5f0b928c4}} 
+\index{Network@{Network}!findEulerianCircuit@{findEulerianCircuit}}
+\index{findEulerianCircuit@{findEulerianCircuit}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{findEulerianCircuit()}{findEulerianCircuit()}}
+{\footnotesize\ttfamily std\+::vector$<$ int $>$ Network\+::find\+Eulerian\+Circuit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_graph}{Graph}}}]{g }\end{DoxyParamCaption})}
+
+
+
+Finds the euler circuit of a given graph. Time Complexity\+: O(V+E), V being the number of nodes in the graph and E the number of edges. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & \mbox{\hyperlink{class_graph}{Graph}} to be toured. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector with the order in which the Eulerian tour explored the graph. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_network_a13a114a3caf54c9bba01942418dc283d}\label{class_network_a13a114a3caf54c9bba01942418dc283d}} 
+\index{Network@{Network}!findMinimumWeightMatching@{findMinimumWeightMatching}}
+\index{findMinimumWeightMatching@{findMinimumWeightMatching}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{findMinimumWeightMatching()}{findMinimumWeightMatching()}}
+{\footnotesize\ttfamily void Network\+::find\+Minimum\+Weight\+Matching (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$}]{odds,  }\item[{\mbox{\hyperlink{class_graph}{Graph}}}]{g }\end{DoxyParamCaption})}
+
+
+
+Finds perfect matches for the odd degree vertices in a graph, making them all, ideally, even degree. Time Complexity\+: O(\+V$\ast$\+E), V being the number of nodes in the graph and E the number of edges. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em odds} & Vector of vertices whose degree is odd. \\
+\hline
+{\em g} & \mbox{\hyperlink{class_graph}{Graph}}, specifically an MST, that the vertices belong to. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_network_a341a2a96a82c618280a2daec5bd681f0}\label{class_network_a341a2a96a82c618280a2daec5bd681f0}} 
+\index{Network@{Network}!generateNext@{generateNext}}
+\index{generateNext@{generateNext}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{generateNext()}{generateNext()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ Network\+::generate\+Next (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$}]{current,  }\item[{double \&}]{val }\end{DoxyParamCaption})}
+
+
+
+Function that generates the next neighbor for the current path in the simulated annealing. Time Complexity\+: O(\+V), V being the number of nodes in the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current} & Current path being used in the simulated annealing. \\
+\hline
+{\em val} & Reference value that returns the difference in length before and after the change. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector with the new path after the random changes. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_network_aecd5cc7f90bff3d42006c4d706da1d8d}\label{class_network_aecd5cc7f90bff3d42006c4d706da1d8d}} 
+\index{Network@{Network}!getCurrentGraph@{getCurrentGraph}}
+\index{getCurrentGraph@{getCurrentGraph}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{getCurrentGraph()}{getCurrentGraph()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_graph}{Graph}} Network\+::get\+Current\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function that returns the currently selected graph. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_graph}{Graph}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_network_aee1b7d095b45c7f6047ba5b022cf4802}\label{class_network_aee1b7d095b45c7f6047ba5b022cf4802}} 
+\index{Network@{Network}!getOddDegreeVertices@{getOddDegreeVertices}}
+\index{getOddDegreeVertices@{getOddDegreeVertices}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{getOddDegreeVertices()}{getOddDegreeVertices()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ Network\+::get\+Odd\+Degree\+Vertices (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_graph}{Graph}}}]{g }\end{DoxyParamCaption})}
+
+
+
+Function that returns the odd degree vertices in a graph. Time Complexity\+: O(\+V), V being the number of nodes in the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & \mbox{\hyperlink{class_graph}{Graph}}, specifically a MST, to be explored. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector with references to the vertices with odd degree. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_network_ad8d1c23faab946f9e8e7d03bdd0623e2}\label{class_network_ad8d1c23faab946f9e8e7d03bdd0623e2}} 
+\index{Network@{Network}!make\_hamilton@{make\_hamilton}}
+\index{make\_hamilton@{make\_hamilton}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{make\_hamilton()}{make\_hamilton()}}
+{\footnotesize\ttfamily void Network\+::make\+\_\+hamilton (\begin{DoxyParamCaption}\item[{vector$<$ int $>$ \&}]{path,  }\item[{double \&}]{path\+\_\+dist }\end{DoxyParamCaption})}
+
+
+
+Function that turns a Eulerian circuit into a Hamiltonian cycle. Time Complexity\+: O(\+N$\ast$\+E), N being the number of nodes in the original path and E the number of edges in the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Reference vector that stores the original path and, eventually, the updated path \\
+\hline
+{\em path\+\_\+dist} & Reference variable that returns the cost of traversing the Hamiltonian cycle. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_network_a1bc11e7aa7d964657b5e537c6e88349b}\label{class_network_a1bc11e7aa7d964657b5e537c6e88349b}} 
+\index{Network@{Network}!nearestNeighbor@{nearestNeighbor}}
+\index{nearestNeighbor@{nearestNeighbor}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{nearestNeighbor()}{nearestNeighbor()}}
+{\footnotesize\ttfamily void Network\+::nearest\+Neighbor (\begin{DoxyParamCaption}\item[{double \&}]{min\+\_\+cost,  }\item[{vector$<$ int $>$ \&}]{path }\end{DoxyParamCaption})}
+
+
+
+Function that traverses the currently selected graph using the nearest neighbor algorithm. Time Complexity\+: O(\+V$\ast$\+E), V being the number of nodes in the graph and E the number of edges. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em min\+\_\+cost} & Reference variable that returns the value of the path found. \\
+\hline
+{\em path} & Reference vector that returns the path found. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_network_a253abff1590a8df46a3b6eee87e13d51}\label{class_network_a253abff1590a8df46a3b6eee87e13d51}} 
+\index{Network@{Network}!preorderTraversal@{preorderTraversal}}
+\index{preorderTraversal@{preorderTraversal}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{preorderTraversal()}{preorderTraversal()}}
+{\footnotesize\ttfamily void Network\+::preorder\+Traversal (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_edge}{Edge}} $\ast$ $>$}]{mst,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{v,  }\item[{vector$<$ bool $>$ \&}]{visited,  }\item[{vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ \&}]{preorder }\end{DoxyParamCaption})}
+
+
+
+Function that returns the preorder traversal of a given tree structure. Time Complexity\+: O(n), N being the number of nodes in the tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mst} & Tree structure, specifically a MST, to be traversed in preorder. \\
+\hline
+{\em v} & \mbox{\hyperlink{class_vertex}{Vertex}} to evaluate in current recursion. \\
+\hline
+{\em visited} & Boolean vector reference that stores if a vertex has been visited yet. \\
+\hline
+{\em preorder} & Vector reference that returns the resulting preorder traversal of the tree \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_network_a8053052262b71e57d0318fbb6cd9fdab}\label{class_network_a8053052262b71e57d0318fbb6cd9fdab}} 
+\index{Network@{Network}!simulated\_annealing@{simulated\_annealing}}
+\index{simulated\_annealing@{simulated\_annealing}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{simulated\_annealing()}{simulated\_annealing()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ Network\+::simulated\+\_\+annealing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function that calculates an approximate solution using the Simulated Annealing algorithm. Time Complexity\+: O(\+V), V being the number of nodes in the graph. 
+
+\begin{DoxyReturn}{Returns}
+Vector with references to the vertexes in the path 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_network_a80ad857b0aa38c97ff32f638d51ef182}\label{class_network_a80ad857b0aa38c97ff32f638d51ef182}} 
+\index{Network@{Network}!tspChristofides@{tspChristofides}}
+\index{tspChristofides@{tspChristofides}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{tspChristofides()}{tspChristofides()}}
+{\footnotesize\ttfamily int Network\+::tsp\+Christofides (\begin{DoxyParamCaption}\item[{double \&}]{min\+Cost,  }\item[{std\+::vector$<$ int $>$ \&}]{path,  }\item[{int}]{runs }\end{DoxyParamCaption})}
+
+
+
+Function that traverses the currently selected graph using the Christofides algorithm and 2-\/opt. Time Complexity\+: O(\+V$^\wedge$3), V being the number of nodes in the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em min\+Cost} & Reference variable that returns the cost of the path found. \\
+\hline
+{\em path} & Reference vector that returns the path found through the algorithm. \\
+\hline
+{\em runs} & Maximum amount of 2-\/opt optimizations permitted (-\/1 if as many as needed). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Amount of 2-\/opt optimizations utilized. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_network_afe24346ba8912a73dc4a44b81ae0b0be}\label{class_network_afe24346ba8912a73dc4a44b81ae0b0be}} 
+\index{Network@{Network}!twoOpt@{twoOpt}}
+\index{twoOpt@{twoOpt}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{twoOpt()}{twoOpt()}}
+{\footnotesize\ttfamily int Network\+::two\+Opt (\begin{DoxyParamCaption}\item[{vector$<$ int $>$ \&}]{path,  }\item[{double \&}]{cost,  }\item[{int}]{max\+\_\+runs }\end{DoxyParamCaption})}
+
+
+
+Function that uses the 2-\/opt optimization algorithm to improve a path. Time Complexity\+: O(\+E$\ast$\+V$^\wedge$2), V being the number of nodes in the given path and E the amount of edges in the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Reference vector that stores the path to be optimized and, eventually, the optimized path. \\
+\hline
+{\em cost} & Reference variable that stores the cost of the current best path. \\
+\hline
+{\em max\+\_\+runs} & Variable that defines the maximum amount of optimizations the algorithm should do. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Amount of optimizations done. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/network.\+h\item 
+src/network.\+cpp\end{DoxyCompactItemize}

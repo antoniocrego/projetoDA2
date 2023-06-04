@@ -1,0 +1,77 @@
+\hypertarget{class_coordinate}{}\doxysection{Coordinate Class Reference}
+\label{class_coordinate}\index{Coordinate@{Coordinate}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_coordinate_aac6f323a685fc1e88fbea9c86f1e600d}\label{class_coordinate_aac6f323a685fc1e88fbea9c86f1e600d}} 
+{\bfseries Coordinate} ()
+\begin{DoxyCompactList}\small\item\em Default Constructor of \mbox{\hyperlink{class_coordinate}{Coordinate}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_coordinate_aceefc0210fa089a4611b40e0e23bc0b7}{Coordinate}} (float latitude, float longitude)
+\item 
+float \mbox{\hyperlink{class_coordinate_ae90a301b5bba6d5ae70e9e41d14d25fd}{get\+Latitude}} () const
+\item 
+float \mbox{\hyperlink{class_coordinate_a52d85e41b1c75daf1504fd0b8c075c8c}{get\+Longitude}} () const
+\item 
+float \mbox{\hyperlink{class_coordinate_aae235d8dfa9b509ce94e4bd9c0da502c}{distance}} (\mbox{\hyperlink{class_coordinate}{Coordinate}} coordinate1) const
+\begin{DoxyCompactList}\small\item\em Calculates the distance between two coordinates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_coordinate_aceefc0210fa089a4611b40e0e23bc0b7}\label{class_coordinate_aceefc0210fa089a4611b40e0e23bc0b7}} 
+\index{Coordinate@{Coordinate}!Coordinate@{Coordinate}}
+\index{Coordinate@{Coordinate}!Coordinate@{Coordinate}}
+\doxysubsubsection{\texorpdfstring{Coordinate()}{Coordinate()}}
+{\footnotesize\ttfamily Coordinate\+::\+Coordinate (\begin{DoxyParamCaption}\item[{float}]{latitude,  }\item[{float}]{longitude }\end{DoxyParamCaption})}
+
+Constructor of \mbox{\hyperlink{class_coordinate}{Coordinate}} 
+\begin{DoxyParams}{Parameters}
+{\em latitude} & \\
+\hline
+{\em longitude} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_coordinate_aae235d8dfa9b509ce94e4bd9c0da502c}\label{class_coordinate_aae235d8dfa9b509ce94e4bd9c0da502c}} 
+\index{Coordinate@{Coordinate}!distance@{distance}}
+\index{distance@{distance}!Coordinate@{Coordinate}}
+\doxysubsubsection{\texorpdfstring{distance()}{distance()}}
+{\footnotesize\ttfamily float Coordinate\+::distance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_coordinate}{Coordinate}}}]{coordinate2 }\end{DoxyParamCaption}) const}
+
+
+
+Calculates the distance between two coordinates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em coordinate2} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the distance between the two coordinates Complexity\+: Time complexity of the powf, sin, cos, sqrt and asin functions of the Math library from the Standard Library 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_coordinate_ae90a301b5bba6d5ae70e9e41d14d25fd}\label{class_coordinate_ae90a301b5bba6d5ae70e9e41d14d25fd}} 
+\index{Coordinate@{Coordinate}!getLatitude@{getLatitude}}
+\index{getLatitude@{getLatitude}!Coordinate@{Coordinate}}
+\doxysubsubsection{\texorpdfstring{getLatitude()}{getLatitude()}}
+{\footnotesize\ttfamily float Coordinate\+::get\+Latitude (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+coordinate\textquotesingle{}s latitude 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_coordinate_a52d85e41b1c75daf1504fd0b8c075c8c}\label{class_coordinate_a52d85e41b1c75daf1504fd0b8c075c8c}} 
+\index{Coordinate@{Coordinate}!getLongitude@{getLongitude}}
+\index{getLongitude@{getLongitude}!Coordinate@{Coordinate}}
+\doxysubsubsection{\texorpdfstring{getLongitude()}{getLongitude()}}
+{\footnotesize\ttfamily float Coordinate\+::get\+Longitude (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+coordinate\textquotesingle{}s longitude 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/data\+\_\+structures/Coordinate.\+h\item 
+src/data\+\_\+structures/Coordinate.\+cpp\end{DoxyCompactItemize}
